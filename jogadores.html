@@ -95,8 +95,18 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .welcome-icon{font-size:56px;opacity:.6;}
 .welcome-title{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:var(--wh);}
 .welcome-sub{font-size:14px;color:var(--mu);letter-spacing:1px;max-width:380px;line-height:1.6;}
-.welcome-arrow{font-size:12px;color:var(--bl3);letter-spacing:2px;margin-top:8px;animation:bounce .8s infinite alternate;}
-@keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+  .welcome-arrow{font-size:12px;color:var(--bl3);letter-spacing:2px;margin-top:8px;animation:bounce .8s infinite alternate;}
+  @keyframes bounce{from{transform:translateY(0)}to{transform:translateY(-6px)}}
+
+  /* PLAYER GALLERY */
+  .player-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:20px;width:100%;max-width:1000px;margin-top:30px;}
+  .gallery-item{cursor:pointer;transition:all .3s;text-align:center;position:relative;}
+  .gallery-item:hover{transform:translateY(-10px);}
+  .gallery-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--brd);box-shadow:0 10px 30px rgba(0,0,0,.5);transition:all .3s;}
+  .gallery-item:hover .gallery-photo{border-color:var(--bl);box-shadow:var(--glow);}
+  .gallery-name{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--wh);margin-top:8px;letter-spacing:1px;text-transform:uppercase;}
+  .gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:2px;}
+  .team-name{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:var(--wh);letter-spacing:8px;margin-top:40px;text-shadow:0 0 20px rgba(255,255,255,.3);text-transform:uppercase;}
 
 /* STITLE */
 .stitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--bl3);
@@ -710,10 +720,14 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <div id="app">
     <!-- WELCOME -->
     <div class="welcome" id="welcomeScreen">
-      <div class="welcome-icon">🎮</div>
-      <div class="welcome-title">SEUS STATS AQUI</div>
-      <div class="welcome-sub">Pesquise seu nick no campo acima para ver suas análises, estatísticas e desempenho completo.</div>
-      <div class="welcome-arrow">↑ PESQUISE SEU NICK ↑</div>
+      <div class="welcome-title">PESQUISE SEU NICK</div>
+      <div class="welcome-sub">Ou selecione seu perfil na galeria abaixo</div>
+      
+      <div class="player-gallery" id="playerGallery">
+        <!-- Populada via JS -->
+      </div>
+
+      <div class="team-name">PLANO A ESPORTS</div>
     </div>
 
     <!-- PLAYER CONTENT -->
@@ -1070,6 +1084,7 @@ function loadSheetData() {
         calViewYear=+last[0]; calViewMonth=+last[1]-1;
       }
       renderSearchDropdown();
+      renderPlayerGallery();
     } catch(err) {
       document.getElementById('loadingScreen').style.display = 'none';
       document.getElementById('errorScreen').style.display   = 'flex';
@@ -1198,6 +1213,28 @@ function renderSearchDropdown(filter='') {
   dd.querySelectorAll('.search-opt-role').forEach(el => {
     if(el.textContent.startsWith('http')) el.textContent = '';
   });
+}
+
+function renderPlayerGallery() {
+  const galleryEl = document.getElementById('playerGallery');
+  if (!galleryEl) return;
+  const players = uniqPl();
+  galleryEl.innerHTML = players.map(name => {
+    const pd = plData(name);
+    const foto = pd.find(r => r.foto)?.foto || '';
+    const role = noUrl(pd[0]?.funcao) || 'PLAYER';
+    const img = foto 
+      ? `<img class="gallery-photo" src="${esc(foto)}" alt="${esc(name)}" onerror="this.outerHTML='<div class=gallery-photo style=\"display:flex;align-items:center;justify-content:center;background:var(--dk3);font-size:40px;\">👤</div>'">`
+      : `<div class="gallery-photo" style="display:flex;align-items:center;justify-content:center;background:var(--dk3);font-size:40px;">👤</div>`;
+    
+    return `
+      <div class="gallery-item" onclick="selectPlayer('${esc(name)}')">
+        ${img}
+        <div class="gallery-name">${esc(name)}</div>
+        <div class="gallery-role">${esc(role)}</div>
+      </div>
+    `;
+  }).join('');
 }
 function filterSearch(v) { renderSearchDropdown(v); openSearch(); }
 function openSearch()  { document.getElementById('searchDropdown').classList.add('open'); }

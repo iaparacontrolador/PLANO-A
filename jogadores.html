@@ -1272,7 +1272,8 @@ function renderPlayer(name) {
   const pd     = filterByPeriod(pd_all);
   if (!pd.length) { document.getElementById('playerContent').innerHTML = '<div style="color:var(--mu);padding:40px;text-align:center">Nenhum dado encontrado para este jogador.</div>'; return; }
 
-  const foto     = pd[0]?.foto || '';
+  // Busca a foto em todos os registros do jogador, não apenas no período filtrado
+  const foto     = pd_all.find(r => r.foto)?.foto || '';
   const funcao   = noUrl(pd[0]?.funcao) || 'PLAYER';
   const totalK   = sum(pd.map(d=>d.kills));
   const deaths   = sum(pd.map(d=>d.morreu));
@@ -1296,9 +1297,9 @@ function renderPlayer(name) {
 
     <!-- TICKER DE EVOLUÇÃO -->
     ${(()=>{
-      // Compara última data com a anterior — agrupa por data
+      // Compara última data com a anterior — agrupa por data (usa pd_all para evolução sempre aparecer)
       const byDate = {};
-      pd.forEach(d => { if(!d.data) return; (byDate[d.data]=byDate[d.data]||[]).push(d); });
+      pd_all.forEach(d => { if(!d.data) return; (byDate[d.data]=byDate[d.data]||[]).push(d); });
       const dates = Object.keys(byDate).sort();
       if (dates.length < 2) return '';
       const last = byDate[dates[dates.length-1]];

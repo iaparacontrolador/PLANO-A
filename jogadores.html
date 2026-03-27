@@ -3630,41 +3630,43 @@ function generateTacticalPDF() {
         const isSniper=fUp.includes('SNIPER')||fUp.includes('FRANGO')||fUp.includes('AWP');
         const isRush=fUp.includes('RUSH')||fUp.includes('FRAG')||fUp.includes('ASSALT');
         // Overall score calculado por função
+        // Overall score calculado por função (BALANCEADO)
         let overall = 0;
         if (isBomba) {
-          // Bomba: priorizamos dano, derrubadas e kill confirm — NÃO suporte médico
+          // Bomba: Dano massivo e Derrubadas são cruciais
           overall = Math.min(100,
-            (Math.min(aK/3,1)*25) +
-            (Math.min(aD/2000,1)*30) +
-            (Math.min(parseFloat(killConf)/100,1)*20) +
-            (Math.min(kd/3,1)*15) +
-            (Math.min(tDr/Math.max(games,1)/3,1)*10)
+            (Math.min(aK/4, 1) * 20) +       // Kills (20%)
+            (Math.min(aD/2500, 1) * 35) +    // Dano (35%) - Peso maior para Bomba
+            (Math.min(tDr/Math.max(games,1)/4, 1) * 20) + // Derrubadas (20%)
+            (Math.min(kd/2.5, 1) * 15) +     // K/D (15%)
+            (Math.min(aA/2, 1) * 10)         // Assistências (10%)
           );
         } else if (isSupport) {
-          // Suporte: cura, levantamentos e assists
+          // Suporte: Cura e Levantamentos, mas Kills/Dano ainda contam
           overall = Math.min(100,
-            (Math.min(tC/Math.max(games,1)/800,1)*30) +
-            (Math.min(tLv/Math.max(games,1)/2,1)*25) +
-            (Math.min(aA/3,1)*20) +
-            (Math.min(kd/2,1)*15) +
-            (Math.min(aM<=1?1:1/aM,1)*10)
+            (Math.min(aK/3, 1) * 15) +       // Kills (15%)
+            (Math.min(aD/1500, 1) * 15) +    // Dano (15%)
+            (Math.min(tC/Math.max(games,1)/1200, 1) * 30) + // Cura (30%)
+            (Math.min(tLv/Math.max(games,1)/2.5, 1) * 25) + // Levantamentos (25%)
+            (Math.min(aA/4, 1) * 15)         // Assistências (15%)
           );
         } else if (isSniper) {
-          // Sniper: headshot%, K/D, dano
+          // Sniper: Precisão (HS) e K/D
           overall = Math.min(100,
-            (Math.min(aHS/50,1)*30) +
-            (Math.min(kd/4,1)*25) +
-            (Math.min(aD/2500,1)*25) +
-            (Math.min(aM<=1?1:0.5/aM,1)*20)
+            (Math.min(aK/4, 1) * 20) +       // Kills (20%)
+            (Math.min(aD/2000, 1) * 20) +    // Dano (20%)
+            (Math.min(aHS/55, 1) * 30) +     // HS% (30%)
+            (Math.min(kd/4, 1) * 20) +       // K/D (20%)
+            (Math.min(aM<=0.8?1:0.8/aM, 1) * 10) // Sobrevivência (10%)
           );
         } else {
-          // Fragger / padrão
+          // Fragger / Rush: Foco total em Kills e Dano
           overall = Math.min(100,
-            (Math.min(aK/4,1)*30) +
-            (Math.min(aD/2000,1)*25) +
-            (Math.min(kd/3,1)*25) +
-            (Math.min(aHS/40,1)*10) +
-            (Math.min(aM<=1?1:0.5/aM,1)*10)
+            (Math.min(aK/5, 1) * 40) +       // Kills (40%) - Peso máximo
+            (Math.min(aD/2800, 1) * 30) +    // Dano (30%)
+            (Math.min(kd/3.5, 1) * 15) +     // K/D (15%)
+            (Math.min(aHS/45, 1) * 10) +     // HS% (10%)
+            (Math.min(tDr/Math.max(games,1)/4, 1) * 5) // Derrubadas (5%)
           );
         }
         return {pl,tK,tD,tA,tDr,tLv,tRs,tC,deaths,aK,aD,aA,aHS,aM,kd,kda,dpk,killConf,assRatio,supIdx,atkIdx,recordD,recordK,zeroKGames,games,consistency,funcao,foto,overall,isBomba,isSupport,isSniper};
@@ -4431,6 +4433,122 @@ function generateTacticalPDF() {
   </div>
 </div>
 
+
+
+<!-- ════════════════════════════════════════
+     PÁG 2.5 · ANÁLISE TÁTICA ADICIONAL
+════════════════════════════════════════ -->
+<div class="page pb">
+  <div class="page-header">
+    <div class="page-header-left">
+      <div class="page-num">02</div>
+      <div class="page-section">ANÁLISE TÁTICA / TACTICAL PERFORMANCE</div>
+    </div>
+    <div class="page-coach">@COACH.STIVE10 · ${dateStr}</div>
+  </div>
+
+  <div class="sec-title">
+    <div class="sec-title-line">
+      <div class="sec-title-bar"></div>
+      <div class="sec-title-text">RANKING DE EFICIÊNCIA (TOP PLAYERS)</div>
+    </div>
+    <div class="sec-title-sub">DESEMPENHO INDIVIDUAL E IMPACTO NO JOGO</div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; margin-bottom:30px;">
+    <!-- VICENX -->
+    <div style="background:var(--bg2); border:1px solid rgba(255,255,255,0.1); padding:15px; position:relative;">
+      <div style="position:absolute; top:0; right:0; background:var(--gold); color:#000; font-family:'Orbitron'; font-size:9px; font-weight:900; padding:2px 8px;">MVP</div>
+      <div style="font-family:'Orbitron'; font-size:14px; font-weight:700; color:#fff; margin-bottom:5px;">VICENX</div>
+      <div style="font-size:9px; color:var(--blue2); letter-spacing:2px; margin-bottom:10px;">RUSH</div>
+      <div style="font-size:11px; color:var(--dim); line-height:1.4;">
+        Maior volume de jogo e dano massivo (2801). Essencial para abrir espaço no mapa.
+      </div>
+    </div>
+    <!-- GAGO -->
+    <div style="background:var(--bg2); border:1px solid rgba(255,255,255,0.1); padding:15px;">
+      <div style="font-family:'Orbitron'; font-size:14px; font-weight:700; color:#fff; margin-bottom:5px;">GAGO</div>
+      <div style="font-size:9px; color:var(--purple2); letter-spacing:2px; margin-bottom:10px;">BOMBA / SUPORTE EXPLOSIVO</div>
+      <div style="font-size:11px; color:var(--dim); line-height:1.4;">
+        Empatado em abates, mas com uma função estratégica. Altíssima conversão de eliminações.
+      </div>
+    </div>
+    <!-- RNKING -->
+    <div style="background:var(--bg2); border:1px solid rgba(255,255,255,0.1); padding:15px;">
+      <div style="font-family:'Orbitron'; font-size:14px; font-weight:700; color:#fff; margin-bottom:5px;">RNKING</div>
+      <div style="font-size:9px; color:var(--green2); letter-spacing:2px; margin-bottom:10px;">RUSH / IMPACTO INDIRETO</div>
+      <div style="font-size:11px; color:var(--dim); line-height:1.4;">
+        Causou 1350 de dano sem abates confirmados. "Amacia" o inimigo para finalização dos companheiros.
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-title">
+    <div class="sec-title-line">
+      <div class="sec-title-bar"></div>
+      <div class="sec-title-text">A EQUIPE IDEAL (META FORMATION)</div>
+    </div>
+    <div class="sec-title-sub">RECOMENDAÇÃO PARA QUARTETO COMPETITIVO</div>
+  </div>
+
+  <div style="background:rgba(26, 111, 255, 0.05); border:1px solid rgba(26, 111, 255, 0.2); padding:20px; margin-bottom:30px;">
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+      <ul style="list-style:none; padding:0;">
+        <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
+          <span style="color:var(--blue2); font-weight:900;">[RUSH 1]</span>
+          <span style="color:#fff; font-family:'Rajdhani'; font-size:14px;">VICENX (Poder de fogo primário)</span>
+        </li>
+        <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
+          <span style="color:var(--blue2); font-weight:900;">[RUSH 2]</span>
+          <span style="color:#fff; font-family:'Rajdhani'; font-size:14px;">RNKING (Suporte de proximidade)</span>
+        </li>
+      </ul>
+      <ul style="list-style:none; padding:0;">
+        <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
+          <span style="color:var(--purple2); font-weight:900;">[BOMBA]</span>
+          <span style="color:#fff; font-family:'Rajdhani'; font-size:14px;">GAGO (Finalizador e utilitário)</span>
+        </li>
+        <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
+          <span style="color:var(--green2); font-weight:900;">[SUPORTE]</span>
+          <span style="color:#fff; font-family:'Rajdhani'; font-size:14px;">WIRTZ (Foco em reviver e visão de mapa)</span>
+        </li>
+      </ul>
+    </div>
+    <div style="margin-top:15px; padding-top:15px; border-top:1px solid rgba(255,255,255,0.1); font-size:11px; color:var(--dim); font-style:italic;">
+      Análise Informativa: A equipe tem um "Early Game" agressivo, contando com a base sólida de WIRTZ para sustentar a linha defensiva.
+    </div>
+  </div>
+
+  <div class="sec-title">
+    <div class="sec-title-line">
+      <div class="sec-title-bar"></div>
+      <div class="sec-title-text">ESTRATÉGIA POR MAPA: PURGATÓRIO</div>
+    </div>
+    <div class="sec-title-sub">SINERGIA E POSICIONAMENTO TÁTICO</div>
+  </div>
+
+  <div style="display:flex; gap:20px; align-items:stretch;">
+    <div style="flex:1; background:var(--bg3); padding:20px; border-left:4px solid var(--blue);">
+      <div style="font-family:'Orbitron'; font-size:12px; color:#fff; margin-bottom:10px;">FORMAÇÃO DE DESTAQUE</div>
+      <div style="font-size:14px; color:var(--blue2); font-weight:700; margin-bottom:15px;">VICENX & GAGO</div>
+      <div style="font-size:11px; color:var(--dim); line-height:1.6;">
+        Ambos mantiveram 100% de presença e abates consistentes neste mapa. 
+        A tática recomendada é utilizar GAGO para limpar áreas de "casarões" com granadas, enquanto VICENX faz o rush frontal aproveitando as aberturas criadas.
+      </div>
+    </div>
+    <div style="width:200px; background:linear-gradient(135deg, var(--bg2), var(--bg3)); border:1px solid rgba(255,255,255,0.05); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; padding:15px;">
+      <div style="font-size:24px; margin-bottom:10px;">🗺️</div>
+      <div style="font-family:'Orbitron'; font-size:10px; letter-spacing:2px; color:var(--muted);">MAPA FOCO</div>
+      <div style="font-family:'Orbitron'; font-size:16px; font-weight:900; color:#fff; margin-top:5px;">PURGATÓRIO</div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <div class="doc-footer-left">@COACH.STIVE10</div>
+    <div class="doc-footer-center">TACTICAL REPORT · FREE FIRE</div>
+    <div class="doc-footer-right">Pág 02.5 · ${dateStr}</div>
+  </div>
+</div>
 <!-- ════════════════════════════════════════
      PÁG 3 · DIAGNÓSTICO COLETIVO + MAPAS
 ════════════════════════════════════════ -->
@@ -4566,7 +4684,7 @@ function generateTacticalPDF() {
   <div class="doc-footer">
     <div class="doc-footer-left">@COACH.STIVE10</div>
     <div class="doc-footer-center">TACTICAL REPORT · FREE FIRE</div>
-    <div class="doc-footer-right">Pág 02 · ${dateStr}</div>
+    <div class="doc-footer-right">Pág 03 · ${dateStr}</div>
   </div>
 </div>
 
@@ -4577,7 +4695,7 @@ ${detailRows.map((row,i)=>`
 <div class="page pb">
   <div class="page-header">
     <div class="page-header-left">
-      <div class="page-num">0${3+i}</div>
+      <div class="page-num">0${4+i}</div>
       <div class="page-section">ANÁLISE INDIVIDUAL</div>
     </div>
     <div class="page-coach">@COACH.STIVE10 · ${dateStr}</div>
@@ -4586,7 +4704,7 @@ ${detailRows.map((row,i)=>`
   <div class="doc-footer">
     <div class="doc-footer-left">@COACH.STIVE10</div>
     <div class="doc-footer-center">TACTICAL REPORT · FREE FIRE</div>
-    <div class="doc-footer-right">Pág 0${3+i} · ${dateStr}</div>
+    <div class="doc-footer-right">Pág 0${4+i} · ${dateStr}</div>
   </div>
 </div>`).join('')}
 

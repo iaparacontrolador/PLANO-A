@@ -909,7 +909,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 // ══════════════════════════════════════════════
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
 // URL do Web App do Google Apps Script para salvar relatórios (necessário configurar no Google Sheets)
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0EgA9b4JggLM2rqgqS2vs21v3lHue5MmzvK6zHyWzeX264PEOE_IpXUNQ5BTHDG0jMg/exec'; 
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaw_PHTHFV6CTd3EiirTUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW/exec'; 
 
 // ══════════════════════════════════════════════
 
@@ -1337,29 +1337,35 @@ function closePsyView() {
   document.getElementById('psyViewModal').classList.remove('open');
 }
 
-async function loadPsyReportsFromSheet() {
+function loadPsyReportsFromSheet() {
   const list = document.getElementById('psyReportsList');
   list.innerHTML = '<div style="text-align: center; color: var(--mu); padding: 40px;">Carregando relatórios da planilha...</div>';
   
-  if (!GOOGLE_SCRIPT_URL) {
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === '') {
     list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro: URL do Script não configurada.</div>';
     return;
   }
 
-  try {
-    const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getReports`);
-    const data = await response.json();
+  // Usar JSONP (callback) para evitar erros de CORS ao ler dados do Google
+  const callbackName = 'psyCallback_' + Math.floor(Math.random() * 1000000);
+  window[callbackName] = function(data) {
+    delete window[callbackName];
+    document.body.removeChild(script);
     
     if (data.success) {
       allPsyReports = data.reports || [];
       renderPsyReports(allPsyReports);
     } else {
-      throw new Error(data.error);
+      list.innerHTML = `<div style="text-align: center; color: #ff5078; padding: 40px;">Erro: ${data.error}</div>`;
     }
-  } catch (err) {
-    console.error('Erro ao carregar relatórios:', err);
-    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro ao carregar dados. Verifique a implantação do script.</div>';
-  }
+  };
+
+  const script = document.createElement('script');
+  script.src = `${GOOGLE_SCRIPT_URL}?action=getReports&callback=${callbackName}`;
+  script.onerror = function() {
+    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro de conexão com o script. Verifique se ele foi implantado como "Qualquer pessoa".</div>';
+  };
+  document.body.appendChild(script);
 }
 
 function renderPsyReports(reports) {

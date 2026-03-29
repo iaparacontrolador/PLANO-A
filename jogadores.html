@@ -5212,7 +5212,9 @@ function initGoals() {
     const start = new Date(challengePeriod.start + 'T00:00:00');
     const end = new Date(challengePeriod.end + 'T23:59:59');
     periodData = allData.filter(d => {
-      const dDate = new Date(d.data);
+      // Usar a função padronizada do sistema para converter a data "DD/MM/YYYY" para Date
+      const dDate = getDateFromStr(d.data);
+      if (!dDate) return false;
       return dDate >= start && dDate <= end;
     });
   }
@@ -5269,13 +5271,23 @@ function initGoals() {
       // Determinar a cor da barra baseada no progresso
       let barClass = '';
       let emClass = '';
+      let barStyle = `width: ${pct}%`;
+      
       if (pct >= 100) {
         barClass = 'complete';
         emClass = 'complete';
-      } else if (pct >= 75) {
+      } else if (pct >= 80) {
         barClass = 'high';
-      } else if (pct >= 50) {
+        // Verde vibrante quando perto de bater a meta
+        barStyle += '; background: linear-gradient(90deg, #00ff88, #44ff44); box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);';
+      } else if (pct >= 60) {
+        barClass = 'high';
+      } else if (pct >= 40) {
         barClass = 'medium';
+      } else if (pct >= 20) {
+        barClass = 'low';
+        // Laranja suave transicionando do vermelho
+        barStyle += '; background: linear-gradient(90deg, #ff6666, #ffaa00);';
       } else {
         barClass = 'low';
       }
@@ -5287,7 +5299,7 @@ function initGoals() {
             <span><em class="${emClass}">${current}</em> / ${target} <span class="goal-pct ${emClass}">(${pct.toFixed(0)}%)</span></span>
           </div>
           <div class="goal-bar-bg">
-            <div class="goal-bar-fill ${barClass}" style="width: ${pct}%"></div>
+            <div class="goal-bar-fill ${barClass}" style="${barStyle}"></div>
           </div>
         </div>
       `;

@@ -107,7 +107,26 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .gallery-item:hover .gallery-photo{border-color:var(--bl);box-shadow:var(--glow);}
   .gallery-name{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--wh);margin-top:8px;letter-spacing:1px;text-transform:uppercase;}
   .gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:2px;}
-  .team-name{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:var(--wh);letter-spacing:8px;margin-top:40px;text-shadow:0 0 20px rgba(255,255,255,.3);text-transform:uppercase;}
+	  .team-name{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:var(--wh);letter-spacing:8px;margin-top:40px;text-shadow:0 0 20px rgba(255,255,255,.3);text-transform:uppercase;}
+	  
+	  /* PSICOLOGO IA SECTION */
+	  .psy-section { width: 100%; max-width: 800px; margin: 40px auto 0; padding: 24px; background: rgba(255,255,255,.03); border: 1px solid var(--brd); border-radius: 8px; text-align: left; }
+	  .psy-title { font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 900; color: var(--bl); letter-spacing: 2px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+	  .psy-title::before { content: '🧠'; font-size: 20px; }
+	  .psy-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+	  .psy-btn { flex: 1; min-width: 200px; padding: 12px 20px; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all .3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+	  .psy-btn:hover { background: rgba(255,255,255,.1); border-color: var(--bl); box-shadow: 0 0 15px rgba(255,255,255,.1); }
+	  .psy-btn.primary { background: var(--bl); color: var(--dk); border: none; }
+	  .psy-btn.primary:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,.4); }
+	  .psy-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.9); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px; }
+	  .psy-modal.open { display: flex; }
+	  .psy-modal-content { background: var(--dk2); border: 1px solid var(--brd); width: 100%; max-width: 600px; padding: 24px; position: relative; }
+	  .psy-modal-close { position: absolute; top: 12px; right: 12px; font-size: 20px; cursor: pointer; color: var(--mu); }
+	  .psy-form-group { margin-bottom: 16px; }
+	  .psy-form-label { display: block; font-size: 11px; color: var(--mu); margin-bottom: 6px; letter-spacing: 1px; }
+	  .psy-form-input { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; padding: 12px; font-family: inherit; font-size: 14px; outline: none; }
+	  .psy-form-textarea { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; padding: 12px; font-family: inherit; font-size: 13px; outline: none; min-height: 200px; resize: vertical; }
+	  .psy-form-input:focus, .psy-form-textarea:focus { border-color: var(--bl); }
 
 /* STITLE */
 .stitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--bl3);
@@ -786,6 +805,38 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
       </div>
 
       <div class="team-name">PLANO A ESPORTS</div>
+
+      <!-- SEÇÃO PSICÓLOGO IA -->
+      <div class="psy-section">
+        <div class="psy-title">PSICÓLOGO PLANO A ESPORTS (IA)</div>
+        <div class="psy-btns">
+          <button class="psy-btn" onclick="copyPsyPrompt()">
+            <span>📋</span> COPIAR PROMPT
+          </button>
+          <button class="psy-btn primary" onclick="openPsyModal()">
+            <span>🚀</span> ENVIAR RELATÓRIO
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL ENVIAR RELATÓRIO -->
+    <div class="psy-modal" id="psyModal">
+      <div class="psy-modal-content">
+        <span class="psy-modal-close" onclick="closePsyModal()">&times;</span>
+        <div class="psy-title" style="margin-bottom: 24px;">ENVIAR RELATÓRIO PSICOLÓGICO</div>
+        <div class="psy-form-group">
+          <label class="psy-form-label">NOME DO ATLETA</label>
+          <input type="text" id="psyPlayerName" class="psy-form-input" placeholder="Ex: Vicenx">
+        </div>
+        <div class="psy-form-group">
+          <label class="psy-form-label">COLE O RELATÓRIO DA IA ABAIXO</label>
+          <textarea id="psyReportContent" class="psy-form-textarea" placeholder="Cole aqui o relatório gerado pelo Psicólogo IA..."></textarea>
+        </div>
+        <button class="psy-btn primary" style="width: 100%;" onclick="submitPsyReport()">
+          ENVIAR PARA O COACH
+        </button>
+      </div>
     </div>
 
     <!-- PLAYER CONTENT -->
@@ -1068,6 +1119,80 @@ function setPeriod(period, btn) {
   document.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   triggerRerender();
+}
+
+// ── PSICOLOGO IA FUNCTIONS ──
+function copyPsyPrompt() {
+  const today = new Date().toLocaleDateString('pt-BR');
+  const prompt = `═══════════════════════════════════════
+📋 RELATÓRIO DE SESSÃO — MENTAL PERFORMANCE
+Atleta: [meu nome, se informado]
+Data: ${today}
+Duração estimada da sessão: [tempo aproximado, se possível]
+Equipe: Plano A Esports — Free Fire
+═══════════════════════════════════════
+
+1. ESTADO MENTAL INICIAL
+[Resumo de como o atleta relatou estar no início da sessão]
+
+2. BLOQUEIOS / PONTOS DE ATENÇÃO IDENTIFICADOS
+[Pensamentos limitantes, tilts ou dificuldades levantadas]
+
+3. FERRAMENTAS E INTERVENÇÕES APLICADAS
+[Técnicas, exercícios ou orientações trabalhadas na sessão]
+
+4. DEBRIEFING / ANÁLISE DE PERFORMANCE MENTAL
+[Reflexões sobre treino/jogo recente, se houver]
+
+5. PLANO DE AÇÃO PARA A PRÓXIMA SESSÃO
+[Próximos passos e pontos a acompanhar]
+
+6. OBSERVAÇÕES DO COACH
+[Notas relevantes sobre evolução ou alertas para a gestão]
+
+═══════════════════════════════════════
+Relatório gerado por: Mental Performance Coach IA
+═══════════════════════════════════════`;
+
+  navigator.clipboard.writeText(prompt).then(() => {
+    alert('✅ Prompt do relatório copiado para a área de transferência!');
+  }).catch(err => {
+    console.error('Erro ao copiar: ', err);
+    alert('❌ Erro ao copiar prompt. Tente selecionar e copiar manualmente.');
+  });
+}
+
+function openPsyModal() {
+  document.getElementById('psyModal').classList.add('open');
+}
+
+function closePsyModal() {
+  document.getElementById('psyModal').classList.remove('open');
+}
+
+function submitPsyReport() {
+  const name = document.getElementById('psyPlayerName').value.trim();
+  const report = document.getElementById('psyReportContent').value.trim();
+  
+  if (!name || !report) {
+    alert('⚠️ Por favor, preencha o seu nome e cole o relatório.');
+    return;
+  }
+  
+  const phoneNumber = '5575988387775';
+  const message = `*RELATÓRIO PSICOLÓGICO — PLANO A ESPORTS*\n\n*ATLETA:* ${name}\n\n${report}`;
+  const encodedMessage = encodeURIComponent(message);
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+  
+  // Abrir o WhatsApp em uma nova aba
+  window.open(whatsappUrl, '_blank');
+  
+  alert('✅ Redirecionando para o WhatsApp do Coach!');
+  closePsyModal();
+  
+  // Limpar campos
+  document.getElementById('psyPlayerName').value = '';
+  document.getElementById('psyReportContent').value = '';
 }
 
 // ── PDF MODAL ──

@@ -604,7 +604,13 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
+.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
+.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
+.goal-pct.complete { color: #00ff88; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
@@ -4420,7 +4426,13 @@ function generateTacticalPDF() {
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
+.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
+.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
+.goal-pct.complete { color: #00ff88; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
@@ -4980,7 +4992,13 @@ loadSheetData();
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
+.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
+.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
+.goal-pct.complete { color: #00ff88; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
@@ -5102,18 +5120,31 @@ async function loadGoalsFromRemote() {
   
   try {
     isLoadingRemote = true;
-    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
-      headers: { 'X-Master-Key': JSONBIN_API_KEY }
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest?t=${Date.now()}`, {
+      headers: { 'X-Master-Key': JSONBIN_API_KEY },
+      cache: 'no-store'
     });
     
     if (response.ok) {
       const data = await response.json();
       if (data.record) {
-        playerGoals = data.record.goals || {};
-        challengePeriod = data.record.period || DEFAULT_PERIOD;
-        localStorage.setItem('stive_player_goals', JSON.stringify(playerGoals));
-        localStorage.setItem('stive_challenge_period', JSON.stringify(challengePeriod));
-        console.log('✅ Metas sincronizadas do servidor!');
+        const novasMetasJSON = JSON.stringify(data.record.goals);
+        const metasAtuaisJSON = JSON.stringify(playerGoals);
+        
+        // Apenas atualizar se houver mudanças
+        if (novasMetasJSON !== metasAtuaisJSON) {
+          playerGoals = data.record.goals || {};
+          challengePeriod = data.record.period || DEFAULT_PERIOD;
+          localStorage.setItem('stive_player_goals', JSON.stringify(playerGoals));
+          localStorage.setItem('stive_challenge_period', JSON.stringify(challengePeriod));
+          console.log('✅ Metas sincronizadas do servidor!');
+          
+          // Atualizar a exibição se a aba de metas estiver aberta
+          const goalsTab = document.getElementById('tab-goals');
+          if (goalsTab && goalsTab.style.display !== 'none') {
+            initGoals();
+          }
+        }
         return true;
       }
     }
@@ -5235,14 +5266,28 @@ function initGoals() {
       const target = goals[m.key] || 0;
       let pct = target > 0 ? Math.min(100, (current / target) * 100) : 0;
       
+      // Determinar a cor da barra baseada no progresso
+      let barClass = '';
+      let emClass = '';
+      if (pct >= 100) {
+        barClass = 'complete';
+        emClass = 'complete';
+      } else if (pct >= 75) {
+        barClass = 'high';
+      } else if (pct >= 50) {
+        barClass = 'medium';
+      } else {
+        barClass = 'low';
+      }
+      
       itemsHtml += `
         <div class="goal-item" onclick="openAnalysisModal('${pl}', '${m.key}', '${m.label}', '${m.icon}')">
           <div class="goal-label">
             <span>${m.icon} ${m.label}</span>
-            <span><em>${current}</em> / ${target} <span class="goal-pct">(${pct.toFixed(0)}%)</span></span>
+            <span><em class="${emClass}">${current}</em> / ${target} <span class="goal-pct ${emClass}">(${pct.toFixed(0)}%)</span></span>
           </div>
           <div class="goal-bar-bg">
-            <div class="goal-bar-fill" style="width: ${pct}%"></div>
+            <div class="goal-bar-fill ${barClass}" style="width: ${pct}%"></div>
           </div>
         </div>
       `;
@@ -5499,6 +5544,15 @@ switchTab = function(tab, btn) {
     }).catch(() => {
       initGoals();
     });
+    
+    // Atualizar a cada 2 segundos enquanto a aba estiver aberta
+    if (window.goalsTabInterval) clearInterval(window.goalsTabInterval);
+    window.goalsTabInterval = setInterval(() => {
+      loadGoalsFromRemote();
+    }, 2000);
+  } else {
+    // Parar de atualizar quando sair da aba
+    if (window.goalsTabInterval) clearInterval(window.goalsTabInterval);
   }
 };
 
@@ -5506,7 +5560,23 @@ switchTab = function(tab, btn) {
 window.addEventListener('load', () => {
   loadGoalsFromRemote().then(() => {
     console.log('Metas carregadas ao iniciar a página');
+    initGoals();
+  }).catch(() => {
+    initGoals();
   });
+  
+  // Atualizar metas a cada 3 segundos para sincronização em tempo real
+  setInterval(() => {
+    loadGoalsFromRemote();
+  }, 3000);
+  
+  // Atualizar a renderização das metas a cada 2 segundos (para refletir mudanças nos dados)
+  setInterval(() => {
+    const goalsTab = document.getElementById('tab-goals');
+    if (goalsTab && goalsTab.style.display !== 'none') {
+      initGoals();
+    }
+  }, 2000);
 });
 
 </script>

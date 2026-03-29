@@ -909,7 +909,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 // ══════════════════════════════════════════════
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
 // URL do Web App do Google Apps Script para salvar relatórios (necessário configurar no Google Sheets)
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyaw_PHTHFV6CTd3EiirTUQDvDUxFShoWWbHougyHjr0tFz3E38fX8e0bnTUpya-P0mXW/exec'; 
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxifzzPdsdKNKD-6cZUYmsjQFknkOtJItI0fJZ7q5pBF40wW_wF_4q2uDkGl-USOobWTw/exec'; 
 
 // ══════════════════════════════════════════════
 
@@ -1282,15 +1282,17 @@ async function submitPsyToSheets() {
   btn.innerHTML = '<span>⏳</span> ENVIANDO...';
 
   try {
+    // Usar FormData para enviar dados de forma mais compatível com Apps Script
+    const formData = new FormData();
+    formData.append('atleta', name);
+    formData.append('relatorio', report);
+    formData.append('data', new Date().toLocaleString('pt-BR'));
+    formData.append('type', 'relatorio'); // Identificador para o script
+
     await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        atleta: name,
-        relatorio: report,
-        data: new Date().toLocaleString('pt-BR')
-      })
+      body: formData
     });
 
     alert('✅ Relatório enviado com sucesso para a aba "RELATORIOS" da Planilha!');

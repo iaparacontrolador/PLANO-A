@@ -5083,8 +5083,12 @@ function closeIntro() {
 }
 
 // ── GOALS SYSTEM ──
-let playerGoals = JSON.parse(localStorage.getItem('stive_player_goals') || '{}');
-let challengePeriod = JSON.parse(localStorage.getItem('stive_challenge_period') || '{"start":"","end":""}');
+// Metas padrão que serão exibidas para todos os jogadores se não houver nada no localStorage
+const DEFAULT_GOALS = {}; 
+const DEFAULT_PERIOD = {"start":"","end":""};
+
+let playerGoals = JSON.parse(localStorage.getItem('stive_player_goals') || JSON.stringify(DEFAULT_GOALS));
+let challengePeriod = JSON.parse(localStorage.getItem('stive_challenge_period') || JSON.stringify(DEFAULT_PERIOD));
 let analysisChartInstance = null;
 
 function initGoals() {
@@ -5384,18 +5388,27 @@ function saveAllGoals() {
   localStorage.setItem('stive_challenge_period', JSON.stringify(challengePeriod));
 
   const inputs = document.querySelectorAll('.goal-input[data-player]');
+  const newGoals = {};
   inputs.forEach(input => {
     const pl = input.dataset.player;
     const metric = input.dataset.metric;
     const val = parseInt(input.value) || 0;
     
-    if(!playerGoals[pl]) playerGoals[pl] = {};
-    playerGoals[pl][metric] = val;
+    if(!newGoals[pl]) newGoals[pl] = {};
+    newGoals[pl][metric] = val;
   });
   
+  playerGoals = newGoals;
   localStorage.setItem('stive_player_goals', JSON.stringify(playerGoals));
+  
+  // Log para o Coach copiar e colar no código se quiser tornar permanente para todos
+  console.log("COPIE O CONTEÚDO ABAIXO PARA O CÓDIGO (DEFAULT_GOALS):");
+  console.log(JSON.stringify(playerGoals));
+  console.log("COPIE O CONTEÚDO ABAIXO PARA O CÓDIGO (DEFAULT_PERIOD):");
+  console.log(JSON.stringify(challengePeriod));
+
   initGoals();
-  alert('Metas e período salvos com sucesso!');
+  alert('Metas salvas localmente! Para que todos os jogadores vejam, as metas precisam ser atualizadas no arquivo do GitHub pelo desenvolvedor.');
 }
 
 function resetGoals() {

@@ -1375,20 +1375,47 @@ function renderPsyReports(reports) {
     return;
   }
 
-  list.innerHTML = reports.map((r, index) => `
-    <div class="report-card">
-      <div class="report-header">
-        <div class="report-info">
-          <div class="report-atleta">${r.atleta.toUpperCase()}</div>
-          <div class="report-date">📅 ${r.data}</div>
+  list.innerHTML = reports.map((r, index) => {
+    // Limpeza de aspas extras no início e fim do texto (comum no Google Sheets)
+    let cleanContent = r.relatorio.trim();
+    if (cleanContent.startsWith('"') && cleanContent.endsWith('"')) {
+      cleanContent = cleanContent.substring(1, cleanContent.length - 1);
+    }
+    // Substituir aspas duplas escapadas ("") por aspas simples ou normais
+    cleanContent = cleanContent.replace(/""/g, '"');
+    
+    // Guardar o conteúdo limpo de volta no array para o download
+    allPsyReports[index].relatorioLimpo = cleanContent;
+
+    return `
+      <div class="report-card">
+        <div class="report-header">
+          <div class="report-info">
+            <div class="report-atleta">${r.atleta.toUpperCase()}</div>
+            <div class="report-date">📅 ${r.data}</div>
+          </div>
+          <div class="report-actions">
+            <button class="report-btn" onclick="downloadReport(${index})">📥 BAIXAR</button>
+          </div>
         </div>
-        <div class="report-actions">
-          <button class="report-btn" onclick="downloadReport(${index})">📥 BAIXAR</button>
-        </div>
+        <div class="report-content" style="max-height: none;">${cleanContent}</div>
       </div>
-      <div class="report-content">${r.relatorio}</div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
+}
+
+function downloadReport(index) {
+  const r = allPsyReports[index];
+  const content = r.relatorioLimpo || r.relatorio;
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  // Nome do arquivo baseado no atleta e data
+  const fileNameDate = r.data.split(',')[0].replace(/\//g, '-');
+  a.download = `Relatorio_${r.atleta.replace(/\s+/g, '_')}_${fileNameDate}.txt`;
+  a.click();
+  window.URL.revokeObjectURL(url);
 }
 
 function filterPsyReports() {

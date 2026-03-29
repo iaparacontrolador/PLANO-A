@@ -833,9 +833,14 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           <label class="psy-form-label">COLE O RELATÓRIO DA IA ABAIXO</label>
           <textarea id="psyReportContent" class="psy-form-textarea" placeholder="Cole aqui o relatório gerado pelo Psicólogo IA..."></textarea>
         </div>
-        <button class="psy-btn primary" style="width: 100%;" onclick="submitPsyReport()">
-          ENVIAR PARA O COACH
-        </button>
+        <div style="display: flex; gap: 10px;">
+          <button class="psy-btn primary" style="flex: 1;" onclick="submitPsyReport()">
+            <span>💬</span> WHATSAPP
+          </button>
+          <button class="psy-btn" style="flex: 1; background: #0F9D58; border-color: #0F9D58;" onclick="submitPsyToSheets()">
+            <span>📊</span> PLANILHA
+          </button>
+        </div>
       </div>
     </div>
 
@@ -849,6 +854,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 // ⚙️ CONFIGURAÇÃO
 // ══════════════════════════════════════════════
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
+// URL do Web App do Google Apps Script para salvar relatórios (necessário configurar no Google Sheets)
+const GOOGLE_SCRIPT_URL = ''; 
+
 // ══════════════════════════════════════════════
 
 let allData = [];
@@ -1126,9 +1134,10 @@ function copyPsyPrompt() {
   const today = new Date().toLocaleDateString('pt-BR');
   const prompt = `═══════════════════════════════════════
 📋 RELATÓRIO DE SESSÃO — MENTAL PERFORMANCE
-Atleta: [meu nome, se informado]
+Atleta: [nome do atleta]
+Função: [Rush / Bomba / Suporte / CPT]
 Data: ${today}
-Duração estimada da sessão: [tempo aproximado, se possível]
+Duração estimada da sessão: [tempo aproximado]
 Equipe: Plano A Esports — Free Fire
 ═══════════════════════════════════════
 
@@ -1136,22 +1145,26 @@ Equipe: Plano A Esports — Free Fire
 [Resumo de como o atleta relatou estar no início da sessão]
 
 2. BLOQUEIOS / PONTOS DE ATENÇÃO IDENTIFICADOS
-[Pensamentos limitantes, tilts ou dificuldades levantadas]
+[Pensamentos limitantes, tilts ou dificuldades levantadas —
+contextualizados à função do atleta]
 
 3. FERRAMENTAS E INTERVENÇÕES APLICADAS
 [Técnicas, exercícios ou orientações trabalhadas na sessão]
 
 4. DEBRIEFING / ANÁLISE DE PERFORMANCE MENTAL
-[Reflexões sobre treino/jogo recente, se houver]
+[Reflexões sobre treino/jogo recente, considerando as
+responsabilidades da função]
 
 5. PLANO DE AÇÃO PARA A PRÓXIMA SESSÃO
 [Próximos passos e pontos a acompanhar]
 
-6. OBSERVAÇÕES DO COACH
-[Notas relevantes sobre evolução ou alertas para a gestão]
+6. OBSERVAÇÕES DO COACH PARA A GESTÃO
+[Notas relevantes sobre evolução, alertas ou recomendações
+para a comissão técnica da Plano A Esports]
 
 ═══════════════════════════════════════
 Relatório gerado por: Mental Performance Coach IA
+Plano A Esports — Free Fire
 ═══════════════════════════════════════`;
 
   navigator.clipboard.writeText(prompt).then(() => {
@@ -1193,6 +1206,53 @@ function submitPsyReport() {
   // Limpar campos
   document.getElementById('psyPlayerName').value = '';
   document.getElementById('psyReportContent').value = '';
+}
+
+async function submitPsyToSheets() {
+  const name = document.getElementById('psyPlayerName').value.trim();
+  const report = document.getElementById('psyReportContent').value.trim();
+  
+  if (!name || !report) {
+    alert('⚠️ Por favor, preencha o seu nome e cole o relatório.');
+    return;
+  }
+
+  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === '') {
+    alert('⚠️ ATENÇÃO: Para enviar para a planilha, você precisa configurar a URL do seu Google Script no código (variável GOOGLE_SCRIPT_URL na linha 858).');
+    return;
+  }
+
+  const btn = event.currentTarget;
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '<span>⏳</span> ENVIANDO...';
+
+  try {
+    // Para Google Apps Script com POST, usamos o FormData ou o JSON via POST
+    // Como usamos mode: 'no-cors', não teremos a resposta detalhada, mas o dado chegará.
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        atleta: name,
+        relatorio: report,
+        data: new Date().toLocaleString('pt-BR')
+      })
+    });
+
+    // Como o modo 'no-cors' não permite ler a resposta, assumimos sucesso se não houver erro de rede
+    alert('✅ Relatório enviado com sucesso para a aba "RELATORIOS" da Planilha!');
+    closePsyModal();
+    document.getElementById('psyPlayerName').value = '';
+    document.getElementById('psyReportContent').value = '';
+  } catch (err) {
+    console.error('Erro ao enviar para planilha:', err);
+    alert('❌ Erro técnico ao enviar para a planilha. Verifique se a URL do Script está correta e se ele foi implantado como "Qualquer pessoa".');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  }
 }
 
 // ── PDF MODAL ──

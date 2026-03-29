@@ -127,6 +127,18 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 	  .psy-form-input { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; padding: 12px; font-family: inherit; font-size: 14px; outline: none; }
 	  .psy-form-textarea { width: 100%; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; padding: 12px; font-family: inherit; font-size: 13px; outline: none; min-height: 200px; resize: vertical; }
 	  .psy-form-input:focus, .psy-form-textarea:focus { border-color: var(--bl); }
+	  
+	  /* REPORT CARD */
+	  .report-card { background: rgba(255,255,255,.05); border: 1px solid var(--brd); padding: 16px; margin-bottom: 12px; transition: all .3s; }
+	  .report-card:hover { border-color: var(--bl); background: rgba(255,255,255,.08); }
+	  .report-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 8px; }
+	  .report-info { display: flex; flex-direction: column; gap: 2px; }
+	  .report-atleta { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 900; color: var(--bl); }
+	  .report-date { font-size: 10px; color: var(--mu); letter-spacing: 1px; }
+	  .report-content { font-size: 13px; color: #ccc; white-space: pre-wrap; line-height: 1.6; max-height: 150px; overflow-y: auto; padding: 10px; background: rgba(0,0,0,.2); }
+	  .report-actions { display: flex; gap: 8px; margin-top: 12px; }
+	  .report-btn { padding: 6px 12px; font-size: 10px; font-family: 'Orbitron', sans-serif; cursor: pointer; border: 1px solid var(--brd); background: rgba(255,255,255,.05); color: #fff; }
+	  .report-btn:hover { border-color: var(--bl); color: var(--bl); }
 
 /* STITLE */
 .stitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--bl3);
@@ -816,6 +828,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           <button class="psy-btn primary" onclick="openPsyModal()">
             <span>🚀</span> ENVIAR RELATÓRIO
           </button>
+          <button class="psy-btn" onclick="openPsyViewLogin()">
+            <span>👁️</span> VISUALIZAR RELATÓRIOS
+          </button>
         </div>
       </div>
     </div>
@@ -840,6 +855,45 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           <button class="psy-btn" style="flex: 1; background: #0F9D58; border-color: #0F9D58;" onclick="submitPsyToSheets()">
             <span>📊</span> PLANILHA
           </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL LOGIN COACH -->
+    <div class="psy-modal" id="psyLoginModal">
+      <div class="psy-modal-content" style="max-width: 400px;">
+        <span class="psy-modal-close" onclick="closePsyViewLogin()">&times;</span>
+        <div class="psy-title" style="margin-bottom: 24px;">ACESSO RESTRITO — COACH</div>
+        <div class="psy-form-group">
+          <label class="psy-form-label">USUÁRIO</label>
+          <input type="text" id="psyCoachUser" class="psy-form-input" placeholder="Nome de usuário">
+        </div>
+        <div class="psy-form-group">
+          <label class="psy-form-label">SENHA</label>
+          <input type="password" id="psyCoachPass" class="psy-form-input" placeholder="Sua senha">
+        </div>
+        <button class="psy-btn primary" style="width: 100%;" onclick="submitPsyLogin()">
+          ENTRAR
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL VISUALIZAR RELATÓRIOS -->
+    <div class="psy-modal" id="psyViewModal">
+      <div class="psy-modal-content" style="max-width: 900px; height: 85vh; display: flex; flex-direction: column;">
+        <span class="psy-modal-close" onclick="closePsyView()">&times;</span>
+        <div class="psy-title" style="margin-bottom: 16px;">CENTRAL DE RELATÓRIOS PSICOLÓGICOS</div>
+        
+        <!-- Filtros -->
+        <div style="display: flex; gap: 10px; margin-bottom: 16px;">
+          <input type="text" id="psySearchAtleta" class="psy-form-input" placeholder="Filtrar por atleta..." onkeyup="filterPsyReports()">
+          <input type="date" id="psySearchData" class="psy-form-input" style="max-width: 180px;" onchange="filterPsyReports()">
+          <button class="psy-btn" onclick="loadPsyReportsFromSheet()" style="min-width: 40px; padding: 0 15px;">🔄</button>
+        </div>
+
+        <!-- Lista de Relatórios -->
+        <div id="psyReportsList" style="flex: 1; overflow-y: auto; background: rgba(0,0,0,.3); border: 1px solid var(--brd); padding: 12px;">
+          <div style="text-align: center; color: var(--mu); padding: 40px;">Carregando relatórios...</div>
         </div>
       </div>
     </div>
@@ -1218,7 +1272,7 @@ async function submitPsyToSheets() {
   }
 
   if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === '') {
-    alert('⚠️ ATENÇÃO: Para enviar para a planilha, você precisa configurar a URL do seu Google Script no código (variável GOOGLE_SCRIPT_URL na linha 858).');
+    alert('⚠️ ATENÇÃO: Para enviar para a planilha, você precisa configurar a URL do seu Google Script no código.');
     return;
   }
 
@@ -1228,9 +1282,7 @@ async function submitPsyToSheets() {
   btn.innerHTML = '<span>⏳</span> ENVIANDO...';
 
   try {
-    // Para Google Apps Script com POST, usamos o FormData ou o JSON via POST
-    // Como usamos mode: 'no-cors', não teremos a resposta detalhada, mas o dado chegará.
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
+    await fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
@@ -1241,18 +1293,128 @@ async function submitPsyToSheets() {
       })
     });
 
-    // Como o modo 'no-cors' não permite ler a resposta, assumimos sucesso se não houver erro de rede
     alert('✅ Relatório enviado com sucesso para a aba "RELATORIOS" da Planilha!');
     closePsyModal();
     document.getElementById('psyPlayerName').value = '';
     document.getElementById('psyReportContent').value = '';
   } catch (err) {
     console.error('Erro ao enviar para planilha:', err);
-    alert('❌ Erro técnico ao enviar para a planilha. Verifique se a URL do Script está correta e se ele foi implantado como "Qualquer pessoa".');
+    alert('❌ Erro técnico ao enviar para a planilha.');
   } finally {
     btn.disabled = false;
     btn.innerHTML = originalText;
   }
+}
+
+// ── LÓGICA DE VISUALIZAÇÃO DO COACH ──
+let allPsyReports = [];
+
+function openPsyViewLogin() {
+  document.getElementById('psyLoginModal').classList.add('open');
+}
+
+function closePsyViewLogin() {
+  document.getElementById('psyLoginModal').classList.remove('open');
+}
+
+function submitPsyLogin() {
+  const u = document.getElementById('psyCoachUser').value.trim();
+  const p = document.getElementById('psyCoachPass').value.trim();
+  if (u === 'STIVE' && p === 'coachstive') {
+    closePsyViewLogin();
+    openPsyView();
+  } else {
+    alert('⚠ Usuário ou senha incorretos.');
+  }
+}
+
+function openPsyView() {
+  document.getElementById('psyViewModal').classList.add('open');
+  loadPsyReportsFromSheet();
+}
+
+function closePsyView() {
+  document.getElementById('psyViewModal').classList.remove('open');
+}
+
+async function loadPsyReportsFromSheet() {
+  const list = document.getElementById('psyReportsList');
+  list.innerHTML = '<div style="text-align: center; color: var(--mu); padding: 40px;">Carregando relatórios da planilha...</div>';
+  
+  if (!GOOGLE_SCRIPT_URL) {
+    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro: URL do Script não configurada.</div>';
+    return;
+  }
+
+  try {
+    const response = await fetch(`${GOOGLE_SCRIPT_URL}?action=getReports`);
+    const data = await response.json();
+    
+    if (data.success) {
+      allPsyReports = data.reports || [];
+      renderPsyReports(allPsyReports);
+    } else {
+      throw new Error(data.error);
+    }
+  } catch (err) {
+    console.error('Erro ao carregar relatórios:', err);
+    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro ao carregar dados. Verifique a implantação do script.</div>';
+  }
+}
+
+function renderPsyReports(reports) {
+  const list = document.getElementById('psyReportsList');
+  if (reports.length === 0) {
+    list.innerHTML = '<div style="text-align: center; color: var(--mu); padding: 40px;">Nenhum relatório encontrado.</div>';
+    return;
+  }
+
+  list.innerHTML = reports.map((r, index) => `
+    <div class="report-card">
+      <div class="report-header">
+        <div class="report-info">
+          <div class="report-atleta">${r.atleta.toUpperCase()}</div>
+          <div class="report-date">📅 ${r.data}</div>
+        </div>
+        <div class="report-actions">
+          <button class="report-btn" onclick="downloadReport(${index})">📥 BAIXAR</button>
+        </div>
+      </div>
+      <div class="report-content">${r.relatorio}</div>
+    </div>
+  `).join('');
+}
+
+function filterPsyReports() {
+  const name = document.getElementById('psySearchAtleta').value.toLowerCase();
+  const date = document.getElementById('psySearchData').value; // YYYY-MM-DD
+  
+  const filtered = allPsyReports.filter(r => {
+    const matchName = r.atleta.toLowerCase().includes(name);
+    let matchDate = true;
+    if (date) {
+      // r.data geralmente vem como "DD/MM/YYYY HH:MM:SS"
+      const rDatePart = r.data.split(' ')[0]; // "DD/MM/YYYY"
+      const [d, m, y] = rDatePart.split('/');
+      const formattedRDate = `${y}-${m.padStart(2,'0')}-${d.padStart(2,'0')}`;
+      matchDate = formattedRDate === date;
+    }
+    return matchName && matchDate;
+  });
+  
+  renderPsyReports(filtered);
+}
+
+function downloadReport(index) {
+  const r = allPsyReports[index];
+  const content = `RELATÓRIO PSICOLÓGICO — PLANO A ESPORTS\n\nATLETA: ${r.atleta}\nDATA: ${r.data}\n\n${r.relatorio}`;
+  const blob = new Blob([content], { type: 'text/plain' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `Relatorio_${r.atleta.replace(/\s+/g, '_')}_${r.data.split(' ')[0].replace(/\//g, '-')}.txt`;
+  a.click();
+  window.URL.revokeObjectURL(url);
 }
 
 // ── PDF MODAL ──

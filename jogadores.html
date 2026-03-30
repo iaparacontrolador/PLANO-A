@@ -907,6 +907,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 // ══════════════════════════════════════════════
 // ⚙️ CONFIGURAÇÃO
 // ══════════════════════════════════════════════
+const REL_SHEET_NAME = 'RELATORIOS';
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
 // URL do Web App do Google Apps Script para salvar relatórios (necessário configurar no Google Sheets)
 const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxifzzPdsdKNKD-6cZUYmsjQFknkOtJItI0fJZ7q5pBF40wW_wF_4q2uDkGl-USOobWTw/exec'; 
@@ -1341,33 +1342,45 @@ function closePsyView() {
 
 function loadPsyReportsFromSheet() {
   const list = document.getElementById('psyReportsList');
-  list.innerHTML = '<div style="text-align: center; color: var(--mu); padding: 40px;">Carregando relatórios da planilha...</div>';
+  list.innerHTML = '<div style="text-align: center; color: var(--mu); padding: 40px;"><div class="loader-ring" style="margin:0 auto 12px;width:30px;height:30px;"></div>Carregando relatórios da planilha...</div>';
   
-  if (!GOOGLE_SCRIPT_URL || GOOGLE_SCRIPT_URL === '') {
-    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro: URL do Script não configurada.</div>';
-    return;
-  }
-
-  // Usar JSONP (callback) para evitar erros de CORS ao ler dados do Google
-  const callbackName = 'psyCallback_' + Math.floor(Math.random() * 1000000);
-  window[callbackName] = function(data) {
-    delete window[callbackName];
-    document.body.removeChild(script);
-    
-    if (data.success) {
-      allPsyReports = data.reports || [];
+  const sheetParam = encodeURIComponent(REL_SHEET_NAME);
+  const TARGET_SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
+  
+  const url = `https://docs.google.com/spreadsheets/d/${TARGET_SHEET_ID}/gviz/tq?tqx=out:json%3BresponseHandler:__psyRelCallback&sheet=${sheetParam}&t=${Date.now()}`;
+  
+  window.__psyRelCallback = function(json) {
+    try {
+      if (!json.table || !json.table.rows) throw new Error('Dados não encontrados');
+      
+      allPsyReports = json.table.rows
+        .filter(r => r && r.c && r.c[1] && r.c[2])
+        .map(r => {
+          const get = (i) => (r.c[i] ? (r.c[i].v !== null ? r.c[i].v : '') : '');
+          let dStr = String(get(0));
+          if (dStr.includes('Date(')) {
+            const m = dStr.match(/Date\((\d{4}),(\d{1,2}),(\d{1,2})\)/);
+            if (m) dStr = `${m[3].toString().padStart(2,'0')}/${(parseInt(m[2])+1).toString().padStart(2,'0')}/${m[1]}`;
+          }
+          return {
+            data: dStr,
+            atleta: String(get(1)),
+            relatorio: String(get(2))
+          };
+        });
+        
       renderPsyReports(allPsyReports);
-    } else {
-      list.innerHTML = `<div style="text-align: center; color: #ff5078; padding: 40px;">Erro: ${data.error}</div>`;
+    } catch (err) {
+      list.innerHTML = `<div style="text-align: center; color: #ff5078; padding: 40px;">Erro ao processar dados: ${err.message}</div>`;
     }
   };
 
   const script = document.createElement('script');
-  script.src = `${GOOGLE_SCRIPT_URL}?action=getReports&callback=${callbackName}`;
-  script.onerror = function() {
-    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro de conexão com o script. Verifique se ele foi implantado como "Qualquer pessoa".</div>';
+  script.src = url;
+  script.onerror = () => {
+    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro de conexão com a planilha. Verifique o compartilhamento.</div>';
   };
-  document.body.appendChild(script);
+  document.head.appendChild(script);
 }
 
 function renderPsyReports(reports) {

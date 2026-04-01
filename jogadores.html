@@ -1962,6 +1962,24 @@ function renderPlayer(name) {
           <button class="coach-goals-btn" style="background:transparent; border:1px solid var(--brd); color:var(--mu);" onclick="closeCoachPanel()">❌ FECHAR</button>
           <button class="coach-goals-btn" style="background:transparent; border:1px solid var(--brd); color:var(--mu);" onclick="resetGoals()">🔄 RESETAR TUDO</button>
         </div>
+        
+        <!-- API CONFIGURATION SECTION -->
+        <div style="margin-top:25px; padding-top:15px; border-top: 1px dashed var(--brd);">
+          <div style="font-family:'Orbitron',sans-serif; font-size:10px; color:var(--bl3); margin-bottom:10px; letter-spacing:1px;">CONFIGURAÇÃO DE SINCRONIZAÇÃO (JSONBin.io)</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div class="goal-input-group">
+              <label>BIN ID</label>
+              <input type="text" id="api-bin-id" class="goal-input" placeholder="Ex: 67a1b2c3d4e5f6g7h8i9j0k1">
+            </div>
+            <div class="goal-input-group">
+              <label>X-MASTER-KEY</label>
+              <input type="password" id="api-master-key" class="goal-input" placeholder="Sua Master Key">
+            </div>
+          </div>
+          <div style="font-size:10px; color:var(--mu); line-height:1.4;">
+            Obtenha suas credenciais gratuitamente em <a href="https://jsonbin.io" target="_blank" style="color:var(--bl);">jsonbin.io</a> para que todos os jogadores vejam as mesmas metas em tempo real.
+          </div>
+        </div>
       </div>
       
       <div id="goals-list" class="goals-container">
@@ -5559,8 +5577,17 @@ function closeIntro() {
 // ── GOALS SYSTEM ──
 // CONFIGURAÇÃO: Cole aqui o seu BIN_ID do JSONBin (https://jsonbin.io)
 // Deixe vazio se não quiser usar sincronização remota
-const JSONBIN_BIN_ID = '69c9968baaba882197a564df'; // Ex: '67a1b2c3d4e5f6g7h8i9j0k1'
-const JSONBIN_API_KEY = '$2a$10$xlBuP0vMUGpxnWWjZMdkWOd7wPHmUk23oRCTpr/zFcMxVAVxEkev2'; // Ex: '$2b$10$...'
+// CONFIGURAÇÃO: O sistema agora prioriza as chaves salvas via painel do Coach.
+// Você pode deixar estas constantes vazias se configurar pelo painel.
+const JSONBIN_BIN_ID_DEFAULT = '69c9968baaba882197a564df';
+const JSONBIN_API_KEY_DEFAULT = '$2a$10$xlBuP0vMUGpxnWWjZMdkWOd7wPHmUk23oRCTpr/zFcMxVAVxEkev2';
+
+function getApiConfig() {
+  return {
+    binId: localStorage.getItem('stive_api_bin_id') || JSONBIN_BIN_ID_DEFAULT,
+    apiKey: localStorage.getItem('stive_api_master_key') || JSONBIN_API_KEY_DEFAULT
+  };
+}
 
 const DEFAULT_GOALS = {}; 
 const DEFAULT_PERIOD = {"start":"","end":""};
@@ -5572,12 +5599,13 @@ let isLoadingRemote = false;
 
 // Função para carregar metas do JSONBin
 async function loadGoalsFromRemote() {
-  if (!JSONBIN_BIN_ID) return false;
+  const { binId, apiKey } = getApiConfig();
+  if (!binId || !apiKey) return false;
   
   try {
     isLoadingRemote = true;
-    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest?t=${Date.now()}`, {
-      headers: { 'X-Master-Key': JSONBIN_API_KEY },
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest?t=${Date.now()}`, {
+      headers: { 'X-Master-Key': apiKey },
       cache: 'no-store'
     });
     
@@ -5614,15 +5642,16 @@ async function loadGoalsFromRemote() {
 
 // Função para salvar metas no JSONBin
 async function saveGoalsToRemote(goals, period) {
-  if (!JSONBIN_BIN_ID) return false;
+  const { binId, apiKey } = getApiConfig();
+  if (!binId || !apiKey) return false;
   
   try {
     const payload = { goals, period };
-    const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+    const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        'X-Master-Key': JSONBIN_API_KEY
+        'X-Master-Key': apiKey
       },
       body: JSON.stringify(payload)
     });
@@ -5631,10 +5660,17 @@ async function saveGoalsToRemote(goals, period) {
       console.log('✅ Metas salvas no servidor!');
       return true;
     } else {
-      console.error('❌ Erro ao salvar metas:', response.status);
+      let errorMsg = `Erro ${response.status}`;
+      if (response.status === 401) errorMsg = "Chave de API (X-Master-Key) inválida.";
+      else if (response.status === 404) errorMsg = "Bin ID não encontrado.";
+      else if (response.status === 403) errorMsg = "Acesso negado ao Bin.";
+      
+      console.error('❌ Erro ao salvar metas:', errorMsg);
+      window.lastSyncError = errorMsg;
     }
   } catch (err) {
     console.error('❌ Erro na sincronização:', err);
+    window.lastSyncError = "Erro de conexão com o servidor.";
   }
   return false;
 }
@@ -5946,6 +5982,11 @@ function checkCoachAccess() {
   if(u === 'STIVE' && p === 'coachstive') {
     document.getElementById('coach-goals-controls').style.display = 'block';
     document.getElementById('btn-open-coach').style.display = 'none';
+    
+    // Preencher campos de API com valores atuais
+    const { binId, apiKey } = getApiConfig();
+    document.getElementById('api-bin-id').value = binId;
+    document.getElementById('api-master-key').value = apiKey;
   } else {
     alert('Acesso negado.');
   }
@@ -5957,6 +5998,13 @@ function closeCoachPanel() {
 }
 
 async function saveAllGoals() {
+  // Salvar configurações de API primeiro
+  const newBinId = document.getElementById('api-bin-id').value.trim();
+  const newApiKey = document.getElementById('api-master-key').value.trim();
+  
+  if (newBinId) localStorage.setItem('stive_api_bin_id', newBinId);
+  if (newApiKey) localStorage.setItem('stive_api_master_key', newApiKey);
+
   challengePeriod.start = document.getElementById('challenge-start').value;
   challengePeriod.end = document.getElementById('challenge-end').value;
   localStorage.setItem('stive_challenge_period', JSON.stringify(challengePeriod));
@@ -5976,8 +6024,11 @@ async function saveAllGoals() {
   localStorage.setItem('stive_player_goals', JSON.stringify(playerGoals));
   
   // Tentar salvar remotamente
+  window.lastSyncError = null;
+  const { binId, apiKey } = getApiConfig();
   let savedRemote = false;
-  if (JSONBIN_BIN_ID && JSONBIN_API_KEY) {
+  
+  if (binId && apiKey) {
     savedRemote = await saveGoalsToRemote(playerGoals, challengePeriod);
   }
   
@@ -5985,8 +6036,9 @@ async function saveAllGoals() {
   
   if (savedRemote) {
     alert('✅ Metas salvas com sucesso! Todos os jogadores verão as atualizações automaticamente!');
-  } else if (JSONBIN_BIN_ID && JSONBIN_API_KEY) {
-    alert('⚠️ Metas salvas localmente, mas houve erro ao sincronizar com o servidor. Verifique a chave de API.');
+  } else if (binId && apiKey) {
+    const errorMsg = window.lastSyncError || "Verifique a chave de API e o Bin ID.";
+    alert(`⚠️ Metas salvas localmente, mas houve erro na sincronização:\n\n${errorMsg}`);
   } else {
     alert('✅ Metas salvas localmente!');
   }

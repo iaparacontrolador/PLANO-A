@@ -5602,6 +5602,10 @@ async function loadGoalsFromRemote() {
   const { binId, apiKey } = getApiConfig();
   if (!binId || !apiKey) return false;
   
+  // Se o painel do coach estiver aberto, não atualizar para não perder o que está sendo digitado
+  const coachPanel = document.getElementById('coach-goals-controls');
+  if (coachPanel && coachPanel.style.display !== 'none') return false;
+  
   try {
     isLoadingRemote = true;
     const response = await fetch(`https://api.jsonbin.io/v3/b/${binId}/latest?t=${Date.now()}`, {
@@ -5999,25 +6003,38 @@ function closeCoachPanel() {
 
 async function saveAllGoals() {
   // Salvar configurações de API primeiro
-  const newBinId = document.getElementById('api-bin-id').value.trim();
-  const newApiKey = document.getElementById('api-master-key').value.trim();
+  const apiBinIdInput = document.getElementById('api-bin-id');
+  const apiMasterKeyInput = document.getElementById('api-master-key');
   
-  if (newBinId) localStorage.setItem('stive_api_bin_id', newBinId);
-  if (newApiKey) localStorage.setItem('stive_api_master_key', newApiKey);
+  if (apiBinIdInput) {
+    const newBinId = apiBinIdInput.value.trim();
+    if (newBinId) localStorage.setItem('stive_api_bin_id', newBinId);
+  }
+  if (apiMasterKeyInput) {
+    const newApiKey = apiMasterKeyInput.value.trim();
+    if (newApiKey) localStorage.setItem('stive_api_master_key', newApiKey);
+  }
 
-  challengePeriod.start = document.getElementById('challenge-start').value;
-  challengePeriod.end = document.getElementById('challenge-end').value;
+  const startInput = document.getElementById('challenge-start');
+  const endInput = document.getElementById('challenge-end');
+  if (startInput) challengePeriod.start = startInput.value;
+  if (endInput) challengePeriod.end = endInput.value;
+  
   localStorage.setItem('stive_challenge_period', JSON.stringify(challengePeriod));
 
   const inputs = document.querySelectorAll('.goal-input[data-player]');
-  const newGoals = {};
+  // Clonar as metas atuais para não perder dados de jogadores que não estão no editor (se houver)
+  const newGoals = JSON.parse(JSON.stringify(playerGoals));
+  
   inputs.forEach(input => {
     const pl = input.dataset.player;
     const metric = input.dataset.metric;
-    const val = parseInt(input.value) || 0;
+    const val = parseInt(input.value);
     
-    if(!newGoals[pl]) newGoals[pl] = {};
-    newGoals[pl][metric] = val;
+    if (pl && metric && !isNaN(val)) {
+      if(!newGoals[pl]) newGoals[pl] = {};
+      newGoals[pl][metric] = val;
+    }
   });
   
   playerGoals = newGoals;

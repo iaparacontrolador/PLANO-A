@@ -5683,6 +5683,10 @@ async function saveGoalsToRemote(goals, period) {
 }
 
 function initGoals() {
+  // BLOQUEIO CRÍTICO: Se o coach estiver editando, NÃO redesenha o HTML.
+  // Isso evita que o teclado suma no celular e os valores digitados sejam perdidos.
+  if (isEditingGoals) return;
+
   const players = uniqPl();
   const goalsList = document.getElementById('goals-list');
   const coachEditor = document.getElementById('coach-goals-editor');
@@ -5987,7 +5991,9 @@ function checkCoachAccess() {
   const u = prompt('Usuário Coach:');
   const p = prompt('Senha Coach:');
   if(u === 'STIVE' && p === 'coachstive') {
-    isEditingGoals = true; // Ativa o bloqueio de atualização automática
+    // Primeiro, desativamos o bloqueio temporariamente para o initGoals() rodar uma vez e criar os campos
+    isEditingGoals = false;
+    
     document.getElementById('coach-goals-controls').style.display = 'block';
     document.getElementById('btn-open-coach').style.display = 'none';
     
@@ -5996,8 +6002,12 @@ function checkCoachAccess() {
     document.getElementById('api-bin-id').value = binId;
     document.getElementById('api-master-key').value = apiKey;
     
-    // Recarregar o editor para garantir que pegamos os dados mais recentes antes de travar
+    // Criamos o editor de metas
     initGoals();
+    
+    // AGORA SIM: Ativamos o bloqueio total para que NADA redesenhe enquanto digitamos
+    isEditingGoals = true;
+    console.log("🔒 Edição iniciada: Atualização automática e redesenho desativados.");
   } else {
     alert('Acesso negado.');
   }
@@ -6010,7 +6020,7 @@ function closeCoachPanel() {
 }
 
 async function saveAllGoals() {
-  isEditingGoals = true; // Garante que continua travado durante o processo de salvamento
+  // Mantemos isEditingGoals = true durante o processo
   // Salvar configurações de API primeiro
   const apiBinIdInput = document.getElementById('api-bin-id');
   const apiMasterKeyInput = document.getElementById('api-master-key');
@@ -6058,18 +6068,20 @@ async function saveAllGoals() {
     savedRemote = await saveGoalsToRemote(playerGoals, challengePeriod);
   }
   
+  // Após salvar, liberamos o bloqueio ANTES de chamar o initGoals para a tela atualizar
+  isEditingGoals = false;
   initGoals();
   
   if (savedRemote) {
     alert('✅ Metas salvas com sucesso! Todos os jogadores verão as atualizações automaticamente!');
-    isEditingGoals = false; // Só libera após sucesso ou confirmação do usuário
     closeCoachPanel();
   } else if (binId && apiKey) {
     const errorMsg = window.lastSyncError || "Verifique a chave de API e o Bin ID.";
     alert(`⚠️ Metas salvas localmente, mas houve erro na sincronização:\n\n${errorMsg}`);
+    // Se deu erro, deixamos o painel aberto mas precisamos reativar o bloqueio se o usuário for tentar de novo
+    isEditingGoals = true;
   } else {
     alert('✅ Metas salvas localmente!');
-    isEditingGoals = false;
     closeCoachPanel();
   }
 }

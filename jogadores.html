@@ -5596,13 +5596,16 @@ let playerGoals = JSON.parse(localStorage.getItem('stive_player_goals') || JSON.
 let challengePeriod = JSON.parse(localStorage.getItem('stive_challenge_period') || JSON.stringify(DEFAULT_PERIOD));
 let analysisChartInstance = null;
 let isLoadingRemote = false;
+let isEditingGoals = false; // Bloqueio total de atualização durante edição
 
 // Função para carregar metas do JSONBin
 async function loadGoalsFromRemote() {
   const { binId, apiKey } = getApiConfig();
   if (!binId || !apiKey) return false;
   
-  // Se o painel do coach estiver aberto, não atualizar para não perder o que está sendo digitado
+  // BLOQUEIO CRÍTICO: Se o coach estiver editando, interrompe QUALQUER atualização remota
+  if (isEditingGoals) return false;
+  
   const coachPanel = document.getElementById('coach-goals-controls');
   if (coachPanel && coachPanel.style.display !== 'none') return false;
   
@@ -5984,6 +5987,7 @@ function checkCoachAccess() {
   const u = prompt('Usuário Coach:');
   const p = prompt('Senha Coach:');
   if(u === 'STIVE' && p === 'coachstive') {
+    isEditingGoals = true; // Ativa o bloqueio de atualização automática
     document.getElementById('coach-goals-controls').style.display = 'block';
     document.getElementById('btn-open-coach').style.display = 'none';
     
@@ -5991,17 +5995,22 @@ function checkCoachAccess() {
     const { binId, apiKey } = getApiConfig();
     document.getElementById('api-bin-id').value = binId;
     document.getElementById('api-master-key').value = apiKey;
+    
+    // Recarregar o editor para garantir que pegamos os dados mais recentes antes de travar
+    initGoals();
   } else {
     alert('Acesso negado.');
   }
 }
 
 function closeCoachPanel() {
+  isEditingGoals = false; // Libera a atualização automática
   document.getElementById('coach-goals-controls').style.display = 'none';
   document.getElementById('btn-open-coach').style.display = 'block';
 }
 
 async function saveAllGoals() {
+  isEditingGoals = true; // Garante que continua travado durante o processo de salvamento
   // Salvar configurações de API primeiro
   const apiBinIdInput = document.getElementById('api-bin-id');
   const apiMasterKeyInput = document.getElementById('api-master-key');
@@ -6053,11 +6062,15 @@ async function saveAllGoals() {
   
   if (savedRemote) {
     alert('✅ Metas salvas com sucesso! Todos os jogadores verão as atualizações automaticamente!');
+    isEditingGoals = false; // Só libera após sucesso ou confirmação do usuário
+    closeCoachPanel();
   } else if (binId && apiKey) {
     const errorMsg = window.lastSyncError || "Verifique a chave de API e o Bin ID.";
     alert(`⚠️ Metas salvas localmente, mas houve erro na sincronização:\n\n${errorMsg}`);
   } else {
     alert('✅ Metas salvas localmente!');
+    isEditingGoals = false;
+    closeCoachPanel();
   }
 }
 

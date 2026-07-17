@@ -8,12 +8,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bl:#FFFFFF;--bl2:#E0E0E0;--bl3:#CCCCCC;
-  --bglow:rgba(255,255,255,.2);--bdim:rgba(255,255,255,.05);--bline:rgba(255,255,255,.1);
-  --wh:#FFFFFF;--owh:#F0F0F0;--mu:#888888;
-  --dk:#000000;--dk2:#0A0A0A;--dk3:#141414;
-  --panel:rgba(10,10,10,.94);--brd:rgba(255,255,255,.15);
-  --glow:0 0 24px rgba(255,255,255,.15);
+  --bl:#FFD700;--bl2:#FFE873;--bl3:#D9B54A;
+  --bglow:rgba(255,215,0,.25);--bdim:rgba(255,215,0,.06);--bline:rgba(255,215,0,.15);
+  --wh:#FFFFFF;--owh:#F2ECD9;--mu:#9C8B5E;
+  --dk:#000000;--dk2:#0F0C00;--dk3:#1A1400;
+  --panel:rgba(15,12,0,.94);--brd:rgba(255,215,0,.2);
+  --glow:0 0 24px rgba(255,215,0,.2);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{background:var(--dk);font-family:'Barlow Condensed',sans-serif;color:var(--owh);overflow-x:hidden;min-height:100vh;}
@@ -23,14 +23,14 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 /* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:66px;
-  background:rgba(8,12,20,.97);border-bottom:1px solid var(--brd);
+  background:rgba(18,14,0,.97);border-bottom:1px solid var(--brd);
   backdrop-filter:blur(16px);position:sticky;top:0;z-index:200;flex-wrap:wrap;}
 .hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--bl),var(--bl3),transparent);}
 .logo{display:flex;flex-direction:column;gap:1px;}
 .logo-top{font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;color:var(--bl3);letter-spacing:5px;}
-.logo-main{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--wh);letter-spacing:1px;
-  text-shadow:0 0 20px rgba(255,255,255,.5);line-height:1;}
+.logo-main{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;color:var(--bl);letter-spacing:1px;
+  text-shadow:0 0 20px rgba(255,215,0,.5);line-height:1;}
 .logo-main em{color:var(--bl);font-style:normal;}
 .logo-bot{font-size:9px;letter-spacing:4px;color:var(--mu);font-weight:600;margin-top:1px;}
 .hdr-r{display:flex;align-items:center;gap:10px;}
@@ -43,7 +43,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .search-input:focus{border-color:var(--bl);background:rgba(255,255,255,.14);box-shadow:var(--glow);}
 .search-input::placeholder{color:var(--mu);}
 .search-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;
-  background:rgba(8,12,20,.98);border:1px solid var(--brd);z-index:300;
+  background:rgba(18,14,0,.98);border:1px solid var(--brd);z-index:300;
   max-height:260px;overflow-y:auto;display:none;min-width:240px;}
 .search-dropdown.open{display:block;}
 .search-opt{padding:10px 16px;cursor:pointer;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);
@@ -79,12 +79,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 #errorScreen{position:fixed;inset:0;z-index:500;background:var(--dk);
   display:none;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px;}
 .error-icon{font-size:48px;}
-.error-title{font-family:'Orbitron',sans-serif;font-size:16px;color:#ff5078;}
+.error-title{font-family:'Orbitron',sans-serif;font-size:16px;color:#FF8A00;}
 .error-msg{font-size:13px;color:var(--mu);text-align:center;max-width:480px;line-height:1.6;}
-.error-retry{display:flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(255,80,120,.4);
-  color:#ff5078;padding:9px 22px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;
+.error-retry{display:flex;align-items:center;gap:7px;background:transparent;border:1px solid rgba(255,138,0,.4);
+  color:#FF8A00;padding:9px 22px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;
   letter-spacing:2px;cursor:pointer;transition:all .3s;margin-top:8px;}
-.error-retry:hover{background:rgba(255,80,120,.1);box-shadow:0 0 20px rgba(255,80,120,.2);}
+.error-retry:hover{background:rgba(255,138,0,.1);box-shadow:0 0 20px rgba(255,138,0,.2);}
 
 /* MAIN */
 #app{padding:28px 24px;}
@@ -107,7 +107,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .gallery-item:hover .gallery-photo{border-color:var(--bl);box-shadow:var(--glow);}
   .gallery-name{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--wh);margin-top:8px;letter-spacing:1px;text-transform:uppercase;}
   .gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:2px;}
-	  .team-name{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:var(--wh);letter-spacing:8px;margin-top:40px;text-shadow:0 0 20px rgba(255,255,255,.3);text-transform:uppercase;}
+	  .team-name{font-family:'Orbitron',sans-serif;font-size:24px;font-weight:900;color:var(--bl);letter-spacing:8px;margin-top:40px;text-shadow:0 0 20px rgba(255,215,0,.4);text-transform:uppercase;}
 	  
 	  /* PSICOLOGO IA SECTION */
 	  .psy-section { width: 100%; max-width: 800px; margin: 40px auto 0; padding: 24px; background: rgba(255,255,255,.03); border: 1px solid var(--brd); border-radius: 8px; text-align: left; }
@@ -117,7 +117,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 	  .psy-btn { flex: 1; min-width: 200px; padding: 12px 20px; background: rgba(255,255,255,.05); border: 1px solid var(--brd); color: #fff; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 1px; cursor: pointer; transition: all .3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
 	  .psy-btn:hover { background: rgba(255,255,255,.1); border-color: var(--bl); box-shadow: 0 0 15px rgba(255,255,255,.1); }
 	  .psy-btn.primary { background: var(--bl); color: var(--dk); border: none; }
-	  .psy-btn.primary:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,.4); }
+	  .psy-btn.primary:hover { background: #FFE873; box-shadow: 0 0 20px rgba(255,215,0,.5); }
 	  .psy-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.9); backdrop-filter: blur(10px); display: none; align-items: center; justify-content: center; padding: 20px; }
 	  .psy-modal.open { display: flex; }
 	  .psy-modal-content { background: var(--dk2); border: 1px solid var(--brd); width: 100%; max-width: 600px; padding: 24px; position: relative; }
@@ -135,7 +135,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 	  .report-info { display: flex; flex-direction: column; gap: 2px; }
 	  .report-atleta { font-family: 'Orbitron', sans-serif; font-size: 12px; font-weight: 900; color: var(--bl); }
 	  .report-date { font-size: 10px; color: var(--mu); letter-spacing: 1px; }
-	  .report-content { font-size: 13px; color: #ccc; white-space: pre-wrap; line-height: 1.6; max-height: 150px; overflow-y: auto; padding: 10px; background: rgba(0,0,0,.2); }
+	  .report-content { font-size: 13px; color: #D9CBA3; white-space: pre-wrap; line-height: 1.6; max-height: 150px; overflow-y: auto; padding: 10px; background: rgba(0,0,0,.2); }
 	  .report-actions { display: flex; gap: 8px; margin-top: 12px; }
 	  .report-btn { padding: 6px 12px; font-size: 10px; font-family: 'Orbitron', sans-serif; cursor: pointer; border: 1px solid var(--brd); background: rgba(255,255,255,.05); color: #fff; }
 	  .report-btn:hover { border-color: var(--bl); color: var(--bl); }
@@ -149,7 +149,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* PLAYER HERO */
 .ph-wrap{position:relative;min-height:160px;overflow:hidden;border:1px solid var(--brd);margin-bottom:20px;}
 .ph-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:blur(18px) saturate(.5);transform:scale(1.1);opacity:.35;}
-.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,.4) 0%,rgba(8,12,20,.95) 100%);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,14,0,.4) 0%,rgba(18,14,0,.95) 100%);}
 .ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;opacity:.6;}
 .ph-content{position:relative;z-index:1;display:flex;align-items:flex-end;gap:24px;height:100%;padding:24px;flex-wrap:wrap;}
 .ph-photo{width:120px;height:160px;object-fit:cover;object-position:top;border:2px solid var(--brd);flex-shrink:0;
@@ -181,7 +181,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* CHARTS */
 .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .charts-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
-.cpanel{background:linear-gradient(160deg,rgba(12,18,32,.98),rgba(8,12,20,.99));
+.cpanel{background:linear-gradient(160deg,rgba(20,16,0,.98),rgba(18,14,0,.99));
   border:1px solid rgba(255,255,255,.18);padding:14px;position:relative;overflow:hidden;}
 .chart-box{position:relative;width:100%;height:180px;}
 .chart-box canvas{position:absolute;top:0;left:0;width:100%!important;height:100%!important;}
@@ -205,18 +205,18 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);}
 
 /* CLASSIFICAÇÃO */
-.c-ruim{color:#ff5078;font-weight:700;}
+.c-ruim{color:#FF8A00;font-weight:700;}
 .c-medio{color:#ffc44d;font-weight:700;}
-.c-bom{color:#4dff88;font-weight:700;}
-.c-excelente{color:#cc66ff;font-weight:700;}
+.c-bom{color:#FFD700;font-weight:700;}
+.c-excelente{color:#DAA520;font-weight:700;}
 .badge{display:inline-block;padding:2px 8px;font-size:8px;font-weight:700;letter-spacing:1px;border-radius:1px;}
-.badge.ruim{background:rgba(255,80,120,.12);border:1px solid rgba(255,80,120,.3);color:#ff5078;}
+.badge.ruim{background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.3);color:#FF8A00;}
 .badge.medio{background:rgba(255,196,77,.12);border:1px solid rgba(255,196,77,.3);color:#ffc44d;}
-.badge.bom{background:rgba(77,255,136,.12);border:1px solid rgba(77,255,136,.3);color:#4dff88;}
-.badge.excelente{background:rgba(204,102,255,.12);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
+.badge.bom{background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:#FFD700;}
+.badge.excelente{background:rgba(218,165,32,.12);border:1px solid rgba(218,165,32,.3);color:#DAA520;}
 
 /* ── PERIOD FILTER BAR ── */
-.period-bar{display:flex;align-items:center;gap:0;padding:10px 24px;background:rgba(8,12,20,.95);border-bottom:1px solid var(--brd);flex-wrap:wrap;gap:10px;}
+.period-bar{display:flex;align-items:center;gap:0;padding:10px 24px;background:rgba(18,14,0,.95);border-bottom:1px solid var(--brd);flex-wrap:wrap;gap:10px;}
 .period-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;color:var(--mu);font-weight:700;margin-right:4px;}
 .period-btns{display:flex;gap:0;border:1px solid var(--brd);overflow:hidden;}
 .period-btn{padding:7px 18px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
@@ -237,7 +237,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .cal-range-label{font-size:9px;color:var(--bl3);letter-spacing:1px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 /* ── CALENDAR DROPDOWN ── */
-.cal-dropdown{position:fixed;z-index:600;background:rgba(6,10,18,.98);border:1px solid var(--brd);
+.cal-dropdown{position:fixed;z-index:600;background:rgba(14,11,0,.98);border:1px solid var(--brd);
   backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.12);
   display:none;min-width:320px;}
 .cal-dropdown::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
@@ -282,7 +282,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .cal-footer-btns{display:flex;gap:6px;}
 .cal-clear-btn{flex:1;padding:7px;background:transparent;border:1px solid rgba(255,255,255,.1);
   color:var(--mu);font-family:'Orbitron',sans-serif;font-size:8px;letter-spacing:2px;cursor:pointer;transition:.2s;}
-.cal-clear-btn:hover{border-color:rgba(255,80,120,.4);color:#ff5078;}
+.cal-clear-btn:hover{border-color:rgba(255,138,0,.4);color:#FF8A00;}
 .cal-apply-btn{flex:2;padding:7px;background:rgba(255,255,255,.15);border:1px solid var(--bl);
   color:#fff;font-family:'Orbitron',sans-serif;font-size:8px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:.3s;}
 .cal-apply-btn:hover{background:rgba(255,255,255,.3);box-shadow:0 0 16px rgba(255,255,255,.3);}
@@ -292,7 +292,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* ── PDF LOGIN MODAL ── */
 .pdf-modal-backdrop{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
 .pdf-modal-backdrop.open{display:flex;}
-.pdf-modal{background:rgba(8,12,20,.99);border:1px solid var(--brd);width:380px;max-width:95vw;position:relative;overflow:hidden;}
+.pdf-modal{background:rgba(18,14,0,.99);border:1px solid var(--brd);width:380px;max-width:95vw;position:relative;overflow:hidden;}
 .pdf-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bl),var(--bl3),transparent);}
 .pdf-modal-hdr{padding:24px 24px 0;display:flex;align-items:center;gap:14px;}
 .pdf-modal-icon{width:44px;height:44px;background:rgba(255,255,255,.12);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:22px;}
@@ -304,11 +304,11 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .pdf-modal-input{width:100%;background:rgba(255,255,255,.06);border:1px solid var(--brd);color:var(--owh);padding:10px 14px;
   font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:1px;outline:none;transition:all .3s;}
 .pdf-modal-input:focus{border-color:var(--bl);background:rgba(255,255,255,.12);box-shadow:0 0 16px rgba(255,255,255,.2);}
-.pdf-modal-err{font-size:11px;color:#ff5078;letter-spacing:1px;margin-top:8px;min-height:16px;}
+.pdf-modal-err{font-size:11px;color:#FF8A00;letter-spacing:1px;margin-top:8px;min-height:16px;}
 .pdf-modal-btns{display:flex;gap:8px;margin-top:4px;}
 .pdf-modal-cancel{flex:1;padding:10px;background:transparent;border:1px solid rgba(255,255,255,.1);color:var(--mu);
   font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;cursor:pointer;transition:.2s;}
-.pdf-modal-cancel:hover{border-color:rgba(255,80,120,.4);color:#ff5078;}
+.pdf-modal-cancel:hover{border-color:rgba(255,138,0,.4);color:#FF8A00;}
 .pdf-modal-submit{flex:2;padding:10px;background:rgba(255,255,255,.15);border:1px solid var(--bl);color:#fff;
   font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;transition:all .3s;}
 .pdf-modal-submit:hover{background:rgba(255,255,255,.3);box-shadow:0 0 20px rgba(255,255,255,.3);}
@@ -326,19 +326,19 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .pdf-report-btn{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.35);
   color:var(--bl3);padding:8px 16px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;cursor:pointer;
   transition:all .3s;white-space:nowrap;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
-.pdf-report-btn:hover{background:rgba(255,255,255,.25);border-color:var(--bl);color:#fff;box-shadow:0 0 20px rgba(255,255,255,.3);}
+.pdf-report-btn:hover{background:rgba(255,215,0,.2);border-color:var(--bl);color:#fff;box-shadow:0 0 20px rgba(255,215,0,.35);}
 .pdf-report-btn-icon{font-size:14px;}
 
 /* KILL GRID */
 .kill-grid{display:flex;flex-wrap:wrap;gap:6px;padding:16px 0;}
 .kill-cell{width:52px;height:62px;border:1px solid;border-radius:2px;display:flex;
   flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:default;}
-.kill-cell.has-kill{background:rgba(34,197,94,.1);border-color:rgba(34,197,94,.4);}
-.kill-cell.no-kill{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.35);}
+.kill-cell.has-kill{background:rgba(255,215,0,.1);border-color:rgba(255,215,0,.4);}
+.kill-cell.no-kill{background:rgba(255,138,0,.1);border-color:rgba(255,138,0,.35);}
 .kill-cell-idx{font-size:8px;color:var(--mu);letter-spacing:1px;}
 .kill-cell-num{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;}
-.kill-cell.has-kill .kill-cell-num{color:#4ade80;}
-.kill-cell.no-kill .kill-cell-num{color:#f87171;}
+.kill-cell.has-kill .kill-cell-num{color:#FFD700;}
+.kill-cell.no-kill .kill-cell-num{color:#FFA733;}
 .kill-cell-map{font-size:7px;letter-spacing:1px;color:var(--mu);}
 
 /* ── TABS ── */
@@ -399,7 +399,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .contrib-rank-badge em{color:#ffd700;font-style:normal;font-weight:700;}
 
 /* Highlight banner */
-.focus-banner{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(77,159,255,.08));
+.focus-banner{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,203,61,.08));
   border:1px solid rgba(255,255,255,.35);padding:14px 20px;margin-bottom:20px;
   display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;}
 .focus-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bl);}
@@ -413,12 +413,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .focus-mini-kpi-l{font-size:7px;letter-spacing:2px;color:var(--mu);}
 
 /* TICKER — faixa de evolução no topo */
-.ticker-wrap{overflow:hidden;height:34px;background:rgba(8,12,20,.92);border-bottom:1px solid var(--brd);position:relative;}
+.ticker-wrap{overflow:hidden;height:34px;background:rgba(18,14,0,.92);border-bottom:1px solid var(--brd);position:relative;}
 .ticker-track{display:flex;align-items:center;height:34px;white-space:nowrap;animation:ticker-scroll 30s linear infinite;}
 .ticker-track:hover{animation-play-state:paused;}
 .ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 20px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;border-right:1px solid rgba(255,255,255,.06);}
-.ticker-item.up{color:#4dff88;}
-.ticker-item.down{color:#ff5078;}
+.ticker-item.up{color:#FFD700;}
+.ticker-item.down{color:#FF8A00;}
 .ticker-item.neutral{color:var(--mu);}
 .ticker-arrow-up{font-size:11px;}
 .ticker-arrow-dn{font-size:11px;}
@@ -437,12 +437,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .collapse-body.open{display:block;}
 
 /* PERFORMANCE SUMMARY */
-.perf-summary{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:rgba(8,12,20,.5);border-top:1px solid var(--brd);}
+.perf-summary{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:rgba(18,14,0,.5);border-top:1px solid var(--brd);}
 .perf-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1px;border-radius:2px;}
-.perf-pill.excelente{background:rgba(204,102,255,.12);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
-.perf-pill.bom{background:rgba(77,255,136,.1);border:1px solid rgba(77,255,136,.25);color:#4dff88;}
+.perf-pill.excelente{background:rgba(218,165,32,.12);border:1px solid rgba(218,165,32,.3);color:#DAA520;}
+.perf-pill.bom{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);color:#FFD700;}
 .perf-pill.medio{background:rgba(255,196,77,.1);border:1px solid rgba(255,196,77,.25);color:#ffc44d;}
-.perf-pill.ruim{background:rgba(255,80,120,.1);border:1px solid rgba(255,80,120,.25);color:#ff5078;}
+.perf-pill.ruim{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.25);color:#FF8A00;}
 .perf-pill-num{font-family:'Orbitron',sans-serif;font-size:13px;}
 .perf-summary-title{width:100%;font-size:8px;letter-spacing:3px;color:var(--mu);font-weight:700;margin-bottom:4px;}
 .heatmap-wrap{display:grid;gap:3px;margin-bottom:16px;}
@@ -456,8 +456,8 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .bullet-row{display:flex;align-items:center;gap:10px;}
 .bullet-lbl{width:110px;font-size:10px;font-weight:700;color:var(--owh);letter-spacing:1px;flex-shrink:0;text-align:right;}
 .bullet-track{flex:1;height:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);position:relative;border-radius:2px;overflow:hidden;}
-.bullet-range-bom{position:absolute;top:0;bottom:0;left:0;background:rgba(77,255,136,.08);}
-.bullet-range-exc{position:absolute;top:0;bottom:0;left:0;background:rgba(204,102,255,.08);}
+.bullet-range-bom{position:absolute;top:0;bottom:0;left:0;background:rgba(255,215,0,.08);}
+.bullet-range-exc{position:absolute;top:0;bottom:0;left:0;background:rgba(218,165,32,.08);}
 .bullet-bar{position:absolute;top:2px;bottom:2px;left:0;border-radius:1px;transition:width .8s;}
 .bullet-marker{position:absolute;top:-2px;bottom:-2px;width:2px;background:#ffd700;border-radius:1px;}
 .bullet-val{width:55px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:900;text-align:left;flex-shrink:0;}
@@ -478,10 +478,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* INSIGHT TAG */
 .insight-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;font-size:9px;font-weight:700;letter-spacing:2px;border-radius:1px;margin:2px;}
 .insight-tag.gold{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);color:#ffd700;}
-.insight-tag.blue{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#4D9FFF;}
-.insight-tag.green{background:rgba(77,255,136,.1);border:1px solid rgba(77,255,136,.3);color:#4dff88;}
-.insight-tag.red{background:rgba(255,80,120,.1);border:1px solid rgba(255,80,120,.3);color:#ff5078;}
-.insight-tag.purple{background:rgba(204,102,255,.1);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
+.insight-tag.blue{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#FFCB3D;}
+.insight-tag.green{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);color:#FFD700;}
+.insight-tag.red{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.3);color:#FF8A00;}
+.insight-tag.purple{background:rgba(218,165,32,.1);border:1px solid rgba(218,165,32,.3);color:#DAA520;}
 /* STREAMGRAPH-like area */
 .area-chart-wrap{width:100%;height:200px;position:relative;}
 /* CALENDAR HEATMAP */
@@ -635,23 +635,23 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
-.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.low { background: linear-gradient(90deg, #FF8A00, #FFA733); }
 .goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
-.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
-.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
-@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
+.goal-bar-fill.high { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); } 50% { box-shadow: 0 0 20px rgba(255,215,0, 1), inset 0 0 12px rgba(255,215,0, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
-.goal-pct.complete { color: #00ff88; font-weight: 700; }
+.goal-pct.complete { color: #FFEB3B; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
 .recom-title { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
 .recom-text { font-size: 11px; color: var(--bl3); line-height: 1.4; }
-.recom-point { color: #ff5078; font-weight: 700; }
+.recom-point { color: #FF8A00; font-weight: 700; }
 
 /* COACH GOAL EDITOR */
 .coach-goals-btn { background: var(--bl); color: var(--dk); border: none; padding: 8px 16px; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 1px; transition: .2s; margin-bottom: 20px; }
-.coach-goals-btn:hover { background: #fff; box-shadow: 0 0 15px rgba(255,255,255,.5); }
+.coach-goals-btn:hover { background: #FFE873; box-shadow: 0 0 15px rgba(255,215,0,.6); }
 .goal-input-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
 .goal-input-group { display: flex; flex-direction: column; gap: 4px; }
 .goal-input-group label { font-size: 9px; color: var(--mu); letter-spacing: 1px; }
@@ -852,7 +852,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
           <button class="psy-btn primary" style="flex: 1;" onclick="submitPsyReport()">
             <span>💬</span> WHATSAPP
           </button>
-          <button class="psy-btn" style="flex: 1; background: #0F9D58; border-color: #0F9D58;" onclick="submitPsyToSheets()">
+          <button class="psy-btn" style="flex: 1; background: #B8860B; border-color: #B8860B;" onclick="submitPsyToSheets()">
             <span>📊</span> PLANILHA
           </button>
         </div>
@@ -1284,7 +1284,7 @@ function fillPsyPlayerList() {
     const opt = document.createElement('option');
     opt.value = name;
     opt.textContent = name.toUpperCase();
-    opt.style.background = '#0A0A0A';
+    opt.style.background = '#0F0C00';
     opt.style.color = '#FFF';
     select.appendChild(opt);
   });
@@ -1432,14 +1432,14 @@ function loadPsyReportsFromSheet() {
         
       renderPsyReports(allPsyReports);
     } catch (err) {
-      list.innerHTML = `<div style="text-align: center; color: #ff5078; padding: 40px;">Erro ao processar dados: ${err.message}</div>`;
+      list.innerHTML = `<div style="text-align: center; color: #FF8A00; padding: 40px;">Erro ao processar dados: ${err.message}</div>`;
     }
   };
 
   const script = document.createElement('script');
   script.src = url;
   script.onerror = () => {
-    list.innerHTML = '<div style="text-align: center; color: #ff5078; padding: 40px;">Erro de conexão com a planilha. Verifique o compartilhamento.</div>';
+    list.innerHTML = '<div style="text-align: center; color: #FF8A00; padding: 40px;">Erro de conexão com a planilha. Verifique o compartilhamento.</div>';
   };
   document.head.appendChild(script);
 }
@@ -2087,7 +2087,7 @@ function renderPlayer(name) {
                   const clsD = classify('dano', d.dano);
                   const score = ['ruim','medio','bom','excelente'].indexOf(clsK) + ['ruim','medio','bom','excelente'].indexOf(clsD);
                   const rowCls = score >= 6 ? 'excelente' : score >= 4 ? 'bom' : score >= 2 ? 'medio' : 'ruim';
-                  const rowColors = {excelente:'rgba(204,102,255,.04)',bom:'rgba(77,255,136,.03)',medio:'rgba(255,196,77,.03)',ruim:'rgba(255,80,120,.04)'};
+                  const rowColors = {excelente:'rgba(218,165,32,.04)',bom:'rgba(255,215,0,.03)',medio:'rgba(255,196,77,.03)',ruim:'rgba(255,138,0,.04)'};
                   return `<tr style="background:${rowColors[rowCls]}">
                     <td class="td-n">${i+1}</td>
                     <td><span class="mapb">${esc(d.mapa||'—')}</span></td>
@@ -2132,12 +2132,12 @@ function renderPlayer(name) {
       <div class="stitle">MAPA DE KILLS — PARTIDA A PARTIDA</div>
       <div style="background:var(--dk2);border:1px solid var(--brd);padding:20px;margin-bottom:24px;">
         <div style="display:flex;gap:20px;align-items:center;margin-bottom:12px;flex-wrap:wrap;">
-          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(134,239,172,.7)">
-            <div style="width:14px;height:14px;background:rgba(34,197,94,.2);border:1px solid rgba(34,197,94,.5);border-radius:2px"></div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,215,0,.7)">
+            <div style="width:14px;height:14px;background:rgba(255,215,0,.2);border:1px solid rgba(255,215,0,.5);border-radius:2px"></div>
             ${pd.filter(d=>d.kills>0).length} COM KILL
           </div>
-          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(252,165,165,.7)">
-            <div style="width:14px;height:14px;background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.5);border-radius:2px"></div>
+          <div style="display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,183,110,.7)">
+            <div style="width:14px;height:14px;background:rgba(255,138,0,.2);border:1px solid rgba(255,138,0,.5);border-radius:2px"></div>
             ${pd.filter(d=>d.kills===0).length} SEM KILL
           </div>
         </div>
@@ -2348,7 +2348,7 @@ function renderComparative(focusName, tipoFilter) {
         <div class="contrib-donut">
           <svg width="90" height="90" viewBox="0 0 90 90">
             <circle cx="45" cy="45" r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9"/>
-            <circle cx="45" cy="45" r="${r}" fill="none" stroke="${rankPos===1?'#ffd700':'#1A6FFF'}" stroke-width="9"
+            <circle cx="45" cy="45" r="${r}" fill="none" stroke="${rankPos===1?'#ffd700':'#E8A400'}" stroke-width="9"
               stroke-dasharray="${dash.toFixed(2)} ${circ.toFixed(2)}" stroke-linecap="round"
               style="filter:drop-shadow(0 0 4px ${rankPos===1?'rgba(255,215,0,.5)':'rgba(255,255,255,.5)'})"/>
           </svg>
@@ -2452,17 +2452,17 @@ function renderComparative(focusName, tipoFilter) {
 
 function buildCmpCharts(pStats, focusName) {
   const ax = {
-    ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},
+    ticks:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"}},
     grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}
   };
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
-    titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
+  const tt = {backgroundColor:'rgba(18,14,0,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
+    titleColor:'#FFCB3D',bodyColor:'#F5E6A8',padding:10};
 
   // Helper: cores dos jogadores (foco = dourado)
   const barColors = (sorted) => sorted.map(p =>
     p.isFocus ? 'rgba(255,215,0,.9)'   : 'rgba(255,255,255,.6)');
   const borderColors = (sorted) => sorted.map(p =>
-    p.isFocus ? '#ffd700' : '#1A6FFF');
+    p.isFocus ? '#ffd700' : '#E8A400');
 
   // Cria chart bar horizontal
   function makeBar(id, sorted, getter, labelFmt) {
@@ -2513,7 +2513,7 @@ function buildCmpCharts(pStats, focusName) {
     const maxKd = Math.max(...pStats.map(p=>p.kd))    || 1;
     const maxHS = Math.max(...pStats.map(p=>p.avgHS)) || 1;
 
-    const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+    const palette = ['#E8A400','#ffd700','#FF8A00','#FFD700','#DAA520','#ff9f40','#FFCB3D','#FFA733'];
     charts.cmp_radar = new Chart(rCtx, {
       type: 'radar',
       data: {
@@ -2534,9 +2534,9 @@ function buildCmpCharts(pStats, focusName) {
       },
       options:{
         responsive:true, maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
+          pointLabels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
           angleLines:{color:'rgba(255,255,255,.07)'}}}
       }
     });
@@ -2545,23 +2545,23 @@ function buildCmpCharts(pStats, focusName) {
 
 function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, totalCura){
   const ax = {
-    ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},
+    ticks:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"}},
     grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}
   };
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
-    titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
+  const tt = {backgroundColor:'rgba(18,14,0,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
+    titleColor:'#FFCB3D',bodyColor:'#F5E6A8',padding:10};
 
   // Kills line
   const kCtx = document.getElementById('ch_kills')?.getContext('2d');
   if(kCtx){
     const g = kCtx.createLinearGradient(0,0,0,180);
-    g.addColorStop(0,'rgba(77,159,255,.4)');g.addColorStop(1,'rgba(77,159,255,0)');
+    g.addColorStop(0,'rgba(255,203,61,.4)');g.addColorStop(1,'rgba(255,203,61,0)');
     charts.kills = new Chart(kCtx,{type:'line',data:{
       labels:pd.map((_,i)=>`P${i+1}`),
       datasets:[
-        {label:'Kills',data:pd.map(d=>d.kills),fill:true,backgroundColor:g,borderColor:'#4D9FFF',pointBackgroundColor:'#4D9FFF',pointRadius:3,tension:.4,borderWidth:2.5},
+        {label:'Kills',data:pd.map(d=>d.kills),fill:true,backgroundColor:g,borderColor:'#FFCB3D',pointBackgroundColor:'#FFCB3D',pointRadius:3,tension:.4,borderWidth:2.5},
         {label:'Assist',data:pd.map(d=>d.ass),fill:false,borderColor:'rgba(255,255,255,.4)',pointBackgroundColor:'#fff',pointRadius:2,tension:.4,borderWidth:1.5,borderDash:[4,3]}
-      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
+      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
   }
 
   // Dano line
@@ -2573,8 +2573,8 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
       labels:pd.map((_,i)=>`P${i+1}`),
       datasets:[
         {label:'Dano',data:pd.map(d=>d.dano),fill:true,backgroundColor:g2,borderColor:'rgba(255,255,255,.8)',pointBackgroundColor:'#fff',pointRadius:3,tension:.4,borderWidth:2.5},
-        {label:'Cura',data:pd.map(d=>d.cura),fill:false,borderColor:'#1A6FFF',pointBackgroundColor:'#4D9FFF',pointRadius:2,tension:.4,borderWidth:1.8,borderDash:[4,3]}
-      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
+        {label:'Cura',data:pd.map(d=>d.cura),fill:false,borderColor:'#E8A400',pointBackgroundColor:'#FFCB3D',pointRadius:2,tension:.4,borderWidth:1.8,borderDash:[4,3]}
+      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
   }
 
   // Radar
@@ -2585,10 +2585,10 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
       datasets:[{label:name,data:[
         Math.min(avgK/3*100,100),Math.min(avgD/2000*100,100),Math.min(avgHS,100),
         Math.min(kd/5*100,100),Math.min(avgA/3*100,100),Math.min(avg(pd.map(d=>d.cura))/2000*100,100)
-      ],fill:true,backgroundColor:'rgba(255,255,255,.1)',borderColor:'#1A6FFF',pointBackgroundColor:'#4D9FFF',borderWidth:2,pointRadius:3}]},
+      ],fill:true,backgroundColor:'rgba(255,255,255,.1)',borderColor:'#E8A400',pointBackgroundColor:'#FFCB3D',borderWidth:2,pointRadius:3}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.13)'},
-      pointLabels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'",weight:'700'}},
+      pointLabels:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'",weight:'700'}},
       angleLines:{color:'rgba(255,255,255,.08)'}}}}});
   }
 
@@ -2598,9 +2598,9 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
     charts.mapa = new Chart(mCtx,{type:'bar',data:{
       labels:mapSt.map(m=>m.map),
       datasets:[
-        {label:'Kills',data:mapSt.map(m=>m.kills),backgroundColor:'rgba(255,255,255,.7)',borderColor:'#1A6FFF',borderWidth:1,borderRadius:3},
-        {label:'Dano Méd',data:mapSt.map(m=>m.dano),backgroundColor:'rgba(200,212,232,.25)',borderColor:'#C8D4E8',borderWidth:1,borderRadius:3}
-      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1200}}});
+        {label:'Kills',data:mapSt.map(m=>m.kills),backgroundColor:'rgba(255,255,255,.7)',borderColor:'#E8A400',borderWidth:1,borderRadius:3},
+        {label:'Dano Méd',data:mapSt.map(m=>m.dano),backgroundColor:'rgba(245,230,168,.25)',borderColor:'#F5E6A8',borderWidth:1,borderRadius:3}
+      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1200}}});
   }
 
   // Pizza
@@ -2613,10 +2613,10 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
     charts.pizza = new Chart(pCtx,{type:'doughnut',data:{
       labels:['Kills','Assistências','Derrubou','Levantou','Ressurgiu'],
       datasets:[{data:[totalK,totalAss,totalDerr,totalLev,totalRes],
-        backgroundColor:['rgba(255,255,255,.88)','rgba(77,159,255,.75)','rgba(200,212,232,.65)','rgba(13,79,204,.8)','rgba(140,190,255,.6)'],
-        borderColor:['#1A6FFF','#4D9FFF','#C8D4E8','#0D4FCC','#8CBEFF'],borderWidth:2}]},
+        backgroundColor:['rgba(255,255,255,.88)','rgba(255,203,61,.75)','rgba(245,230,168,.65)','rgba(184,134,11,.8)','rgba(255,221,128,.6)'],
+        borderColor:['#E8A400','#FFCB3D','#F5E6A8','#B8860B','#FFDD80'],borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}}},animation:{animateRotate:true,duration:1500}}});
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}}},animation:{animateRotate:true,duration:1500}}});
   }
 }
 
@@ -2712,7 +2712,7 @@ function renderIndividual(focusName) {
         <div class="bullet-bar" style="width:${pVal}%;background:${color};opacity:.8;"></div>
         <div class="bullet-marker" style="left:${pAvg}%"></div>
       </div>
-      <div class="bullet-val" style="color:${val>=teamAvg?'#4dff88':'#ff5078'}">${typeof val==='number'?val.toFixed(1):val}${unit}</div>
+      <div class="bullet-val" style="color:${val>=teamAvg?'#FFD700':'#FF8A00'}">${typeof val==='number'?val.toFixed(1):val}${unit}</div>
     </div>`;
   }
 
@@ -2735,7 +2735,7 @@ function renderIndividual(focusName) {
   }
 
   // Donut SVG contrib
-  function donutMini(pct, color='#1A6FFF') {
+  function donutMini(pct, color='#E8A400') {
     const r=28, c=2*Math.PI*r, d=(pct/100)*c;
     return `<svg width="70" height="70" viewBox="0 0 70 70" style="transform:rotate(-90deg)">
       <circle cx="35" cy="35" r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="7"/>
@@ -2886,7 +2886,7 @@ function renderIndividual(focusName) {
             <div class="contrib-rank-badge">Ranking: <em>${rank===1?'🥇 1º':rank===2?'🥈 2º':rank===3?'🥉 3º':rank+'º'}</em> de ${n}</div>
           </div>`;
         };
-        return dc('💀 KILLS', pctK, rankK, '#1A6FFF') + dc('💥 DANO', pctD, rankD, '#cc66ff') + dc('💊 CURA', pctC, rankC, '#4dff88');
+        return dc('💀 KILLS', pctK, rankK, '#E8A400') + dc('💥 DANO', pctD, rankD, '#DAA520') + dc('💊 CURA', pctC, rankC, '#FFD700');
       })()}
     </div>
 
@@ -2987,9 +2987,9 @@ function renderIndividual(focusName) {
 }
 
 function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
-  const ax = {ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
-  const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+  const ax = {ticks:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+  const tt = {backgroundColor:'rgba(18,14,0,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FFCB3D',bodyColor:'#F5E6A8',padding:10};
+  const palette = ['#E8A400','#ffd700','#FF8A00','#FFD700','#DAA520','#ff9f40','#FFCB3D','#FFA733'];
 
   // ── Bullet HS
   const bulletHsEl = document.getElementById('bullet-hs');
@@ -3003,10 +3003,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
           <div class="bullet-range-bom" style="width:${Math.min(pAvg*1.2,100)}%"></div>
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgHSv>=teamAvgHS?'rgba(77,255,136,.7)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgHSv>=teamAvgHS?'rgba(255,215,0,.7)':'rgba(255,138,0,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.avgHSv>=teamAvgHS?'#4dff88':'#ff5078'}">${p.avgHSv.toFixed(1)}%</div>
+        <div class="bullet-val" style="color:${p.avgHSv>=teamAvgHS?'#FFD700':'#FF8A00'}">${p.avgHSv.toFixed(1)}%</div>
       </div>`;
     }).join('');
   }
@@ -3023,10 +3023,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgMortes<=teamAvgM?'rgba(77,255,136,.7)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgMortes<=teamAvgM?'rgba(255,215,0,.7)':'rgba(255,138,0,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.avgMortes<=teamAvgM?'#4dff88':'#ff5078'}">${p.avgMortes.toFixed(2)}</div>
+        <div class="bullet-val" style="color:${p.avgMortes<=teamAvgM?'#FFD700':'#FF8A00'}">${p.avgMortes.toFixed(2)}</div>
       </div>`;
     }).join('');
   }
@@ -3042,10 +3042,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.kd>=teamAvgKd?'rgba(77,159,255,.8)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.kd>=teamAvgKd?'rgba(255,203,61,.8)':'rgba(255,138,0,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.kd>=teamAvgKd?'#4D9FFF':'#ff5078'}">${p.kd.toFixed(2)}</div>
+        <div class="bullet-val" style="color:${p.kd>=teamAvgKd?'#FFCB3D':'#FF8A00'}">${p.kd.toFixed(2)}</div>
       </div>`;
     }).join('');
   }
@@ -3061,10 +3061,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgKv>=teamAvgKv?'rgba(204,102,255,.7)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.avgKv>=teamAvgKv?'rgba(218,165,32,.7)':'rgba(255,138,0,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.avgKv>=teamAvgKv?'#cc66ff':'#ff5078'}">${p.avgKv.toFixed(1)}</div>
+        <div class="bullet-val" style="color:${p.avgKv>=teamAvgKv?'#DAA520':'#FF8A00'}">${p.avgKv.toFixed(1)}</div>
       </div>`;
     }).join('');
   }
@@ -3080,10 +3080,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.assKRatio>=teamAvgAK?'rgba(77,255,136,.7)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.assKRatio>=teamAvgAK?'rgba(255,215,0,.7)':'rgba(255,138,0,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.assKRatio>=teamAvgAK?'#4dff88':'#ff5078'}">${p.assKRatio.toFixed(2)}</div>
+        <div class="bullet-val" style="color:${p.assKRatio>=teamAvgAK?'#FFD700':'#FF8A00'}">${p.assKRatio.toFixed(2)}</div>
       </div>`;
     }).join('');
   }
@@ -3102,7 +3102,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       <div class="funnel-arrow">▼</div>
       <div class="funnel-stage">
         <div class="funnel-bar-outer" style="width:${tDerr>0?Math.max((tKill/tDerr)*100,10).toFixed(0):50}%">
-          <div class="funnel-bar-inner" style="width:100%;background:rgba(77,255,136,.6)">${tKill} KILLS CONFIRMADOS</div>
+          <div class="funnel-bar-inner" style="width:100%;background:rgba(255,215,0,.6)">${tKill} KILLS CONFIRMADOS</div>
         </div>
       </div>
       <div style="font-size:10px;color:var(--bl3);margin-top:8px;letter-spacing:1px;">Taxa: ${tDerr>0?((tKill/tDerr)*100).toFixed(1):0}% de confirmação</div>
@@ -3117,9 +3117,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${Math.min((p.killConf/maxKC)*100,100)}%;background:rgba(77,255,136,.6);"></div>
+          <div class="bullet-bar" style="width:${Math.min((p.killConf/maxKC)*100,100)}%;background:rgba(255,215,0,.6);"></div>
         </div>
-        <div class="bullet-val" style="color:#4dff88">${p.killConf.toFixed(2)}</div>
+        <div class="bullet-val" style="color:#FFD700">${p.killConf.toFixed(2)}</div>
       </div>`;}).join('')}</div>`;
   }
 
@@ -3131,7 +3131,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       labels: mapStats.map(m=>m.map),
       datasets:[{label:'Kills', data:mapStats.map(m=>m.kills),
         backgroundColor: mapStats.map(m=>m.map===best?'rgba(255,215,0,.85)':'rgba(255,255,255,.6)'),
-        borderColor: mapStats.map(m=>m.map===best?'#ffd700':'#1A6FFF'),
+        borderColor: mapStats.map(m=>m.map===best?'#ffd700':'#E8A400'),
         borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:ax}}});
   }
@@ -3142,7 +3142,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(mDCtx, {type:'bar', data:{
       labels: mapStats.map(m=>m.map),
       datasets:[{label:'Dano Médio', data:mapStats.map(m=>m.dano),
-        backgroundColor:'rgba(204,102,255,.6)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3}]
+        backgroundColor:'rgba(218,165,32,.6)', borderColor:'#DAA520', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:ax}}});
   }
 
@@ -3165,9 +3165,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
         borderWidth:1.5, pointRadius:2,
       }))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
+        pointLabels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
         angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 
@@ -3185,8 +3185,8 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{
         const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalK} kills / ${p?.totalD} dano`;
       }}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#8A7A3D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#8A7A3D',font:{size:9}}}}}});
   }
 
   // ── Scatter HS vs Kills (ID-93)
@@ -3194,12 +3194,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
   if (sctHS) {
     new Chart(sctHS, {type:'scatter', data:{datasets:[{
       data: pStats.map(p=>({x:p.avgHSv, y:p.totalK})),
-      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(77,159,255,.7)'),
+      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(255,203,61,.7)'),
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.avgHSv.toFixed(1)}% HS / ${p?.totalK} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'HEADSHOT%',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'HEADSHOT%',color:'#8A7A3D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#8A7A3D',font:{size:9}}}}}});
   }
 
   // ── Scatter Dano vs Kills (ID-94)
@@ -3207,12 +3207,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
   if (sctDK) {
     new Chart(sctDK, {type:'scatter', data:{datasets:[{
       data: pStats.map(p=>({x:p.totalD, y:p.totalK})),
-      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(204,102,255,.7)'),
+      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(218,165,32,.7)'),
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalD} dano / ${p?.totalK} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO',color:'#8A7A3D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#8A7A3D',font:{size:9}}}}}});
   }
 
   // ── Scatter Cura vs Sobrevivência (ID-95)
@@ -3220,12 +3220,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
   if (sctCure) {
     new Chart(sctCure, {type:'scatter', data:{datasets:[{
       data: pStats.map(p=>({x:p.totalCura, y: p.games>0 ? (1 - p.deaths/Math.max(p.games,1))*100 : 0})),
-      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(77,255,136,.7)'),
+      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(255,215,0,.7)'),
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalCura} cura`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'CURA TOTAL',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'SOBREVIVÊNCIA%',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'CURA TOTAL',color:'#8A7A3D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'SOBREVIVÊNCIA%',color:'#8A7A3D',font:{size:9}}}}}});
   }
 
   // ── Tendência HS (ID-74/75)
@@ -3240,10 +3240,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(hsTrendCtx, {type:'line', data:{
       labels: hsd.map(d=>d.x),
       datasets:[
-        {label:'HS%', data:hsd.map(d=>d.y), fill:false, borderColor:'rgba(77,159,255,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
-        {label:'Média Móvel', data:ma.map(d=>d.y), fill:true, backgroundColor:'rgba(255,255,255,.1)', borderColor:'#1A6FFF', pointRadius:0, tension:.4, borderWidth:2},
+        {label:'HS%', data:hsd.map(d=>d.y), fill:false, borderColor:'rgba(255,203,61,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
+        {label:'Média Móvel', data:ma.map(d=>d.y), fill:true, backgroundColor:'rgba(255,255,255,.1)', borderColor:'#E8A400', pointRadius:0, tension:.4, borderWidth:2},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ── Evolução kills (ID-90)
@@ -3254,8 +3254,8 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(evoCtx, {type:'bar', data:{
       labels,
       datasets:[{label:'Kills', data:focusRows.map(d=>d.kills),
-        backgroundColor: focusRows.map((_,i)=>i<half?'rgba(255,255,255,.5)':'rgba(77,255,136,.6)'),
-        borderColor: focusRows.map((_,i)=>i<half?'#1A6FFF':'#4dff88'),
+        backgroundColor: focusRows.map((_,i)=>i<half?'rgba(255,255,255,.5)':'rgba(255,215,0,.6)'),
+        borderColor: focusRows.map((_,i)=>i<half?'#E8A400':'#FFD700'),
         borderWidth:1, borderRadius:2}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
@@ -3281,9 +3281,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
           data:[(d.mK/maxK)*100,(d.mD/maxD)*100,(d.mA/maxA)*100,(d.mkd/maxKD)*100,(d.mHS/maxHS)*100],
           fill:true, backgroundColor:palette[i]+'22', borderColor:palette[i], pointBackgroundColor:palette[i], borderWidth:1.8, pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#8A7A3D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     }
 
     const barTipoCtx = document.getElementById('ind_bar_tipo')?.getContext('2d');
@@ -3296,11 +3296,11 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       new Chart(barTipoCtx, {type:'bar', data:{
         labels: tiposData.map(d=>d.t),
         datasets:[
-          {label:'Kills', data:tiposData.map(d=>d.kills), backgroundColor:'rgba(255,255,255,.7)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3},
-          {label:'Dano/100', data:tiposData.map(d=>Math.round(d.dano/100)), backgroundColor:'rgba(204,102,255,.5)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
+          {label:'Kills', data:tiposData.map(d=>d.kills), backgroundColor:'rgba(255,255,255,.7)', borderColor:'#E8A400', borderWidth:1, borderRadius:3},
+          {label:'Dano/100', data:tiposData.map(d=>Math.round(d.dano/100)), backgroundColor:'rgba(218,165,32,.5)', borderColor:'#DAA520', borderWidth:1, borderRadius:3},
           {label:'K/D×10', data:tiposData.map(d=>parseFloat((d.kd*10).toFixed(1))), backgroundColor:'rgba(255,215,0,.5)', borderColor:'#ffd700', borderWidth:1, borderRadius:3},
         ]
-      }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+      }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
     }
   }
 
@@ -3320,12 +3320,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       labels: bpData.map(d=>d.pl),
       datasets:[
         {label:'Mínimo→Q1', data:bpData.map(d=>d.q1-d.mn), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
-        {label:'Q1→Mediana', data:bpData.map(d=>d.med-d.q1), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.5)':'rgba(255,255,255,.45)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#1A6FFF'), borderWidth:1, stack:'s'},
-        {label:'Mediana→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.3)':'rgba(77,159,255,.35)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#4D9FFF'), borderWidth:1, stack:'s'},
+        {label:'Q1→Mediana', data:bpData.map(d=>d.med-d.q1), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.5)':'rgba(255,255,255,.45)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#E8A400'), borderWidth:1, stack:'s'},
+        {label:'Mediana→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.3)':'rgba(255,203,61,.35)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#FFCB3D'), borderWidth:1, stack:'s'},
         {label:'Q3→Máx', data:bpData.map(d=>d.mx-d.q3), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
       ]
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return `${d?.pl}: Min ${d?.mn} | Q1 ${d?.q1} | Med ${d?.med} | Q3 ${d?.q3} | Max ${d?.mx}`;}}},},
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return `${d?.pl}: Min ${d?.mn} | Q1 ${d?.q1} | Med ${d?.med} | Q3 ${d?.q3} | Max ${d?.mx}`;}}},},
       scales:{x:ax,y:{...ax,beginAtZero:true,stacked:true}}}});
   }
 
@@ -3349,9 +3349,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
           data:[(d.mK/maxK)*100,(d.mD/maxD)*100,(d.mA/maxA)*100,(d.mCura/maxC)*100,(d.mkd/maxKD)*100],
           fill:true, backgroundColor:palette[i]+'22', borderColor:palette[i], pointBackgroundColor:palette[i], borderWidth:2, pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#8A7A3D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     } else {
       if(rfCtx.canvas.parentNode) rfCtx.canvas.parentNode.innerHTML = '<div style="padding:20px;color:var(--mu);font-size:11px;text-align:center">Sem dados de função disponíveis.</div>';
     }
@@ -3372,10 +3372,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(dsCtx, {type:'bar', data:{
       labels: dias,
       datasets:[
-        {label:'Avg Kills', data:avgK2, backgroundColor:'rgba(255,255,255,.6)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3},
-        {label:'Avg Dano/100', data:avgD2.map(v=>v!==null?Math.round(v/100):null), backgroundColor:'rgba(204,102,255,.45)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
+        {label:'Avg Kills', data:avgK2, backgroundColor:'rgba(255,255,255,.6)', borderColor:'#E8A400', borderWidth:1, borderRadius:3},
+        {label:'Avg Dano/100', data:avgD2.map(v=>v!==null?Math.round(v/100):null), backgroundColor:'rgba(218,165,32,.45)', borderColor:'#DAA520', borderWidth:1, borderRadius:3},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 }
 
@@ -3712,9 +3712,9 @@ function renderColetivas() {
 }
 
 function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
-  const ax = {ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
-  const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+  const ax = {ticks:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+  const tt = {backgroundColor:'rgba(18,14,0,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FFCB3D',bodyColor:'#F5E6A8',padding:10};
+  const palette = ['#E8A400','#ffd700','#FF8A00','#FFD700','#DAA520','#ff9f40','#FFCB3D','#FFA733'];
 
   // ID-01: Kills por mapa
   const c1 = document.getElementById('col_kills_mapa')?.getContext('2d');
@@ -3723,7 +3723,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c1, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[{label:'Kills', data:mapSt.map(m=>m.kills),
         backgroundColor:mapSt.map(m=>m.map===best?'rgba(255,215,0,.85)':'rgba(255,255,255,.6)'),
-        borderColor:mapSt.map(m=>m.map===best?'#ffd700':'#1A6FFF'), borderWidth:1, borderRadius:3}]
+        borderColor:mapSt.map(m=>m.map===best?'#ffd700':'#E8A400'), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -3733,8 +3733,8 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     const worst = [...mapSt].sort((a,b)=>b.mortes-a.mortes)[0]?.map;
     new Chart(c2, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[{label:'Mortes', data:mapSt.map(m=>m.mortes),
-        backgroundColor:mapSt.map(m=>m.map===worst?'rgba(255,80,120,.85)':'rgba(255,80,120,.4)'),
-        borderColor:mapSt.map(m=>m.map===worst?'#ff5078':'rgba(255,80,120,.6)'), borderWidth:1, borderRadius:3}]
+        backgroundColor:mapSt.map(m=>m.map===worst?'rgba(255,138,0,.85)':'rgba(255,138,0,.4)'),
+        borderColor:mapSt.map(m=>m.map===worst?'#FF8A00':'rgba(255,138,0,.6)'), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -3749,9 +3749,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         fill:true,backgroundColor:palette[i%palette.length]+'18',borderColor:palette[i%palette.length],
         pointBackgroundColor:palette[i%palette.length],borderWidth:1.5,pointRadius:2}))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+        pointLabels:{color:'#8A7A3D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 
   // ID-08: HS por mapa
@@ -3761,12 +3761,12 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c4, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[
         {label:'HS% Médio', data:mapSt.map(m=>m.hs.toFixed(1)),
-          backgroundColor:mapSt.map(m=>m.hs>=avgHSTeam?'rgba(77,255,136,.6)':'rgba(255,80,120,.5)'),
-          borderColor:mapSt.map(m=>m.hs>=avgHSTeam?'#4dff88':'#ff5078'), borderWidth:1, borderRadius:3},
+          backgroundColor:mapSt.map(m=>m.hs>=avgHSTeam?'rgba(255,215,0,.6)':'rgba(255,138,0,.5)'),
+          borderColor:mapSt.map(m=>m.hs>=avgHSTeam?'#FFD700':'#FF8A00'), borderWidth:1, borderRadius:3},
         {type:'line', label:'Média Geral', data:mapSt.map(()=>avgHSTeam.toFixed(1)),
           borderColor:'rgba(255,215,0,.7)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-05: Heatmap cura
@@ -3805,10 +3805,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
   if (c6 && mapSt.length) {
     new Chart(c6, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[
-        {label:'Levantamentos', data:mapSt.map(m=>m.lev), backgroundColor:'rgba(77,255,136,.6)', borderColor:'#4dff88', borderWidth:1, borderRadius:3},
-        {label:'Ressurgimentos', data:mapSt.map(m=>m.res), backgroundColor:'rgba(204,102,255,.5)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
+        {label:'Levantamentos', data:mapSt.map(m=>m.lev), backgroundColor:'rgba(255,215,0,.6)', borderColor:'#FFD700', borderWidth:1, borderRadius:3},
+        {label:'Ressurgimentos', data:mapSt.map(m=>m.res), backgroundColor:'rgba(218,165,32,.5)', borderColor:'#DAA520', borderWidth:1, borderRadius:3},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-09: Kills por dia da semana
@@ -3819,7 +3819,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c7, {type:'bar', data:{labels:diaSt.map(d=>d.dia),
       datasets:[{label:'Kills', data:diaSt.map(d=>d.games>0?d.kills:null),
         backgroundColor:diaSt.map(d=>d.dia===pico.dia?'rgba(255,215,0,.85)':'rgba(255,255,255,.55)'),
-        borderColor:diaSt.map(d=>d.dia===pico.dia?'#ffd700':'#1A6FFF'), borderWidth:1, borderRadius:3}]
+        borderColor:diaSt.map(d=>d.dia===pico.dia?'#ffd700':'#E8A400'), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -3828,7 +3828,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
   if (c8) {
     new Chart(c8, {type:'bar', data:{labels:diaSt.map(d=>d.dia),
       datasets:[{label:'HS% Médio', data:diaSt.map(d=>d.games>0?d.hs.toFixed(1):null),
-        backgroundColor:'rgba(204,102,255,.55)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3}]
+        backgroundColor:'rgba(218,165,32,.55)', borderColor:'#DAA520', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -3840,10 +3840,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     const teamAvgD = avg(dateSt.map(d=>d.dano));
     new Chart(c9, {type:'line', data:{labels:dateSt.map(d=>d.data),
       datasets:[
-        {label:'Dano Médio', data:dateSt.map(d=>d.dano), fill:true, backgroundColor:g, borderColor:'#1A6FFF', pointRadius:3, tension:.4, borderWidth:2},
+        {label:'Dano Médio', data:dateSt.map(d=>d.dano), fill:true, backgroundColor:g, borderColor:'#E8A400', pointRadius:3, tension:.4, borderWidth:2},
         {label:'Média Geral', data:dateSt.map(()=>Math.round(teamAvgD)), borderColor:'rgba(255,215,0,.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-26: Tendência HS com média móvel
@@ -3855,10 +3855,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     });
     new Chart(c10, {type:'line', data:{labels:dateSt.map(d=>d.data),
       datasets:[
-        {label:'HS%', data:dateSt.map(d=>d.hs.toFixed(1)), fill:false, borderColor:'rgba(77,159,255,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
-        {label:'Média Móvel', data:ma.map(v=>v.toFixed(1)), fill:true, backgroundColor:'rgba(204,102,255,.1)', borderColor:'#cc66ff', pointRadius:0, tension:.4, borderWidth:2}
+        {label:'HS%', data:dateSt.map(d=>d.hs.toFixed(1)), fill:false, borderColor:'rgba(255,203,61,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
+        {label:'Média Móvel', data:ma.map(v=>v.toFixed(1)), fill:true, backgroundColor:'rgba(218,165,32,.1)', borderColor:'#DAA520', pointRadius:0, tension:.4, borderWidth:2}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // IDs 11/12/44/45: Comparativo competições
@@ -3866,25 +3866,25 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     const c11 = document.getElementById('col_comp_kills')?.getContext('2d');
     if (c11) new Chart(c11, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
       datasets:[{label:'Kills Totais', data:tipoSt.map(t=>t.kills),
-        backgroundColor:tipoSt.map((_,i)=>['rgba(255,255,255,.7)','rgba(255,215,0,.7)','rgba(255,80,120,.6)','rgba(77,255,136,.6)'][i%4]),
-        borderColor:tipoSt.map((_,i)=>['#1A6FFF','#ffd700','#ff5078','#4dff88'][i%4]), borderWidth:1, borderRadius:3}]
+        backgroundColor:tipoSt.map((_,i)=>['rgba(255,255,255,.7)','rgba(255,215,0,.7)','rgba(255,138,0,.6)','rgba(255,215,0,.6)'][i%4]),
+        borderColor:tipoSt.map((_,i)=>['#E8A400','#ffd700','#FF8A00','#FFD700'][i%4]), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
 
     const c12 = document.getElementById('col_comp_dano')?.getContext('2d');
     if (c12) new Chart(c12, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
       datasets:[{label:'Dano Médio', data:tipoSt.map(t=>t.dano),
-        backgroundColor:tipoSt.map((_,i)=>['rgba(204,102,255,.7)','rgba(77,255,136,.6)','rgba(255,159,64,.6)','rgba(77,159,255,.6)'][i%4]),
-        borderColor:tipoSt.map((_,i)=>['#cc66ff','#4dff88','#ff9f40','#4D9FFF'][i%4]), borderWidth:1, borderRadius:3}]
+        backgroundColor:tipoSt.map((_,i)=>['rgba(218,165,32,.7)','rgba(255,215,0,.6)','rgba(255,159,64,.6)','rgba(255,203,61,.6)'][i%4]),
+        borderColor:tipoSt.map((_,i)=>['#DAA520','#FFD700','#ff9f40','#FFCB3D'][i%4]), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
 
     const c44 = document.getElementById('col_comp_res')?.getContext('2d');
     if (c44) new Chart(c44, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
-      datasets:[{label:'Ressurgimentos', data:tipoSt.map(t=>t.res), backgroundColor:'rgba(77,255,136,.6)', borderColor:'#4dff88', borderWidth:1, borderRadius:3}]
+      datasets:[{label:'Ressurgimentos', data:tipoSt.map(t=>t.res), backgroundColor:'rgba(255,215,0,.6)', borderColor:'#FFD700', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
 
     const c45 = document.getElementById('col_comp_cura')?.getContext('2d');
     if (c45) new Chart(c45, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
-      datasets:[{label:'Cura Total', data:tipoSt.map(t=>t.cura), backgroundColor:'rgba(255,255,255,.6)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3}]
+      datasets:[{label:'Cura Total', data:tipoSt.map(t=>t.cura), backgroundColor:'rgba(255,255,255,.6)', borderColor:'#E8A400', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -3900,11 +3900,11 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     const avgX=avg(ps.map(p=>p.x)), avgY=avg(ps.map(p=>p.y));
     new Chart(sc1, {type:'scatter', data:{datasets:[
       {label:'Jogadores', data:ps.map(p=>({x:p.x,y:p.y})),
-        backgroundColor: ps.map(p=>(p.x>=avgX&&p.y>=avgY)?'rgba(77,255,136,.7)':(p.x<avgX&&p.y<avgY)?'rgba(255,80,120,.6)':'rgba(255,215,0,.7)'),
+        backgroundColor: ps.map(p=>(p.x>=avgX&&p.y>=avgY)?'rgba(255,215,0,.7)':(p.x<avgX&&p.y<avgY)?'rgba(255,138,0,.6)':'rgba(255,215,0,.7)'),
         pointRadius:7}
     ]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=ps[ctx.dataIndex]; return `${p?.pl}: ${p?.x} dano / ${p?.y} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#5A6880',font:{size:9}}},y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#8A7A3D',font:{size:9}}},y:{...ax,title:{display:true,text:'KILLS',color:'#8A7A3D',font:{size:9}}}}}});
   }
 
   const funilKillEl = document.getElementById('col_funil_kills');
@@ -3921,7 +3921,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
       <div class="funnel-arrow">▼</div>
       <div class="funnel-stage">
         <div class="funnel-bar-outer" style="width:${tDerr>0?Math.max((tKill/tDerr)*100,10).toFixed(0):50}%">
-          <div class="funnel-bar-inner" style="width:100%;background:rgba(77,255,136,.6)">${tKill} KILLS CONFIRMADOS</div>
+          <div class="funnel-bar-inner" style="width:100%;background:rgba(255,215,0,.6)">${tKill} KILLS CONFIRMADOS</div>
         </div>
       </div>
       <div style="font-size:10px;color:var(--bl3);margin-top:8px;letter-spacing:1px;">Taxa: ${tDerr>0?((tKill/tDerr)*100).toFixed(1):0}%</div>
@@ -3934,19 +3934,19 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     if (fc1) new Chart(fc1, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.kills), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const fc2 = document.getElementById('col_func_dano')?.getContext('2d');
     if (fc2) new Chart(fc2, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.dano), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const fc3 = document.getElementById('col_func_cura')?.getContext('2d');
     if (fc3) new Chart(fc3, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.cura), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const rfcCtx = document.getElementById('col_radar_func')?.getContext('2d');
     if (rfcCtx) {
@@ -3959,9 +3959,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
           data:[(f.kills/f.games/maxK)*100,(f.dano/f.games/maxD)*100,(f.ass/f.games/maxA)*100,(f.cura/f.games/maxC)*100],
           fill:true,backgroundColor:palette[i]+'22',borderColor:palette[i],pointBackgroundColor:palette[i],borderWidth:2,pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#8A7A3D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     }
   }
 
@@ -3974,10 +3974,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c22, {type:'line', data:{
       labels: colData22.map((_,i)=>`#${i+1}`),
       datasets:[
-        {label:'Mortes', data:mortesArr, fill:false, borderColor:'rgba(255,80,120,.6)', pointBackgroundColor:mortesArr.map(v=>v>avgM*1.5?'#ff5078':'rgba(255,80,120,.5)'), pointRadius:mortesArr.map(v=>v>avgM*1.5?5:2), tension:.3, borderWidth:1.5},
+        {label:'Mortes', data:mortesArr, fill:false, borderColor:'rgba(255,138,0,.6)', pointBackgroundColor:mortesArr.map(v=>v>avgM*1.5?'#FF8A00':'rgba(255,138,0,.5)'), pointRadius:mortesArr.map(v=>v>avgM*1.5?5:2), tension:.3, borderWidth:1.5},
         {label:'Média', data:colData22.map(()=>avgM.toFixed(2)), borderColor:'rgba(255,215,0,.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:{...ax,ticks:{display:false}},y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:tt},scales:{x:{...ax,ticks:{display:false}},y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-35/36: Box plot coletivo
@@ -3994,12 +3994,12 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c35, {type:'bar', data:{labels:bpData.map(d=>d.pl),
       datasets:[
         {label:'Min→Q1', data:bpData.map(d=>d.q1-d.mn), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
-        {label:'Q1→Med', data:bpData.map(d=>d.med-d.q1), backgroundColor:'rgba(255,255,255,.45)', borderColor:'#1A6FFF', borderWidth:1, stack:'s'},
-        {label:'Med→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:'rgba(77,159,255,.35)', borderColor:'#4D9FFF', borderWidth:1, stack:'s'},
+        {label:'Q1→Med', data:bpData.map(d=>d.med-d.q1), backgroundColor:'rgba(255,255,255,.45)', borderColor:'#E8A400', borderWidth:1, stack:'s'},
+        {label:'Med→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:'rgba(255,203,61,.35)', borderColor:'#FFCB3D', borderWidth:1, stack:'s'},
         {label:'Q3→Max', data:bpData.map(d=>d.mx-d.q3), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
       ]
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return d?`${d.pl} | Q1:${d.q1} Med:${d.med} Q3:${d.q3} Max:${d.mx}`:'';}}},},
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return d?`${d.pl} | Q1:${d.q1} Med:${d.med} Q3:${d.q3} Max:${d.mx}`:'';}}},},
       scales:{x:ax,y:{...ax,beginAtZero:true,stacked:true}}}});
   }
 
@@ -4017,13 +4017,13 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
       <div class="funnel-arrow">▼</div>
       <div class="funnel-stage">
         <div class="funnel-bar-outer" style="width:${tK+tA>0?Math.max((tA/(tK+tA))*100,8).toFixed(0):30}%">
-          <div class="funnel-bar-inner" style="width:100%;background:rgba(77,159,255,.6)">${tA} ASSISTÊNCIAS</div>
+          <div class="funnel-bar-inner" style="width:100%;background:rgba(255,203,61,.6)">${tA} ASSISTÊNCIAS</div>
         </div>
       </div>
       <div class="funnel-arrow">▼</div>
       <div class="funnel-stage">
         <div class="funnel-bar-outer" style="width:${tK+tA>0?Math.max((tK/(tK+tA))*100,8).toFixed(0):30}%">
-          <div class="funnel-bar-inner" style="width:100%;background:rgba(77,255,136,.6)">${tK} KILLS</div>
+          <div class="funnel-bar-inner" style="width:100%;background:rgba(255,215,0,.6)">${tK} KILLS</div>
         </div>
       </div>
       <div style="font-size:10px;color:var(--bl3);margin-top:8px;">Índice Sinergia: ${tK>0?(tA/tK).toFixed(2):0} assists/kill</div>
@@ -4035,7 +4035,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
   if (c39 && mapSt.length) {
     new Chart(c39, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[{label:'Colab (Assist/Kill)', data:mapSt.map(m=>m.kills>0?(m.ass/m.kills).toFixed(2):0),
-        backgroundColor:'rgba(204,102,255,.6)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3}]
+        backgroundColor:'rgba(218,165,32,.6)', borderColor:'#DAA520', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -4049,9 +4049,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         data:[(s.kills/maxK)*100,(s.dano/maxD)*100,(s.ass/maxA)*100],
         fill:true,backgroundColor:palette[i]+'22',borderColor:palette[i],pointBackgroundColor:palette[i],borderWidth:1.8,pointRadius:3}))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#8A7A3D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+        pointLabels:{color:'#8A7A3D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 }
 
@@ -4079,13 +4079,13 @@ function svgPizza(slices, size=120) {
     const x1=cx+r*Math.cos(angle), y1=cy+r*Math.sin(angle);
     const x2=cx+r*Math.cos(angle+a), y2=cy+r*Math.sin(angle+a);
     const lg = a > Math.PI ? 1 : 0;
-    paths += `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${lg},1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${s.c}" opacity=".88" stroke="#080C14" stroke-width="1.5"/>`;
+    paths += `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${lg},1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${s.c}" opacity=".88" stroke="#120E00" stroke-width="1.5"/>`;
     // label no slice
     const midA = angle + a/2;
     const lx = cx + (r*0.65)*Math.cos(midA), ly = cy + (r*0.65)*Math.sin(midA);
     const pct = ((s.v/total)*100).toFixed(0);
     if (parseFloat(pct) >= 8) paths += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="#fff">${pct}%</text>`;
-    legends += `<div style="display:flex;align-items:center;gap:5px;font-size:9px;color:#C8D4E8;"><span style="width:8px;height:8px;border-radius:50%;background:${s.c};flex-shrink:0;"></span>${s.l}: <strong style="color:#fff;">${s.v}</strong></div>`;
+    legends += `<div style="display:flex;align-items:center;gap:5px;font-size:9px;color:#F5E6A8;"><span style="width:8px;height:8px;border-radius:50%;background:${s.c};flex-shrink:0;"></span>${s.l}: <strong style="color:#fff;">${s.v}</strong></div>`;
     angle += a;
   });
   return `<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
@@ -4095,13 +4095,13 @@ function svgPizza(slices, size=120) {
 }
 
 // SVG barras horizontais
-function svgBars(items, color='#1A6FFF', maxW=240) {
+function svgBars(items, color='#E8A400', maxW=240) {
   const maxV = Math.max(...items.map(i=>i.v),1);
   return items.map(it => {
     const w = Math.max((it.v/maxV)*maxW,2);
     return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-      <div style="width:90px;font-size:10px;color:#C8D4E8;text-align:right;flex-shrink:0;">${it.l}</div>
-      <div style="flex:1;height:18px;background:#0A1018;border-radius:2px;overflow:hidden;position:relative;">
+      <div style="width:90px;font-size:10px;color:#F5E6A8;text-align:right;flex-shrink:0;">${it.l}</div>
+      <div style="flex:1;height:18px;background:#120E00;border-radius:2px;overflow:hidden;position:relative;">
         <div style="width:${w}px;max-width:100%;height:100%;background:${it.c||color};border-radius:2px;display:flex;align-items:center;padding-left:6px;">
           <span style="font-size:10px;font-weight:700;color:#fff;">${it.v}</span>
         </div>
@@ -4111,7 +4111,7 @@ function svgBars(items, color='#1A6FFF', maxW=240) {
 }
 
 // SVG gauge / sinal (semicircular)
-function svgGauge(val, max, label, color='#1A6FFF', size=100) {
+function svgGauge(val, max, label, color='#E8A400', size=100) {
   const pct = Math.min(val/Math.max(max,1),1);
   const angle = pct * Math.PI; // 0 to PI
   const r = size/2 - 10, cx = size/2, cy = size/2 + 10;
@@ -4125,32 +4125,32 @@ function svgGauge(val, max, label, color='#1A6FFF', size=100) {
     : `M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${x2.toFixed(1)},${y2.toFixed(1)}`;
   return `<div style="text-align:center;">
     <svg width="${size}" height="${size/2+18}" viewBox="0 0 ${size} ${size/2+18}">
-      <path d="M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${(cx+r).toFixed(1)},${cy}" fill="none" stroke="#1A2540" stroke-width="8"/>
+      <path d="M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${(cx+r).toFixed(1)},${cy}" fill="none" stroke="#1A1400" stroke-width="8"/>
       <path d="${arcPath}" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>
       <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">${typeof val==='number'?val.toFixed(1):val}</text>
     </svg>
-    <div style="font-size:8px;letter-spacing:2px;color:#5A6880;margin-top:2px;">${label}</div>
+    <div style="font-size:8px;letter-spacing:2px;color:#8A7A3D;margin-top:2px;">${label}</div>
   </div>`;
 }
 
 // SVG Overall circular (full circle progress)
-function svgOverall(score, label, color='#1A6FFF', size=90) {
+function svgOverall(score, label, color='#E8A400', size=90) {
   const pct = Math.min(score/100,1);
   const r=size/2-8, c=2*Math.PI*r, dash=pct*c;
-  const col = score>=75?'#00C853':score>=50?'#FFD700':score>=25?'#FF9F40':'#FF5252';
+  const col = score>=75?'#DAA520':score>=50?'#FFD700':score>=25?'#FF9F40':'#FF8A00';
   return `<div style="text-align:center;">
     <div style="position:relative;width:${size}px;height:${size}px;margin:0 auto;">
       <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="transform:rotate(-90deg)">
-        <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#1A2540" stroke-width="7"/>
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#1A1400" stroke-width="7"/>
         <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col}" stroke-width="7"
           stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
       </svg>
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
         <div style="font-size:16px;font-weight:900;color:${col};">${Math.round(score)}</div>
-        <div style="font-size:7px;color:#5A6880;letter-spacing:1px;">OVR</div>
+        <div style="font-size:7px;color:#8A7A3D;letter-spacing:1px;">OVR</div>
       </div>
     </div>
-    <div style="font-size:9px;color:#C8D4E8;margin-top:4px;max-width:${size}px;">${label}</div>
+    <div style="font-size:9px;color:#F5E6A8;margin-top:4px;max-width:${size}px;">${label}</div>
   </div>`;
 }
 
@@ -4158,13 +4158,13 @@ function svgOverall(score, label, color='#1A6FFF', size=90) {
 function svgCone(items) {
   const n = Math.min(items.length, 5);
   const levels = items.slice(0,n);
-  const colors = ['#FFD700','#C0C0C0','#CD7F32','#4D9FFF','#cc66ff'];
+  const colors = ['#FFD700','#C0C0C0','#CD7F32','#FFCB3D','#DAA520'];
   const maxW = 260;
   return `<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
     ${levels.map((it,i) => {
       const w = maxW * (0.3 + (0.7 * (i+1)/n));
       return `<div style="width:${w}px;background:${colors[i]};padding:5px 10px;text-align:center;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 100%,0 100%);">
-        <span style="font-size:10px;font-weight:700;color:#080C14;">${i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':''}${it.l}: <strong>${it.v}</strong></span>
+        <span style="font-size:10px;font-weight:700;color:#120E00;">${i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':''}${it.l}: <strong>${it.v}</strong></span>
       </div>`;
     }).join('')}
   </div>`;
@@ -4174,7 +4174,7 @@ function svgCone(items) {
 function svgTreemap(mapSt) {
   if (!mapSt.length) return '';
   const total = mapSt.reduce((a,m)=>a+m.kills,0)||1;
-  const colors=['#1A6FFF','#cc66ff','#4dff88','#ffd700','#ff5078','#ff9f40','#4D9FFF'];
+  const colors=['#E8A400','#DAA520','#FFD700','#ffd700','#FF8A00','#ff9f40','#FFCB3D'];
   const items = mapSt.slice(0,7);
   return `<div style="display:flex;flex-wrap:wrap;gap:4px;align-items:flex-end;">
     ${items.map((m,i)=>{
@@ -4318,25 +4318,25 @@ function generateTacticalPDF() {
       const mapaPerigo= [...mapSt].sort((a,b)=>b.mortes-a.mortes)[0];
 
       // Geração do HTML do relatório
-      const green='#00C853', red='#FF1744', blue='#1A6FFF', gold='#FFD700', purple='#CE93D8';
+      const green='#DAA520', red='#E85D00', blue='#E8A400', gold='#FFD700', purple='#E8C468';
 
       const playerRows = pStats.map((p,i) => {
         const medals = ['🥇','🥈','🥉'];
         const rK = rankOf(pStats, p.tK, x=>x.tK);
         const rD = rankOf(pStats, p.aD, x=>x.aD);
-        const kdbg = p.kd>=1?'#00C85320':'#FF174420';
+        const kdbg = p.kd>=1?'#DAA52020':'#E85D0033';
         const kdc = p.kd>=1?green:red;
-        return `<tr style="background:${i%2===0?'#0C1220':'#0A1018'};border-bottom:1px solid #1A2540;">
+        return `<tr style="background:${i%2===0?'#191400':'#120E00'};border-bottom:1px solid #1A1400;">
           <td style="padding:8px 10px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;color:${gold}">${medals[i]||'#'+(i+1)}</td>
           <td style="padding:8px 10px;font-weight:700;color:#fff;font-size:11px;">${p.pl}</td>
-          <td style="padding:8px 10px;color:#C8D4E8;font-size:10px;">${p.funcao}</td>
+          <td style="padding:8px 10px;color:#F5E6A8;font-size:10px;">${p.funcao}</td>
           <td style="padding:8px 10px;text-align:center;font-weight:900;color:${blue};font-size:13px;">${p.tK}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${Math.round(p.aD)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.tA}</td>
+          <td style="padding:8px 10px;text-align:center;color:#F5E6A8;">${Math.round(p.aD)}</td>
+          <td style="padding:8px 10px;text-align:center;color:#F5E6A8;">${p.tA}</td>
           <td style="padding:8px 10px;text-align:center;background:${kdbg};color:${kdc};font-weight:700;">${p.kd.toFixed(2)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.aHS.toFixed(1)}%</td>
+          <td style="padding:8px 10px;text-align:center;color:#F5E6A8;">${p.aHS.toFixed(1)}%</td>
           <td style="padding:8px 10px;text-align:center;color:${p.aM<=1?green:red};">${p.aM.toFixed(1)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.tC}</td>
+          <td style="padding:8px 10px;text-align:center;color:#F5E6A8;">${p.tC}</td>
           <td style="padding:8px 10px;text-align:center;color:${green};">${p.killConf}%</td>
           <td style="padding:8px 10px;text-align:center;color:${purple};">${p.supIdx}</td>
         </tr>`;
@@ -4400,24 +4400,24 @@ function generateTacticalPDF() {
         }
         if (p.aM >= 2) negativos.push(`💀 Muitas mortes/jogo (${p.aM.toFixed(1)}) — melhorar posicionamento`);
 
-        const green2='#00C853', red2='#FF5252', blue2='#1A6FFF', gold2='#FFD700';
-        const ovrCol = p.overall>=75?'#00C853':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF5252';
+        const green2='#DAA520', red2='#FF8A00', blue2='#E8A400', gold2='#FFD700';
+        const ovrCol = p.overall>=75?'#DAA520':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF8A00';
         const ovrLabel = p.overall>=75?'ELITE':p.overall>=50?'BOM':p.overall>=25?'REGULAR':'INICIANTE';
 
         // foto base64
         const fotoB64 = p.foto ? await imgToBase64(p.foto).catch(()=>null) : null;
         const fotoHtml = fotoB64
-          ? `<img src="${fotoB64}" style="width:72px;height:90px;object-fit:cover;object-position:top;border:2px solid #1A3A6B;" onerror="this.style.display='none'">`
-          : `<div style="width:72px;height:90px;background:#0D1E3D;border:2px solid #1A3A6B;display:flex;align-items:center;justify-content:center;font-size:28px;">👤</div>`;
+          ? `<img src="${fotoB64}" style="width:72px;height:90px;object-fit:cover;object-position:top;border:2px solid #332600;" onerror="this.style.display='none'">`
+          : `<div style="width:72px;height:90px;background:#1F1800;border:2px solid #332600;display:flex;align-items:center;justify-content:center;font-size:28px;">👤</div>`;
 
         // Pizza contribuição
         const teamTK = sum(pStats.map(x=>x.tK))||1;
         const myKpct = Math.round((p.tK/teamTK)*100);
         const othKpct = 100-myKpct;
-        const pizzaKills = svgPizza([{l:p.pl,v:p.tK,c:'#1A6FFF'},{l:'Time',v:sum(pStats.filter(x=>x.pl!==p.pl).map(x=>x.tK)),c:'#1A2540'}],100);
+        const pizzaKills = svgPizza([{l:p.pl,v:p.tK,c:'#E8A400'},{l:'Time',v:sum(pStats.filter(x=>x.pl!==p.pl).map(x=>x.tK)),c:'#1A1400'}],100);
 
         // Gauge KD
-        const gaugeKD = svgGauge(p.kd, 4, 'K/D RATIO', p.kd>=1?'#00C853':'#FF5252', 100);
+        const gaugeKD = svgGauge(p.kd, 4, 'K/D RATIO', p.kd>=1?'#DAA520':'#FF8A00', 100);
 
         // Overall circle
         const ovrCircle = svgOverall(p.overall, ovrLabel, ovrCol, 90);
@@ -4426,23 +4426,23 @@ function generateTacticalPDF() {
         const playerMapas = [...new Set(data.filter(d=>d.player===p.pl).map(d=>d.mapa).filter(Boolean))];
         const playerMapSt = playerMapas.map(m=>{
           const rows=data.filter(d=>d.player===p.pl&&d.mapa===m);
-          return {l:m, v:sum(rows.map(d=>d.kills)), c:'#1A6FFF'};
+          return {l:m, v:sum(rows.map(d=>d.kills)), c:'#E8A400'};
         }).sort((a,b)=>b.v-a.v).slice(0,5);
-        const barsMapas = playerMapSt.length ? svgBars(playerMapSt,'#1A6FFF',180) : '';
+        const barsMapas = playerMapSt.length ? svgBars(playerMapSt,'#E8A400',180) : '';
 
-        const roleColor = p.isBomba?'#FF5252':p.isSupport?'#00E676':p.isSniper?'#CE93D8':'#4D9FFF';
+        const roleColor = p.isBomba?'#FF8A00':p.isSupport?'#FFD700':p.isSniper?'#E8C468':'#FFCB3D';
         const roleLabel = p.isBomba?'💣 BOMBA':p.isSupport?'🛡️ SUPORTE':p.isSniper?'🎯 SNIPER':'⚔️ FRAGGER';
-        const ovrColor  = p.overall>=75?'#00E676':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF1744';
-        const ovrBorder = p.overall>=75?'#00C853':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF1744';
+        const ovrColor  = p.overall>=75?'#FFD700':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#E85D00';
+        const ovrBorder = p.overall>=75?'#DAA520':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#E85D00';
         const ovrLabel2 = p.overall>=75?'ELITE':p.overall>=50?'BOM':p.overall>=25?'REGULAR':'BÁSICO';
-        const kdColor   = p.kd>=1?'#00E676':'#FF5252';
+        const kdColor   = p.kd>=1?'#FFD700':'#FF8A00';
         // Kill bars per map
         const maxMapK = Math.max(...playerMapSt.map(m=>m.v),1);
         const mapBarsHtml = playerMapSt.map(m=>`
           <div class="svg-bar-row">
-            <div class="svg-bar-label" style="font-size:9px;color:#8899BB;">${m.l}</div>
+            <div class="svg-bar-label" style="font-size:9px;color:#8A7A3D;">${m.l}</div>
             <div class="svg-bar-track">
-              <div class="svg-bar-fill" style="width:${(m.v/maxMapK)*100}%;background:#1A6FFF;">
+              <div class="svg-bar-fill" style="width:${(m.v/maxMapK)*100}%;background:#E8A400;">
                 <span>${m.v}</span>
               </div>
             </div>
@@ -4471,15 +4471,15 @@ function generateTacticalPDF() {
                   <div class="pkpi-lbl">K/D</div>
                 </div>
                 <div class="pkpi">
-                  <div class="pkpi-val" style="color:#4D9FFF;">${Math.round(p.aD)}</div>
+                  <div class="pkpi-val" style="color:#FFCB3D;">${Math.round(p.aD)}</div>
                   <div class="pkpi-lbl">DANO MÉD</div>
                 </div>
                 <div class="pkpi">
-                  <div class="pkpi-val" style="color:#CE93D8;">${p.kda.toFixed(2)}</div>
+                  <div class="pkpi-val" style="color:#E8C468;">${p.kda.toFixed(2)}</div>
                   <div class="pkpi-lbl">KDA</div>
                 </div>
                 <div class="pkpi">
-                  <div class="pkpi-val" style="color:#4D9FFF;">${p.tA}</div>
+                  <div class="pkpi-val" style="color:#FFCB3D;">${p.tA}</div>
                   <div class="pkpi-lbl">ASSISTS</div>
                 </div>
               </div>
@@ -4508,12 +4508,12 @@ function generateTacticalPDF() {
                 const r=18,c=Math.PI*r,dash=pct*c;
                 return `<div style="text-align:center;">
                   <svg width="48" height="28" viewBox="0 0 48 28" style="transform:scaleY(-1)">
-                    <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="#1A2540" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="#1A1400" stroke-width="5" stroke-linecap="round"/>
                     <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="${kdColor}" stroke-width="5"
                       stroke-dasharray="${(pct*62.8).toFixed(1)} 62.8" stroke-linecap="round"/>
                   </svg>
                   <div style="font-size:9px;font-weight:700;color:${kdColor};margin-top:-4px;">${p.kd.toFixed(2)}</div>
-                  <div style="font-size:7px;color:#5A7090;letter-spacing:2px;">K/D</div>
+                  <div style="font-size:7px;color:#8A7A3D;letter-spacing:2px;">K/D</div>
                 </div>`;
               })()}
             </div>
@@ -4525,18 +4525,18 @@ function generateTacticalPDF() {
             <!-- 12 metrics -->
             <div class="metrics-grid">
               ${[
-                {l:'HS%',        v:p.aHS.toFixed(1)+'%', c:p.aHS>=20?'#00E676':'#FFD700'},
-                {l:'MORTES/JG',  v:p.aM.toFixed(1),      c:p.aM<=1?'#00E676':'#FF5252'},
-                {l:'CURA TOTAL', v:p.tC,                  c:'#00E676'},
-                {l:'DERRUBOU',   v:p.tDr,                 c:'#CE93D8'},
-                {l:'LEVANTOU',   v:p.tLv,                 c:'#00E676'},
-                {l:'CONF.KILL',  v:p.killConf+'%',        c:parseFloat(p.killConf)>=60?'#00E676':'#FF5252'},
-                {l:'DANO/KILL',  v:p.dpk,                 c:'#E8EDF5'},
-                {l:'RESSURGIU',  v:p.tRs,                 c:'#CE93D8'},
+                {l:'HS%',        v:p.aHS.toFixed(1)+'%', c:p.aHS>=20?'#FFD700':'#FFD700'},
+                {l:'MORTES/JG',  v:p.aM.toFixed(1),      c:p.aM<=1?'#FFD700':'#FF8A00'},
+                {l:'CURA TOTAL', v:p.tC,                  c:'#FFD700'},
+                {l:'DERRUBOU',   v:p.tDr,                 c:'#E8C468'},
+                {l:'LEVANTOU',   v:p.tLv,                 c:'#FFD700'},
+                {l:'CONF.KILL',  v:p.killConf+'%',        c:parseFloat(p.killConf)>=60?'#FFD700':'#FF8A00'},
+                {l:'DANO/KILL',  v:p.dpk,                 c:'#F2ECD9'},
+                {l:'RESSURGIU',  v:p.tRs,                 c:'#E8C468'},
                 {l:'REC.KILL',   v:p.recordK,             c:'#FFD700'},
                 {l:'REC.DANO',   v:p.recordD,             c:'#FFD700'},
-                {l:'CONSIST.',   v:p.consistency,         c:'#8899BB'},
-                {l:'ASS/KILL',   v:p.assRatio,            c:'#4D9FFF'},
+                {l:'CONSIST.',   v:p.consistency,         c:'#8A7A3D'},
+                {l:'ASS/KILL',   v:p.assRatio,            c:'#FFCB3D'},
               ].map(s=>`<div class="metric-box">
                 <div class="metric-val" style="color:${s.c};">${s.v}</div>
                 <div class="metric-lbl">${s.l}</div>
@@ -4546,12 +4546,12 @@ function generateTacticalPDF() {
             <!-- Kill bar chart + role insight -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
               <div>
-                <div style="font-size:7px;letter-spacing:3px;color:#5A7090;margin-bottom:8px;font-weight:700;">KILLS POR MAPA</div>
-                ${mapBarsHtml || '<div style="font-size:10px;color:#5A7090;">Sem dados de mapa.</div>'}
+                <div style="font-size:7px;letter-spacing:3px;color:#8A7A3D;margin-bottom:8px;font-weight:700;">KILLS POR MAPA</div>
+                ${mapBarsHtml || '<div style="font-size:10px;color:#8A7A3D;">Sem dados de mapa.</div>'}
               </div>
               <div class="role-insight">
                 <div style="font-size:7px;letter-spacing:3px;color:${roleColor};font-weight:700;margin-bottom:6px;">${roleLabel} · CRITÉRIOS DE AVALIAÇÃO</div>
-                <div style="font-size:9px;color:#8899BB;line-height:1.6;">
+                <div style="font-size:9px;color:#8A7A3D;line-height:1.6;">
                   ${p.isBomba
                     ?`Dano: ${Math.round(p.aD)} HP · Derrubadas: ${p.tDr} · Conf. kills: ${p.killConf}% · K/D: ${p.kd.toFixed(2)}. Suporte médico não é critério desta função.`
                     :p.isSupport
@@ -4566,16 +4566,16 @@ function generateTacticalPDF() {
             <!-- Positivos / Negativos -->
             <div class="analysis-grid">
               <div class="analysis-box pos">
-                <div class="analysis-title" style="color:#00E676;">✅ PONTOS POSITIVOS</div>
+                <div class="analysis-title" style="color:#FFD700;">✅ PONTOS POSITIVOS</div>
                 ${positivos.length
                   ? positivos.map(x=>`<div class="analysis-item">${x}</div>`).join('')
-                  : '<div class="analysis-item" style="color:#5A7090;">Sem destaques neste período.</div>'}
+                  : '<div class="analysis-item" style="color:#8A7A3D;">Sem destaques neste período.</div>'}
               </div>
               <div class="analysis-box neg">
-                <div class="analysis-title" style="color:#FF5252;">⚠️ PONTOS A MELHORAR</div>
+                <div class="analysis-title" style="color:#FF8A00;">⚠️ PONTOS A MELHORAR</div>
                 ${negativos.length
                   ? negativos.map(x=>`<div class="analysis-item">${x}</div>`).join('')
-                  : '<div class="analysis-item" style="color:#5A7090;">Sem alertas.</div>'}
+                  : '<div class="analysis-item" style="color:#8A7A3D;">Sem alertas.</div>'}
               </div>
             </div>
           </div>
@@ -4601,29 +4601,29 @@ function generateTacticalPDF() {
       if (avgMg >= 2.5) negColetivo.push(`💀 Alta média de mortes por jogo (${avgMg.toFixed(1)}) — melhorar posicionamento coletivo`);
 
       const mapRows = mapSt.map((m,i)=>`
-        <tr style="background:${i%2===0?'#0C1220':'#0A1018'};border-bottom:1px solid #1A2540;">
-          <td style="padding:7px 10px;font-weight:700;color:${i===0?gold:'#C8D4E8'};">${m.map}</td>
+        <tr style="background:${i%2===0?'#191400':'#120E00'};border-bottom:1px solid #1A1400;">
+          <td style="padding:7px 10px;font-weight:700;color:${i===0?gold:'#F5E6A8'};">${m.map}</td>
           <td style="padding:7px 10px;text-align:center;font-weight:900;color:${blue};">${m.kills}</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.dano}</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.ass}</td>
-          <td style="padding:7px 10px;text-align:center;color:#ff5078;">${m.mortes}</td>
-          <td style="padding:7px 10px;text-align:center;color:#4dff88;">${m.cura}</td>
-          <td style="padding:7px 10px;text-align:center;color:#cc66ff;">${m.hs}%</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.games}</td>
+          <td style="padding:7px 10px;text-align:center;color:#F5E6A8;">${m.dano}</td>
+          <td style="padding:7px 10px;text-align:center;color:#F5E6A8;">${m.ass}</td>
+          <td style="padding:7px 10px;text-align:center;color:#FF8A00;">${m.mortes}</td>
+          <td style="padding:7px 10px;text-align:center;color:#FFD700;">${m.cura}</td>
+          <td style="padding:7px 10px;text-align:center;color:#DAA520;">${m.hs}%</td>
+          <td style="padding:7px 10px;text-align:center;color:#F5E6A8;">${m.games}</td>
         </tr>`).join('');
 
       // Gráficos globais
       const pizzaContrib = svgPizza(
-        pStats.map((p,i)=>({l:p.pl,v:p.tK,c:['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40'][i%6]})),120);
+        pStats.map((p,i)=>({l:p.pl,v:p.tK,c:['#E8A400','#ffd700','#FF8A00','#FFD700','#DAA520','#ff9f40'][i%6]})),120);
       const coneRankK = svgCone(
         [...pStats].sort((a,b)=>b.tK-a.tK).map(p=>({l:p.pl,v:p.tK})));
       const coneRankD = svgCone(
         [...pStats].sort((a,b)=>b.aD-a.aD).map(p=>({l:p.pl,v:Math.round(p.aD)})));
       const treemapMap = svgTreemap(mapSt);
       const barsAssist = svgBars(
-        [...pStats].sort((a,b)=>b.tA-a.tA).slice(0,6).map(p=>({l:p.pl,v:p.tA,c:'#4D9FFF'})),'#4D9FFF',200);
+        [...pStats].sort((a,b)=>b.tA-a.tA).slice(0,6).map(p=>({l:p.pl,v:p.tA,c:'#FFCB3D'})),'#FFCB3D',200);
       const barsCura = svgBars(
-        [...pStats].sort((a,b)=>b.tC-a.tC).slice(0,6).map(p=>({l:p.pl,v:p.tC,c:'#4dff88'})),'#4dff88',200);
+        [...pStats].sort((a,b)=>b.tC-a.tC).slice(0,6).map(p=>({l:p.pl,v:p.tC,c:'#FFD700'})),'#FFD700',200);
 
       // Mapas completo por jogador
       const mapPlayerRows = mapSt.map(m=>{
@@ -4634,17 +4634,17 @@ function generateTacticalPDF() {
         }).filter(x=>x.kills>0||x.dano>0);
         const topK = mapPlayers.sort((a,b)=>b.kills-a.kills)[0];
         return `<div style="margin-bottom:16px;break-inside:avoid;">
-          <div style="background:#0D1E3D;padding:8px 14px;border-left:3px solid #1A6FFF;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="background:#1F1800;padding:8px 14px;border-left:3px solid #E8A400;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:11px;font-weight:700;color:#fff;letter-spacing:2px;">🗺️ ${m.map}</span>
-            <span style="font-size:9px;color:#5A6880;">${m.games} jogos · ${m.kills} kills · ${m.mortes} mortes · HS: ${m.hs}%</span>
+            <span style="font-size:9px;color:#8A7A3D;">${m.games} jogos · ${m.kills} kills · ${m.mortes} mortes · HS: ${m.hs}%</span>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;padding:0 4px;">
-            ${mapPlayers.map(mp=>`<div style="background:#080C14;border:1px solid #1A2540;padding:6px 10px;min-width:90px;">
-              <div style="font-size:9px;color:#C8D4E8;font-weight:700;">${mp.pl}</div>
+            ${mapPlayers.map(mp=>`<div style="background:#120E00;border:1px solid #1A1400;padding:6px 10px;min-width:90px;">
+              <div style="font-size:9px;color:#F5E6A8;font-weight:700;">${mp.pl}</div>
               <div style="display:flex;gap:10px;margin-top:3px;">
-                <span style="font-size:10px;color:#1A6FFF;font-weight:900;">${mp.kills}K</span>
-                <span style="font-size:10px;color:#cc66ff;">${mp.dano}D</span>
-                <span style="font-size:10px;color:#4D9FFF;">${mp.ass}A</span>
+                <span style="font-size:10px;color:#E8A400;font-weight:900;">${mp.kills}K</span>
+                <span style="font-size:10px;color:#DAA520;">${mp.dano}D</span>
+                <span style="font-size:10px;color:#FFCB3D;">${mp.ass}A</span>
               </div>
             </div>`).join('')}
           </div>
@@ -4666,13 +4666,13 @@ function generateTacticalPDF() {
     .no-break{page-break-inside:avoid;}
   }
   :root{
-    --bg:#05080F;--bg2:#0A0F1C;--bg3:#0F1628;
-    --blue:#1A6FFF;--blue2:#4D9FFF;--blue3:#0D4FCC;
+    --bg:#0F0C00;--bg2:#171200;--bg3:#1C1600;
+    --blue:#E8A400;--blue2:#FFCB3D;--blue3:#B8860B;
     --gold:#FFD700;--gold2:#FFA500;
-    --green:#00E676;--green2:#00C853;
-    --red:#FF1744;--red2:#FF5252;
-    --purple:#AA00FF;--purple2:#CE93D8;
-    --text:#E8EDF5;--muted:#5A7090;--dim:#8899BB;
+    --green:#FFD700;--green2:#DAA520;
+    --red:#E85D00;--red2:#FF8A00;
+    --purple:#B8860B;--purple2:#E8C468;
+    --text:#F2ECD9;--muted:#8A7A3D;--dim:#8A7A3D;
   }
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:11px;line-height:1.5;}
   .orb{font-family:'Orbitron',sans-serif;}
@@ -4681,7 +4681,7 @@ function generateTacticalPDF() {
   /* ── COVER PAGE ── */
   .cover{
     width:100%;min-height:100vh;
-    background:linear-gradient(160deg,#020510 0%,#050D1E 40%,#0A1530 70%,#051020 100%);
+    background:linear-gradient(160deg,#0F0C00 0%,#0E0A00 40%,#1A1400 70%,#100C00 100%);
     display:flex;flex-direction:column;justify-content:space-between;
     position:relative;overflow:hidden;padding:0;
   }
@@ -4695,7 +4695,7 @@ function generateTacticalPDF() {
   .cover-glow-tl{position:absolute;top:-120px;left:-120px;width:500px;height:500px;
     background:radial-gradient(circle,rgba(255,255,255,.18) 0%,transparent 70%);}
   .cover-glow-br{position:absolute;bottom:-80px;right:-80px;width:400px;height:400px;
-    background:radial-gradient(circle,rgba(170,0,255,.12) 0%,transparent 70%);}
+    background:radial-gradient(circle,rgba(184,134,11,.12) 0%,transparent 70%);}
   .cover-stripe{position:absolute;top:0;left:0;right:0;height:3px;
     background:linear-gradient(90deg,transparent,var(--blue),var(--blue2),var(--purple),var(--blue),transparent);}
   .cover-stripe-b{position:absolute;bottom:0;left:0;right:0;height:1px;
@@ -4811,9 +4811,9 @@ function generateTacticalPDF() {
   .metric-lbl{font-size:7px;letter-spacing:1px;color:var(--muted);}
   .analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
   .analysis-box{padding:12px 14px;border-radius:1px;}
-  .analysis-box.pos{background:rgba(0,230,118,.05);border:1px solid rgba(0,230,118,.15);
+  .analysis-box.pos{background:rgba(255,215,0,.05);border:1px solid rgba(255,215,0,.15);
     border-left:3px solid var(--green);}
-  .analysis-box.neg{background:rgba(255,23,68,.05);border:1px solid rgba(255,23,68,.15);
+  .analysis-box.neg{background:rgba(232,93,0,.05);border:1px solid rgba(232,93,0,.15);
     border-left:3px solid var(--red);}
   .analysis-title{font-size:8px;letter-spacing:3px;font-weight:700;margin-bottom:8px;}
   .analysis-item{font-size:10px;color:var(--dim);padding:3px 0;
@@ -4825,20 +4825,20 @@ function generateTacticalPDF() {
 
   /* ── MAP TABLE ── */
   .map-row-best td{background:rgba(255,215,0,.04)!important;}
-  .map-row-worst td{background:rgba(255,23,68,.04)!important;}
+  .map-row-worst td{background:rgba(232,93,0,.04)!important;}
 
   /* ── TEAM DIAGNOSIS ── */
   .diag-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
   .diag-box{padding:16px;border-radius:1px;}
-  .diag-box.pos{background:rgba(0,230,118,.04);border:1px solid rgba(0,230,118,.12);}
-  .diag-box.neg{background:rgba(255,23,68,.04);border:1px solid rgba(255,23,68,.12);}
+  .diag-box.pos{background:rgba(255,215,0,.04);border:1px solid rgba(255,215,0,.12);}
+  .diag-box.neg{background:rgba(232,93,0,.04);border:1px solid rgba(232,93,0,.12);}
   .diag-title{font-size:8px;letter-spacing:4px;font-weight:700;margin-bottom:12px;
     display:flex;align-items:center;gap:8px;}
   .diag-title::after{content:'';flex:1;height:1px;}
   .diag-box.pos .diag-title{color:var(--green);}
-  .diag-box.pos .diag-title::after{background:rgba(0,230,118,.2);}
+  .diag-box.pos .diag-title::after{background:rgba(255,215,0,.2);}
   .diag-box.neg .diag-title{color:var(--red2);}
-  .diag-box.neg .diag-title::after{background:rgba(255,23,68,.2);}
+  .diag-box.neg .diag-title::after{background:rgba(232,93,0,.2);}
   .diag-item{font-size:10px;color:var(--dim);padding:5px 0;
     border-bottom:1px solid rgba(255,255,255,.04);line-height:1.4;}
   .diag-item:last-child{border-bottom:none;}
@@ -4852,9 +4852,9 @@ function generateTacticalPDF() {
   .mvp-card.gold-card::after{background:var(--gold);}
   .mvp-card.blue-card{border-color:rgba(255,255,255,.2);}
   .mvp-card.blue-card::after{background:var(--blue);}
-  .mvp-card.purple-card{border-color:rgba(170,0,255,.2);}
+  .mvp-card.purple-card{border-color:rgba(184,134,11,.2);}
   .mvp-card.purple-card::after{background:var(--purple);}
-  .mvp-card.green-card{border-color:rgba(0,230,118,.2);}
+  .mvp-card.green-card{border-color:rgba(255,215,0,.2);}
   .mvp-card.green-card::after{background:var(--green);}
   .mvp-icon{font-size:26px;margin-bottom:8px;}
   .mvp-title{font-size:7px;letter-spacing:4px;color:var(--muted);margin-bottom:6px;font-weight:700;}
@@ -4900,23 +4900,23 @@ function generateTacticalPDF() {
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
-.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.low { background: linear-gradient(90deg, #FF8A00, #FFA733); }
 .goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
-.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
-.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
-@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
+.goal-bar-fill.high { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); } 50% { box-shadow: 0 0 20px rgba(255,215,0, 1), inset 0 0 12px rgba(255,215,0, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
-.goal-pct.complete { color: #00ff88; font-weight: 700; }
+.goal-pct.complete { color: #FFEB3B; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
 .recom-title { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
 .recom-text { font-size: 11px; color: var(--bl3); line-height: 1.4; }
-.recom-point { color: #ff5078; font-weight: 700; }
+.recom-point { color: #FF8A00; font-weight: 700; }
 
 /* COACH GOAL EDITOR */
 .coach-goals-btn { background: var(--bl); color: var(--dk); border: none; padding: 8px 16px; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 1px; transition: .2s; margin-bottom: 20px; }
-.coach-goals-btn:hover { background: #fff; box-shadow: 0 0 15px rgba(255,255,255,.5); }
+.coach-goals-btn:hover { background: #FFE873; box-shadow: 0 0 15px rgba(255,215,0,.6); }
 .goal-input-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
 .goal-input-group { display: flex; flex-direction: column; gap: 4px; }
 .goal-input-group label { font-size: 9px; color: var(--mu); letter-spacing: 1px; }
@@ -5020,13 +5020,13 @@ function generateTacticalPDF() {
 
   <div class="kpi-grid">
     ${[
-      {i:'💀',v:totalK,      l:'Total de Kills',    c:'blue',  vc:'#4D9FFF'},
-      {i:'💥',v:Math.round(avgDg),l:'Dano Médio/Jogo',c:'purple',vc:'#CE93D8'},
-      {i:'🤝',v:totalA,      l:'Assistências',      c:'blue',  vc:'#4D9FFF'},
-      {i:'💊',v:totalC,      l:'Cura Total (HP)',    c:'green', vc:'#00E676'},
+      {i:'💀',v:totalK,      l:'Total de Kills',    c:'blue',  vc:'#FFCB3D'},
+      {i:'💥',v:Math.round(avgDg),l:'Dano Médio/Jogo',c:'purple',vc:'#E8C468'},
+      {i:'🤝',v:totalA,      l:'Assistências',      c:'blue',  vc:'#FFCB3D'},
+      {i:'💊',v:totalC,      l:'Cura Total (HP)',    c:'green', vc:'#FFD700'},
       {i:'👊',v:totalDr,     l:'Derrubadas',        c:'gold',  vc:'#FFD700'},
-      {i:'🏥',v:totalLv,     l:'Levantamentos',     c:'green', vc:'#00E676'},
-      {i:'♻️',v:totalRs,     l:'Ressurgimentos',    c:'purple',vc:'#CE93D8'},
+      {i:'🏥',v:totalLv,     l:'Levantamentos',     c:'green', vc:'#FFD700'},
+      {i:'♻️',v:totalRs,     l:'Ressurgimentos',    c:'purple',vc:'#E8C468'},
       {i:'📐',v:idxColab,    l:'Índice Sinergia',   c:'gold',  vc:'#FFD700'},
     ].map(s=>`<div class="kpi-card ${s.c}">
       <div class="kpi-icon">${s.i}</div>
@@ -5058,7 +5058,7 @@ function generateTacticalPDF() {
         const medals=['🥇','🥈','🥉'];
         const kdc=p.kd>=1?'var(--green)':'var(--red2)';
         const ovrC=p.overall>=75?'var(--green)':p.overall>=50?'var(--gold)':p.overall>=25?'#FF9F40':'var(--red2)';
-        const ovrBorder=p.overall>=75?'#00C853':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF1744';
+        const ovrBorder=p.overall>=75?'#DAA520':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#E85D00';
         const roleC=p.isBomba?'var(--red2)':p.isSupport?'var(--green)':p.isSniper?'var(--purple2)':'var(--blue2)';
         const rowCls=i===0?'top1':i===1?'top2':i===2?'top3':'';
         return `<tr class="${rowCls}">
@@ -5171,7 +5171,7 @@ function generateTacticalPDF() {
     <div class="sec-title-sub">RECOMENDAÇÃO PARA QUARTETO COMPETITIVO</div>
   </div>
 
-  <div style="background:rgba(26, 111, 255, 0.05); border:1px solid rgba(26, 111, 255, 0.2); padding:20px; margin-bottom:30px;">
+  <div style="background:rgba(232,164,0, 0.05); border:1px solid rgba(232,164,0, 0.2); padding:20px; margin-bottom:30px;">
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
       <ul style="list-style:none; padding:0;">
         <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
@@ -5314,7 +5314,7 @@ function generateTacticalPDF() {
       const maxK = Math.max(...mapSt.map(m=>m.kills),1);
       return mapSt.map((m,i)=>{
         const pct = (m.kills/maxK)*100;
-        const colors=['#1A6FFF','#AA00FF','#00E676','#FFD700','#FF5252','#FF9F40','#4D9FFF'];
+        const colors=['#E8A400','#B8860B','#FFD700','#FFD700','#FF8A00','#FF9F40','#FFCB3D'];
         return `<div class="svg-bar-row">
           <div class="svg-bar-label">${m.map}</div>
           <div class="svg-bar-track">
@@ -5441,11 +5441,11 @@ loadSheetData();
   <!-- iframe Google Drive -->
   <iframe id="introIframe" style="display:none;width:100%;height:100%;border:none;position:absolute;inset:0;" allowfullscreen allow="autoplay"></iframe>
   <!-- Gradient bottom -->
-  <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,12,20,.95) 0%,transparent 35%,transparent 65%,rgba(8,12,20,.6) 100%);pointer-events:none;z-index:3;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,14,0,.95) 0%,transparent 35%,transparent 65%,rgba(18,14,0,.6) 100%);pointer-events:none;z-index:3;"></div>
   <!-- Player info -->
   <div style="position:absolute;bottom:10%;left:0;right:0;text-align:center;z-index:6;">
     <div id="introName" style="font-family:'Orbitron',sans-serif;font-size:32px;font-weight:900;color:#fff;text-shadow:0 0 40px rgba(255,255,255,.9);letter-spacing:3px;animation:fen .8s both;"></div>
-    <div id="introRole" style="font-size:11px;letter-spacing:6px;color:#4D9FFF;margin-top:8px;font-weight:700;animation:fen .6s .4s both;"></div>
+    <div id="introRole" style="font-size:11px;letter-spacing:6px;color:#FFCB3D;margin-top:8px;font-weight:700;animation:fen .6s .4s both;"></div>
   </div>
   <!-- Skip button -->
   <button onclick="closeIntro()" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);padding:8px 20px;font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;cursor:pointer;z-index:10;transition:.2s;" onmouseover="this.style.background='rgba(255,255,255,.3)';this.style.color='#fff'" onmouseout="this.style.background='rgba(0,0,0,.5)';this.style.color='rgba(255,255,255,.7)'">[ PULAR ]</button>
@@ -5466,23 +5466,23 @@ loadSheetData();
 .goal-label em { font-style: normal; color: var(--bl3); font-weight: 700; }
 .goal-bar-bg { height: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); position: relative; }
 .goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--mu), var(--bl)); transition: width 1s ease-out; }
-.goal-bar-fill.low { background: linear-gradient(90deg, #ff4444, #ff6666); }
+.goal-bar-fill.low { background: linear-gradient(90deg, #FF8A00, #FFA733); }
 .goal-bar-fill.medium { background: linear-gradient(90deg, #ffaa00, #ffcc00); }
-.goal-bar-fill.high { background: linear-gradient(90deg, #44ff44, #00ff88); }
-.goal-bar-fill.complete { background: linear-gradient(90deg, #00ff88, #00ffff); box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
-@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(0, 255, 136, 0.8), inset 0 0 8px rgba(0, 255, 136, 0.4); } 50% { box-shadow: 0 0 20px rgba(0, 255, 136, 1), inset 0 0 12px rgba(0, 255, 136, 0.6); } }
+.goal-bar-fill.high { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); }
+.goal-bar-fill.complete { background: linear-gradient(90deg, #FFEB3B, #FFEB3B); box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); animation: goalGlow 1.5s ease-in-out infinite; }
+@keyframes goalGlow { 0%, 100% { box-shadow: 0 0 12px rgba(255,215,0, 0.8), inset 0 0 8px rgba(255,215,0, 0.4); } 50% { box-shadow: 0 0 20px rgba(255,215,0, 1), inset 0 0 12px rgba(255,215,0, 0.6); } }
 .goal-pct { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); }
-.goal-pct.complete { color: #00ff88; font-weight: 700; }
+.goal-pct.complete { color: #FFEB3B; font-weight: 700; }
 
 /* RECOMMENDATIONS */
 .goal-recom { margin-top: 15px; padding: 12px; background: rgba(255,255,255,.03); border: 1px solid var(--bline); border-radius: 4px; }
 .recom-title { font-family: 'Orbitron', sans-serif; font-size: 9px; color: var(--bl); letter-spacing: 1px; margin-bottom: 8px; display: flex; align-items: center; gap: 5px; }
 .recom-text { font-size: 11px; color: var(--bl3); line-height: 1.4; }
-.recom-point { color: #ff5078; font-weight: 700; }
+.recom-point { color: #FF8A00; font-weight: 700; }
 
 /* COACH GOAL EDITOR */
 .coach-goals-btn { background: var(--bl); color: var(--dk); border: none; padding: 8px 16px; font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 900; cursor: pointer; letter-spacing: 1px; transition: .2s; margin-bottom: 20px; }
-.coach-goals-btn:hover { background: #fff; box-shadow: 0 0 15px rgba(255,255,255,.5); }
+.coach-goals-btn:hover { background: #FFE873; box-shadow: 0 0 15px rgba(255,215,0,.6); }
 .goal-input-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 10px; }
 .goal-input-group { display: flex; flex-direction: column; gap: 4px; }
 .goal-input-group label { font-size: 9px; color: var(--mu); letter-spacing: 1px; }
@@ -5782,7 +5782,7 @@ function initGoals() {
       } else if (pct >= 80) {
         barClass = 'high';
         // Verde vibrante quando perto de bater a meta
-        barStyle += '; background: linear-gradient(90deg, #00ff88, #44ff44); box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);';
+        barStyle += '; background: linear-gradient(90deg, #FFEB3B, #FFEB3B); box-shadow: 0 0 10px rgba(255,215,0, 0.5);';
       } else if (pct >= 60) {
         barClass = 'high';
       } else if (pct >= 40) {
@@ -5790,7 +5790,7 @@ function initGoals() {
       } else if (pct >= 20) {
         barClass = 'low';
         // Laranja suave transicionando do vermelho
-        barStyle += '; background: linear-gradient(90deg, #ff6666, #ffaa00);';
+        barStyle += '; background: linear-gradient(90deg, #FFA733, #ffaa00);';
       } else {
         barClass = 'low';
       }
@@ -5963,8 +5963,8 @@ function renderAnalysisChart(data, label) {
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#888' } },
-        x: { grid: { display: false }, ticks: { color: '#888', font: { size: 9 } } }
+        y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' }, ticks: { color: '#9C8B5E' } },
+        x: { grid: { display: false }, ticks: { color: '#9C8B5E', font: { size: 9 } } }
       }
     }
   });

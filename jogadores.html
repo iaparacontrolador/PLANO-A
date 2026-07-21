@@ -50,9 +50,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .def-player-name{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--bl);}
 .def-player-role{font-size:11px;color:var(--mu);letter-spacing:2px;}
 .def-weak-tags{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
-.def-weak-tag{background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.35);color:#FF8A00;
+.def-weak-tag{background:rgba(255,76,76,.14);border:1px solid rgba(255,76,76,.35);color:#FF4C4C;
   font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 8px;}
-.def-weak-tag.ok{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);color:#DAA520;}
+.def-weak-tag.ok{background:rgba(76,217,123,.12);border:1px solid rgba(76,217,123,.3);color:#4CD97B;}
 .def-metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px;}
 .def-metric{background:var(--dk2);border:1px solid var(--brd);padding:10px;text-align:center;position:relative;}
 .def-metric-v{font-family:'Orbitron',sans-serif;font-size:17px;font-weight:900;}
@@ -62,10 +62,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   text-align:center;border:1px solid var(--brd);text-transform:uppercase;}
 .heatmap-table td{padding:8px 6px;text-align:center;border:1px solid var(--brd);font-weight:700;}
 .heatmap-table td.player-name-cell{text-align:left;font-family:'Orbitron',sans-serif;font-size:11px;color:var(--owh);}
-.hm-ruim{background:rgba(255,138,0,.22);color:#FF8A00;}
-.hm-medio{background:rgba(255,196,77,.18);color:#ffc44d;}
-.hm-bom{background:rgba(255,215,0,.14);color:#FFD700;}
-.hm-excelente{background:rgba(218,165,32,.14);color:#DAA520;}
+.hm-ruim{background:rgba(255,76,76,.22);color:#FF4C4C;}
+.hm-medio{background:rgba(255,217,61,.18);color:#FFD93D;}
+.hm-bom{background:rgba(76,217,123,.18);color:#4CD97B;}
+.hm-excelente{background:rgba(176,132,245,.20);color:#B084F5;}
 
 /* SEARCH */
 .search-wrap{position:relative;}
@@ -237,15 +237,15 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   clip-path:polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);}
 
 /* CLASSIFICAÇÃO */
-.c-ruim{color:#FF8A00;font-weight:700;}
-.c-medio{color:#ffc44d;font-weight:700;}
-.c-bom{color:#FFD700;font-weight:700;}
-.c-excelente{color:#DAA520;font-weight:700;}
+.c-ruim{color:#FF4C4C;font-weight:700;}
+.c-medio{color:#FFD93D;font-weight:700;}
+.c-bom{color:#4CD97B;font-weight:700;}
+.c-excelente{color:#B084F5;font-weight:700;}
 .badge{display:inline-block;padding:2px 8px;font-size:8px;font-weight:700;letter-spacing:1px;border-radius:1px;}
-.badge.ruim{background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.3);color:#FF8A00;}
-.badge.medio{background:rgba(255,196,77,.12);border:1px solid rgba(255,196,77,.3);color:#ffc44d;}
-.badge.bom{background:rgba(255,215,0,.12);border:1px solid rgba(255,215,0,.3);color:#FFD700;}
-.badge.excelente{background:rgba(218,165,32,.12);border:1px solid rgba(218,165,32,.3);color:#DAA520;}
+.badge.ruim{background:rgba(255,76,76,.14);border:1px solid rgba(255,76,76,.35);color:#FF4C4C;}
+.badge.medio{background:rgba(255,217,61,.14);border:1px solid rgba(255,217,61,.35);color:#FFD93D;}
+.badge.bom{background:rgba(76,217,123,.14);border:1px solid rgba(76,217,123,.35);color:#4CD97B;}
+.badge.excelente{background:rgba(176,132,245,.16);border:1px solid rgba(176,132,245,.4);color:#B084F5;}
 
 /* ── PERIOD FILTER BAR ── */
 .period-bar{display:flex;align-items:center;gap:0;padding:10px 24px;background:rgba(18,14,0,.95);border-bottom:1px solid var(--brd);flex-wrap:wrap;gap:10px;}
@@ -471,10 +471,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* PERFORMANCE SUMMARY */
 .perf-summary{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:rgba(18,14,0,.5);border-top:1px solid var(--brd);}
 .perf-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1px;border-radius:2px;}
-.perf-pill.excelente{background:rgba(218,165,32,.12);border:1px solid rgba(218,165,32,.3);color:#DAA520;}
-.perf-pill.bom{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.25);color:#FFD700;}
-.perf-pill.medio{background:rgba(255,196,77,.1);border:1px solid rgba(255,196,77,.25);color:#ffc44d;}
-.perf-pill.ruim{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.25);color:#FF8A00;}
+.perf-pill.excelente{background:rgba(176,132,245,.14);border:1px solid rgba(176,132,245,.35);color:#B084F5;}
+.perf-pill.bom{background:rgba(76,217,123,.12);border:1px solid rgba(76,217,123,.3);color:#4CD97B;}
+.perf-pill.medio{background:rgba(255,217,61,.12);border:1px solid rgba(255,217,61,.3);color:#FFD93D;}
+.perf-pill.ruim{background:rgba(255,76,76,.12);border:1px solid rgba(255,76,76,.3);color:#FF4C4C;}
 .perf-pill-num{font-family:'Orbitron',sans-serif;font-size:13px;}
 .perf-summary-title{width:100%;font-size:8px;letter-spacing:3px;color:var(--mu);font-weight:700;margin-bottom:4px;}
 .heatmap-wrap{display:grid;gap:3px;margin-bottom:16px;}
@@ -2383,7 +2383,7 @@ function renderPlayer(name) {
                   const clsD = classify('dano', d.dano);
                   const score = ['ruim','medio','bom','excelente'].indexOf(clsK) + ['ruim','medio','bom','excelente'].indexOf(clsD);
                   const rowCls = score >= 6 ? 'excelente' : score >= 4 ? 'bom' : score >= 2 ? 'medio' : 'ruim';
-                  const rowColors = {excelente:'rgba(218,165,32,.04)',bom:'rgba(255,215,0,.03)',medio:'rgba(255,196,77,.03)',ruim:'rgba(255,138,0,.04)'};
+                  const rowColors = {excelente:'rgba(176,132,245,.06)',bom:'rgba(76,217,123,.05)',medio:'rgba(255,217,61,.05)',ruim:'rgba(255,76,76,.06)'};
                   return `<tr style="background:${rowColors[rowCls]}">
                     <td class="td-n">${i+1}</td>
                     <td><span class="mapb">${esc(d.mapa||'—')}</span></td>

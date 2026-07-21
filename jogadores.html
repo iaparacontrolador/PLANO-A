@@ -35,6 +35,38 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .logo-bot{font-size:9px;letter-spacing:4px;color:var(--mu);font-weight:600;margin-top:1px;}
 .hdr-r{display:flex;align-items:center;gap:10px;}
 
+/* DEFICIENCY NAV BUTTON */
+.deficiency-nav-btn{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.4);color:#FF8A00;
+  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;
+  cursor:pointer;transition:all .3s;white-space:nowrap;}
+.deficiency-nav-btn:hover{background:rgba(255,138,0,.2);box-shadow:0 0 16px rgba(255,138,0,.25);}
+.deficiency-back-btn{background:rgba(255,255,255,.08);border:1px solid var(--brd);color:var(--owh);
+  padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;
+  cursor:pointer;margin-bottom:16px;}
+.deficiency-back-btn:hover{border-color:var(--bl);color:var(--bl);}
+.def-player-card{background:var(--panel);border:1px solid var(--brd);margin-bottom:20px;padding:18px;}
+.def-player-hdr{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+.def-player-photo{width:52px;height:52px;border-radius:4px;object-fit:cover;border:1px solid var(--brd);}
+.def-player-name{font-family:'Orbitron',sans-serif;font-size:16px;font-weight:900;color:var(--bl);}
+.def-player-role{font-size:11px;color:var(--mu);letter-spacing:2px;}
+.def-weak-tags{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
+.def-weak-tag{background:rgba(255,138,0,.12);border:1px solid rgba(255,138,0,.35);color:#FF8A00;
+  font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 8px;}
+.def-weak-tag.ok{background:rgba(255,215,0,.08);border:1px solid rgba(255,215,0,.25);color:#DAA520;}
+.def-metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px;}
+.def-metric{background:var(--dk2);border:1px solid var(--brd);padding:10px;text-align:center;position:relative;}
+.def-metric-v{font-family:'Orbitron',sans-serif;font-size:17px;font-weight:900;}
+.def-metric-l{font-size:8px;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:2px;}
+.heatmap-table{width:100%;border-collapse:collapse;font-size:11px;}
+.heatmap-table th{background:var(--dk2);color:var(--bl3);padding:8px 6px;font-size:9px;letter-spacing:1px;
+  text-align:center;border:1px solid var(--brd);text-transform:uppercase;}
+.heatmap-table td{padding:8px 6px;text-align:center;border:1px solid var(--brd);font-weight:700;}
+.heatmap-table td.player-name-cell{text-align:left;font-family:'Orbitron',sans-serif;font-size:11px;color:var(--owh);}
+.hm-ruim{background:rgba(255,138,0,.22);color:#FF8A00;}
+.hm-medio{background:rgba(255,196,77,.18);color:#ffc44d;}
+.hm-bom{background:rgba(255,215,0,.14);color:#FFD700;}
+.hm-excelente{background:rgba(218,165,32,.14);color:#DAA520;}
+
 /* SEARCH */
 .search-wrap{position:relative;}
 .search-input{background:rgba(255,255,255,.08);border:1px solid var(--brd);color:var(--owh);
@@ -709,6 +741,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
       <div class="logo-bot">ANÁLISES PROFISSIONAIS</div>
     </div>
     <div class="hdr-r">
+      <button class="deficiency-nav-btn" id="deficiencyNavBtn" onclick="openDeficiencyView()">⚠️ DEFICIÊNCIAS DO TIME</button>
       <div class="search-wrap">
         <input class="search-input" id="searchInput" type="text" placeholder="🔍  Digite seu nick..." oninput="filterSearch(this.value)" onfocus="openSearch()" onblur="setTimeout(closeSearch,200)">
         <div class="search-dropdown" id="searchDropdown"></div>
@@ -900,6 +933,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
     <!-- PLAYER CONTENT -->
     <div id="playerContent" style="display:none;"></div>
+
+    <!-- DEFICIENCY VIEW (comparativo de todos os jogadores) -->
+    <div id="deficiencyContent" style="display:none;"></div>
   </div>
 </div>
 
@@ -1140,6 +1176,11 @@ function triggerRerender() {
   }
   const infoEl = document.getElementById('periodInfo');
   if(infoEl) infoEl.innerHTML = `Filtrando: <em>${label}</em> · <em>${filtered.length}</em> registros`;
+
+  if (typeof deficiencyViewActive !== 'undefined' && deficiencyViewActive) {
+    renderDeficiencyView();
+    return;
+  }
 
   if (currentPlayerName) {
     // Salvar qual tab estava ativa pelo data-tab
@@ -1584,6 +1625,16 @@ function loadSheetData() {
         })
         .filter(r => r.player);
 
+      // ── DEDUPE — remove linhas idênticas (mesma partida lançada 2x na planilha) ──
+      // Isso corrige contagens infladas de PARTIDAS, KILLS e DANO MÉDIO no card do jogador.
+      const seen = new Set();
+      allData = allData.filter(r => {
+        const key = [r.player, r.data, r.mapa, r.kills, r.morreu, r.ass, r.dano, r.cura, r.headshot, r.tipo, r.sala].join('|');
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
       if (!allData.length) throw new Error('Nenhum jogador encontrado. Verifique se a planilha tem dados.');
 
       document.getElementById('loadingScreen').style.display = 'none';
@@ -1783,7 +1834,252 @@ function selectPlayer(name) {
   playIntro(name, role, videoUrl, () => {
     document.getElementById('welcomeScreen').style.display = 'none';
     document.getElementById('playerContent').style.display = 'block';
+    deficiencyViewActive = false;
     renderPlayer(name);
+  });
+}
+
+// ══════════════════════════════════════════════
+// ⚠️ DEFICIÊNCIA DO JOGADOR — visão comparativa de todo o time
+// Mostra dados brutos + gráficos destacando onde cada jogador vai mal,
+// para a comissão ajustar a tática de acordo.
+// ══════════════════════════════════════════════
+let deficiencyViewActive = false;
+const DEF_METRICS = [
+  {k:'kills',   l:'KILLS/PARTIDA',  fmt:v=>fmt(v)},
+  {k:'dano',    l:'DANO MÉDIO',     fmt:v=>Math.round(v)},
+  {k:'ass',     l:'ASSISTS',        fmt:v=>fmt(v)},
+  {k:'kd',      l:'K/D',            fmt:v=>fmt(v)},
+  {k:'headshot',l:'HEADSHOT %',     fmt:v=>fmt(v)+'%'},
+  {k:'cura',    l:'CURA MÉDIA',     fmt:v=>Math.round(v)},
+  {k:'morreu',  l:'MORTES/PARTIDA', fmt:v=>fmt(v)},
+];
+
+function openDeficiencyView() {
+  document.getElementById('welcomeScreen').style.display  = 'none';
+  document.getElementById('playerContent').style.display  = 'none';
+  document.getElementById('deficiencyContent').style.display = 'block';
+  document.getElementById('periodBar').style.display = 'flex';
+  deficiencyViewActive = true;
+  renderDeficiencyView();
+}
+
+function closeDeficiencyView() {
+  deficiencyViewActive = false;
+  document.getElementById('deficiencyContent').style.display = 'none';
+  Object.keys(defCharts).forEach(k => { try{ defCharts[k].destroy(); }catch(e){} });
+  defCharts = {};
+  if (currentPlayerName) {
+    document.getElementById('playerContent').style.display = 'block';
+    document.getElementById('welcomeScreen').style.display  = 'none';
+  } else {
+    document.getElementById('welcomeScreen').style.display  = 'flex';
+    document.getElementById('periodBar').style.display = 'none';
+  }
+}
+
+let defCharts = {};
+
+function computeDefPlayerStats(pl, periodFiltered) {
+  const rows = periodFiltered.filter(d => d.player === pl);
+  if (!rows.length) return null;
+  const totalK  = sum(rows.map(d=>d.kills));
+  const avgK    = avg(rows.map(d=>d.kills));
+  const avgD    = avg(rows.map(d=>d.dano));
+  const avgA    = avg(rows.map(d=>d.ass));
+  const avgHS   = avg(rows.filter(d=>d.headshot>0).map(d=>d.headshot));
+  const avgCura = avg(rows.map(d=>d.cura));
+  const avgMorreu = avg(rows.map(d=>d.morreu));
+  const kd      = avgK; // K/D = média de kills por partida
+  const foto    = rows.find(r=>r.foto)?.foto || '';
+  const funcao  = noUrl(rows[0]?.funcao) || 'PLAYER';
+  const games   = rows.length;
+  const vals    = {kills:avgK, dano:avgD, ass:avgA, kd, headshot:avgHS||0, cura:avgCura, morreu:avgMorreu};
+  const weaknesses = DEF_METRICS
+    .map(m => ({...m, cls: classify(m.k, vals[m.k])}))
+    .filter(m => m.cls === 'ruim' || m.cls === 'medio');
+  return { pl, foto, funcao, games, totalK, vals, weaknesses };
+}
+
+function renderDeficiencyView() {
+  const el = document.getElementById('deficiencyContent');
+  const periodFiltered = filterByPeriod(allData);
+  const players = uniqPl();
+  const pStats = players.map(pl => computeDefPlayerStats(pl, periodFiltered)).filter(Boolean);
+
+  if (!pStats.length) {
+    el.innerHTML = `<button class="deficiency-back-btn" onclick="closeDeficiencyView()">← VOLTAR</button>
+      <div style="color:var(--mu);padding:40px;text-align:center">Nenhum dado encontrado neste período.</div>`;
+    return;
+  }
+
+  // Ranking das piores métricas do time (para orientar ajuste tático geral)
+  const teamWeakCount = {};
+  DEF_METRICS.forEach(m => teamWeakCount[m.k] = 0);
+  pStats.forEach(p => p.weaknesses.forEach(w => teamWeakCount[w.k]++));
+  const teamWeakSorted = DEF_METRICS.map(m => ({...m, count: teamWeakCount[m.k]}))
+    .filter(m => m.count > 0)
+    .sort((a,b) => b.count - a.count);
+
+  el.innerHTML = `
+    <button class="deficiency-back-btn" onclick="closeDeficiencyView()">← VOLTAR</button>
+    <div class="stitle">⚠️ DEFICIÊNCIA DO JOGADOR — VISÃO GERAL DO TIME</div>
+    <div style="color:var(--mu);font-size:12px;margin-bottom:18px;">
+      Dados brutos e gráficos destacando os pontos fracos de cada jogador, para a comissão técnica ajustar a tática.
+    </div>
+
+    ${teamWeakSorted.length ? `
+    <div class="cpanel" style="margin-bottom:24px;">
+      <div class="cpt">PRINCIPAIS FRAQUEZAS DO TIME (nº de jogadores afetados)</div>
+      <div class="chart-box" style="height:220px;"><canvas id="defTeamWeakChart"></canvas></div>
+    </div>` : ''}
+
+    <div class="cpanel" style="margin-bottom:24px;overflow-x:auto;">
+      <div class="cpt">MAPA DE CALOR — TODOS OS JOGADORES</div>
+      <table class="heatmap-table">
+        <thead><tr>
+          <th style="text-align:left;">JOGADOR</th>
+          ${DEF_METRICS.map(m=>`<th>${m.l}</th>`).join('')}
+        </tr></thead>
+        <tbody>
+          ${pStats.map(p => `<tr>
+            <td class="player-name-cell">${esc(p.pl)}</td>
+            ${DEF_METRICS.map(m => {
+              const cls = classify(m.k, p.vals[m.k]);
+              return `<td class="hm-${cls}">${m.fmt(p.vals[m.k])}</td>`;
+            }).join('')}
+          </tr>`).join('')}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stitle">DETALHAMENTO POR JOGADOR</div>
+    ${pStats.map((p, idx) => `
+      <div class="def-player-card">
+        <div class="def-player-hdr">
+          ${p.foto ? `<img class="def-player-photo" src="${esc(p.foto)}" onerror="this.style.display='none'">` : ''}
+          <div>
+            <div class="def-player-name">${esc(p.pl)}</div>
+            <div class="def-player-role">${esc(p.funcao)} · ${p.games} PARTIDAS</div>
+          </div>
+          <div class="def-weak-tags">
+            ${p.weaknesses.length
+              ? p.weaknesses.map(w => `<span class="def-weak-tag">▼ ${w.l}</span>`).join('')
+              : `<span class="def-weak-tag ok">★ SEM PONTOS FRACOS RELEVANTES</span>`}
+          </div>
+        </div>
+
+        <div class="def-metrics-grid">
+          ${DEF_METRICS.map(m => {
+            const cls = classify(m.k, p.vals[m.k]);
+            return `<div class="def-metric">
+              <div class="def-metric-v ${clsColor(cls)}">${m.fmt(p.vals[m.k])}</div>
+              <div class="def-metric-l">${m.l}</div>
+              ${badge(m.k, p.vals[m.k])}
+            </div>`;
+          }).join('')}
+        </div>
+
+        <div class="chart-box" style="height:220px;margin-bottom:14px;"><canvas id="defRadar_${idx}"></canvas></div>
+
+        <div class="tpanel">
+          <div class="collapse-hdr" onclick="toggleCollapse('def-tbl-${idx}','def-arrow-${idx}')">
+            <div class="collapse-hdr-left">
+              <span class="collapse-arrow" id="def-arrow-${idx}">▼</span>
+              <span class="collapse-hdr-title">DADOS BRUTOS — HISTÓRICO DE PARTIDAS</span>
+              <span class="collapse-hdr-count">${p.games} registros</span>
+            </div>
+            <span style="font-size:9px;color:var(--mu);letter-spacing:1px;">CLIQUE PARA EXPANDIR</span>
+          </div>
+          <div class="collapse-body" id="def-tbl-${idx}">
+            <div style="overflow-x:auto;">
+              <table style="min-width:680px;">
+                <thead><tr>
+                  <th>#</th><th>MAPA</th><th>TIPO</th><th>KILLS</th><th>ASS</th><th>DANO</th><th>CURA</th><th>MORTES</th><th>K/D</th><th>DATA</th>
+                </tr></thead>
+                <tbody>
+                  ${periodFiltered.filter(d=>d.player===p.pl).map((d,i) => {
+                    const kdP = d.morreu > 0 ? fmt(d.kills/d.morreu) : fmt(d.kills);
+                    return `<tr>
+                      <td class="td-n">${i+1}</td>
+                      <td><span class="mapb">${esc(d.mapa||'—')}</span></td>
+                      <td style="font-size:11px;color:var(--mu)">${esc(d.tipo||'—')}</td>
+                      <td><span class="${clsColor(classify('kills',d.kills))}">${d.kills}</span></td>
+                      <td><span class="${clsColor(classify('ass',d.ass))}">${d.ass}</span></td>
+                      <td><span class="${clsColor(classify('dano',d.dano))}">${d.dano}</span></td>
+                      <td><span class="${clsColor(classify('cura',d.cura))}">${d.cura}</span></td>
+                      <td><span class="${clsColor(classify('morreu',d.morreu))}">${d.morreu}</span></td>
+                      <td>${kdP}</td>
+                      <td style="font-size:11px;color:var(--mu)">${esc(d.data||'—')}</td>
+                    </tr>`;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  `;
+
+  setTimeout(() => buildDeficiencyCharts(pStats, teamWeakSorted), 50);
+}
+
+function buildDeficiencyCharts(pStats, teamWeakSorted) {
+  Object.keys(defCharts).forEach(k => { try{ defCharts[k].destroy(); }catch(e){} });
+  defCharts = {};
+
+  // Gráfico de fraquezas do time
+  const teamEl = document.getElementById('defTeamWeakChart');
+  if (teamEl && teamWeakSorted.length) {
+    defCharts.team = new Chart(teamEl, {
+      type: 'bar',
+      data: {
+        labels: teamWeakSorted.map(m=>m.l),
+        datasets: [{ data: teamWeakSorted.map(m=>m.count), backgroundColor: 'rgba(255,138,0,.55)', borderColor:'#FF8A00', borderWidth:1 }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks:{color:'#9C8B5E', stepSize:1}, grid:{color:'rgba(255,215,0,.08)'}, title:{display:true,text:'Nº de jogadores com essa deficiência',color:'#9C8B5E'} },
+          y: { ticks:{color:'#F2ECD9'}, grid:{display:false} }
+        }
+      }
+    });
+  }
+
+  // Radar por jogador (comparado à média do time)
+  const teamAvg = {};
+  DEF_METRICS.forEach(m => teamAvg[m.k] = avg(pStats.map(p=>p.vals[m.k])) || 1);
+
+  pStats.forEach((p, idx) => {
+    const canvasEl = document.getElementById(`defRadar_${idx}`);
+    if (!canvasEl) return;
+    const labels = DEF_METRICS.map(m=>m.l);
+    const playerData = DEF_METRICS.map(m => teamAvg[m.k] ? Math.min((p.vals[m.k]/teamAvg[m.k])*100,150) : 0);
+    const teamData = DEF_METRICS.map(() => 100);
+    defCharts[`radar_${idx}`] = new Chart(canvasEl, {
+      type: 'radar',
+      data: {
+        labels,
+        datasets: [
+          { label: p.pl, data: playerData, backgroundColor:'rgba(255,215,0,.18)', borderColor:'#FFD700', borderWidth:2, pointBackgroundColor:'#FFD700' },
+          { label: 'Média do time', data: teamData, backgroundColor:'rgba(255,138,0,.06)', borderColor:'rgba(255,138,0,.5)', borderWidth:1, borderDash:[4,4], pointRadius:0 }
+        ]
+      },
+      options: {
+        responsive:true, maintainAspectRatio:false,
+        plugins:{ legend:{ labels:{color:'#F2ECD9', font:{size:10}} } },
+        scales:{ r:{
+          ticks:{ color:'#9C8B5E', backdropColor:'transparent', showLabelBackdrop:false },
+          grid:{ color:'rgba(255,215,0,.12)' },
+          angleLines:{ color:'rgba(255,215,0,.12)' },
+          pointLabels:{ color:'#F2ECD9', font:{size:9} }
+        }}
+      }
+    });
   });
 }
 
@@ -1795,7 +2091,7 @@ const THR = {
   cura:{ruim:100,medio:400,bom:800,excelente:1500},
   derrubou:{ruim:0,medio:1,bom:2,excelente:3},
   headshot:{ruim:0,medio:5,bom:15,excelente:30},
-  kd:{ruim:0,medio:0.5,bom:1,excelente:2},
+  kd:{ruim:0,medio:1,bom:2,excelente:4},
   morreu:{excelente:0,bom:1,medio:2,ruim:3},
 };
 // Métricas onde MENOR = melhor (lógica invertida)
@@ -1853,7 +2149,7 @@ function renderPlayer(name) {
   const avgHS    = avg(pd.filter(d=>d.headshot>0).map(d=>d.headshot));
   const totalCura= sum(pd.map(d=>d.cura));
   // K/D: média do K/D de cada partida (kills/mortes por partida)
-  const kdPerGame = pd.map(d => d.morreu > 0 ? d.kills / d.morreu : d.kills);
+  const kdPerGame = pd.map(d => d.kills);
   const kd        = avg(kdPerGame);
   const kda      = deaths > 0 ? (totalK + sum(pd.map(d=>d.ass)))/deaths : totalK;
   const mapas    = [...new Set(pd.map(d=>d.mapa).filter(Boolean))];
@@ -2272,7 +2568,7 @@ function renderComparative(focusName, tipoFilter) {
     const avgD     = avg(rows.map(d=>d.dano));
     const avgA     = avg(rows.map(d=>d.ass));
     const avgHS    = avg(rows.filter(d=>d.headshot>0).map(d=>d.headshot));
-    const kdPerGame= rows.map(d => d.morreu > 0 ? d.kills/d.morreu : d.kills);
+    const kdPerGame= rows.map(d => d.kills);
     const kd       = avg(kdPerGame);
     const games    = rows.length;
     const foto     = rows[0]?.foto || '';
@@ -2646,7 +2942,7 @@ function renderIndividual(focusName) {
     const avgAv     = avg(rows.map(d=>d.ass));
     const avgHSv    = avg(rows.filter(d=>d.headshot>0).map(d=>d.headshot));
     const avgMortes = avg(rows.map(d=>d.morreu));
-    const kdPerGame = rows.map(d=>d.morreu>0?d.kills/d.morreu:d.kills);
+    const kdPerGame = rows.map(d=>d.kills);
     const kd        = avg(kdPerGame);
     const games     = rows.length;
     const isFocus   = pl === focusName;
@@ -2762,7 +3058,7 @@ function renderIndividual(focusName) {
   const mapStats  = mapas.map(m=>{
     const mp = focusRows.filter(d=>d.mapa===m);
     return {map:m, kills:sum(mp.map(d=>d.kills)), dano:Math.round(avg(mp.map(d=>d.dano))), games:mp.length,
-            kd: avg(mp.map(d=>d.morreu>0?d.kills/d.morreu:d.kills)),
+            kd: avg(mp.map(d=>d.kills)),
             hs: avg(mp.filter(d=>d.headshot>0).map(d=>d.headshot))};
   }).sort((a,b)=>b.kills-a.kills);
 
@@ -3269,7 +3565,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
         const rows = fRows.filter(d=>d.tipo===t);
         if (!rows.length) return null;
         const mK=avg(rows.map(d=>d.kills)), mD=avg(rows.map(d=>d.dano));
-        const mA=avg(rows.map(d=>d.ass)), mkd=avg(rows.map(d=>d.morreu>0?d.kills/d.morreu:d.kills));
+        const mA=avg(rows.map(d=>d.ass)), mkd=avg(rows.map(d=>d.kills));
         const mHS=avg(rows.filter(d=>d.headshot>0).map(d=>d.headshot));
         return {t, mK, mD, mA, mkd, mHS};
       }).filter(Boolean);
@@ -3291,7 +3587,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       const fRows = allData.filter(d=>d.player===focusSt.pl);
       const tiposData = tipos.slice(0,6).map(t=>{
         const rows = fRows.filter(d=>d.tipo===t);
-        return {t, kills:sum(rows.map(d=>d.kills)), dano:Math.round(avg(rows.map(d=>d.dano))), kd:parseFloat(avg(rows.map(d=>d.morreu>0?d.kills/d.morreu:d.kills)).toFixed(2))};
+        return {t, kills:sum(rows.map(d=>d.kills)), dano:Math.round(avg(rows.map(d=>d.dano))), kd:parseFloat(avg(rows.map(d=>d.kills)).toFixed(2))};
       });
       new Chart(barTipoCtx, {type:'bar', data:{
         labels: tiposData.map(d=>d.t),
@@ -3338,7 +3634,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
         const rows = allData.filter(d=>d.funcao===f);
         const mK=avg(rows.map(d=>d.kills)), mD=avg(rows.map(d=>d.dano));
         const mA=avg(rows.map(d=>d.ass)), mCura=avg(rows.map(d=>d.cura));
-        const mkd=avg(rows.map(d=>d.morreu>0?d.kills/d.morreu:d.kills));
+        const mkd=avg(rows.map(d=>d.kills));
         return {f, mK, mD, mA, mCura, mkd};
       });
       const maxK=Math.max(...ds.map(d=>d.mK),1),maxD=Math.max(...ds.map(d=>d.mD),1),
@@ -4228,7 +4524,7 @@ function generateTacticalPDF() {
         const aK=avg(rows.map(d=>d.kills)), aD=avg(rows.map(d=>d.dano)), aA=avg(rows.map(d=>d.ass));
         const aHS=avg(rows.filter(d=>d.headshot>0).map(d=>d.headshot));
         const aM=avg(rows.map(d=>d.morreu));
-        const kd=avg(rows.map(d=>d.morreu>0?d.kills/d.morreu:d.kills));
+        const kd=avg(rows.map(d=>d.kills));
         const kda=deaths>0?(tK+tA)/deaths:tK;
         const dpk=tK>0?Math.round(tD/tK):0;
         const killConf=tDr>0?((tK/tDr)*100).toFixed(1):'0.0';

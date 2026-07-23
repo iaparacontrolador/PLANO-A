@@ -35,16 +35,6 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .logo-bot{font-size:9px;letter-spacing:4px;color:var(--mu);font-weight:600;margin-top:1px;}
 .hdr-r{display:flex;align-items:center;gap:10px;}
 
-/* DEFICIENCY NAV BUTTON */
-.deficiency-nav-btn{background:rgba(255,138,0,.1);border:1px solid rgba(255,138,0,.4);color:#FF8A00;
-  padding:10px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;letter-spacing:1px;
-  cursor:pointer;transition:all .3s;white-space:nowrap;}
-.deficiency-nav-btn:hover{background:rgba(255,138,0,.2);box-shadow:0 0 16px rgba(255,138,0,.25);}
-.deficiency-back-btn{background:rgba(255,255,255,.08);border:1px solid var(--brd);color:var(--owh);
-  padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;
-  cursor:pointer;margin-bottom:16px;}
-.deficiency-back-btn:hover{border-color:var(--bl);color:var(--bl);}
-
 /* SEARCH */
 .search-wrap{position:relative;}
 .search-input{background:rgba(255,255,255,.08);border:1px solid var(--brd);color:var(--owh);
@@ -110,6 +100,10 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .gallery-name{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-top:10px;letter-spacing:1px;text-transform:uppercase;}
 .gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:3px;}
 
+/* DEBUG INFO */
+.debug-info{background:rgba(255,138,0,.15);border:1px solid rgba(255,138,0,.4);padding:12px;margin:20px 0;border-radius:4px;font-size:11px;color:#FF8A00;}
+.debug-info strong{color:#FFB84D;}
+
 /* STITLE */
 .stitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--bl3);
   text-transform:uppercase;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
@@ -156,6 +150,12 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .analysis-bar-bg { height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; margin-bottom: 8px; }
 .analysis-bar-fill { height: 100%; background: linear-gradient(90deg, var(--bl3), var(--bl)); border-radius: 2px; }
 .analysis-text { font-size: 11px; color: var(--bl3); line-height: 1.4; }
+
+/* DEFICIENCY BACK BTN */
+.deficiency-back-btn{background:rgba(255,255,255,.08);border:1px solid var(--brd);color:var(--owh);
+  padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:12px;letter-spacing:1px;
+  cursor:pointer;margin-bottom:16px;}
+.deficiency-back-btn:hover{border-color:var(--bl);color:var(--bl);}
 
 /* RESPONSIVE */
 @media(max-width:600px){
@@ -217,6 +217,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <div id="app">
     <!-- WELCOME -->
     <div class="welcome" id="welcomeScreen">
+      <div id="debugPanel"></div>
       <div class="player-gallery" id="playerGallery">
         <!-- Populada via JS -->
       </div>
@@ -232,17 +233,17 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 // ⚙️ CONFIGURAÇÃO
 // ══════════════════════════════════════════════
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
-
 let allData = [];
 let playerPhotos = {};
 let currentPlayerName = '';
+let playerColumnName = '';
 
 // ══════════════════════════════════════════════
-// 📊 FUNÇÕES DE CÁLCULO PARA NOVAS ANÁLISES
+// 📊 FUNÇÕES DE CÁLCULO
 // ══════════════════════════════════════════════
 
 function calculateKillConversionRate(playerName) {
-  const playerRecords = allData.filter(r => r.jogador === playerName);
+  const playerRecords = allData.filter(r => r[playerColumnName] === playerName);
   if (playerRecords.length === 0) return 0;
   
   const totalKills = playerRecords.reduce((sum, r) => sum + (parseInt(r.kill) || 0), 0);
@@ -255,19 +256,18 @@ function calculateKillConversionRate(playerName) {
 }
 
 function calculateKillParticipation(playerName) {
-  const playerRecords = allData.filter(r => r.jogador === playerName);
+  const playerRecords = allData.filter(r => r[playerColumnName] === playerName);
   if (playerRecords.length === 0) return 0;
   
   const playerKills = playerRecords.reduce((sum, r) => sum + (parseInt(r.kill) || 0), 0);
   const teamKills = allData.reduce((sum, r) => sum + (parseInt(r.kill) || 0), 0);
   
   if (teamKills === 0) return 0;
-  
   return (playerKills / teamKills) * 100;
 }
 
 function calculateKillContribution(playerName) {
-  const playerRecords = allData.filter(r => r.jogador === playerName);
+  const playerRecords = allData.filter(r => r[playerColumnName] === playerName);
   if (playerRecords.length === 0) return 0;
   
   const totalKills = playerRecords.reduce((sum, r) => sum + (parseInt(r.kill) || 0), 0);
@@ -293,7 +293,7 @@ function closeSearch() {
 
 function filterSearch(value) {
   const dropdown = document.getElementById('searchDropdown');
-  const players = [...new Set(allData.map(r => r.jogador))].filter(p => p);
+  const players = [...new Set(allData.map(r => r[playerColumnName]))].filter(p => p);
   
   let filtered = players;
   if (value.trim()) {
@@ -311,6 +311,8 @@ function filterSearch(value) {
 }
 
 // ══════════════════════════════════════════════
+// LOAD & RENDER
+// ══════════════════════════════════════════════
 
 async function loadSheetData() {
   try {
@@ -324,9 +326,29 @@ async function loadSheetData() {
     
     allData = [];
     playerPhotos = {};
+    playerColumnName = '';
     
     if (json.table && json.table.rows) {
       const cols = json.table.cols;
+      
+      // Detecta coluna de jogador (procura por "jogador", "jogadores", "nick", "nome", etc)
+      const playerColNames = ['jogador', 'jogadores', 'nick', 'nome', 'player', 'nome do jogador'];
+      for (const colName of playerColNames) {
+        const found = cols.find(c => c.label.toLowerCase().includes(colName));
+        if (found) {
+          playerColumnName = found.label;
+          break;
+        }
+      }
+      
+      // Se não encontrou, usa a primeira coluna
+      if (!playerColumnName && cols.length > 0) {
+        playerColumnName = cols[0].label;
+      }
+      
+      console.log('Coluna de jogador detectada:', playerColumnName);
+      console.log('Todas as colunas:', cols.map(c => c.label));
+      
       json.table.rows.forEach(row => {
         const obj = {};
         cols.forEach((col, i) => {
@@ -335,15 +357,14 @@ async function loadSheetData() {
         });
         allData.push(obj);
         
-        // Captura foto se existir coluna 'foto'
-        if (obj.jogador && obj.foto) {
-          playerPhotos[obj.jogador] = obj.foto;
+        if (obj[playerColumnName] && obj.foto) {
+          playerPhotos[obj[playerColumnName]] = obj.foto;
         }
       });
     }
     
-    console.log('Dados carregados:', allData.length, 'registros');
-    console.log('Fotos encontradas:', Object.keys(playerPhotos).length);
+    console.log('✅ Dados carregados:', allData.length, 'registros');
+    console.log('✅ Coluna jogador:', playerColumnName);
     
     document.getElementById('loadingScreen').style.display = 'none';
     document.getElementById('mainWrap').style.display = 'block';
@@ -351,7 +372,7 @@ async function loadSheetData() {
     updateStatusBar();
     
   } catch (error) {
-    console.error('Erro ao carregar dados:', error);
+    console.error('❌ Erro ao carregar dados:', error);
     document.getElementById('loadingScreen').style.display = 'none';
     document.getElementById('errorScreen').style.display = 'flex';
     document.getElementById('errorMsg').textContent = 'Erro ao carregar dados. Tente novamente.';
@@ -360,14 +381,25 @@ async function loadSheetData() {
 
 function renderPlayerGallery() {
   const gallery = document.getElementById('playerGallery');
+  const debugPanel = document.getElementById('debugPanel');
   gallery.innerHTML = '';
   
-  const players = [...new Set(allData.map(r => r.jogador))].filter(p => p);
+  const players = [...new Set(allData.map(r => r[playerColumnName]))].filter(p => p);
   
-  console.log('Jogadores encontrados:', players);
+  console.log('🎮 Jogadores encontrados:', players.length, players);
+  
+  // Mostra debug info
+  debugPanel.innerHTML = `
+    <div class="debug-info">
+      <strong>📊 DADOS CARREGADOS:</strong><br>
+      Total de registros: ${allData.length}<br>
+      Coluna de jogador: "${playerColumnName}"<br>
+      Jogadores únicos: ${players.length}
+    </div>
+  `;
   
   if (players.length === 0) {
-    gallery.innerHTML = '<p style="color: var(--mu); text-align: center;">Nenhum jogador encontrado nos dados.</p>';
+    gallery.innerHTML = '<p style="color: var(--mu); text-align: center; grid-column: 1/-1;">❌ Nenhum jogador encontrado. Verifique o nome da coluna de jogador.</p>';
     return;
   }
   
@@ -390,7 +422,7 @@ function renderPlayerGallery() {
         <div class="gallery-role">JOGADOR</div>
       `;
       gallery.appendChild(card);
-    }, index * 50); // Efeito cascata suave
+    }, index * 50);
   });
 }
 
@@ -402,7 +434,7 @@ function showPlayerAnalysis(playerName) {
   const killParticipation = calculateKillParticipation(playerName);
   const killContribution = calculateKillContribution(playerName);
   
-  const playerRecords = allData.filter(r => r.jogador === playerName);
+  const playerRecords = allData.filter(r => r[playerColumnName] === playerName);
   const totalKills = playerRecords.reduce((sum, r) => sum + (parseInt(r.kill) || 0), 0);
   const totalDeaths = playerRecords.reduce((sum, r) => sum + (parseInt(r.morte) || 0), 0);
   const totalKnockedDown = playerRecords.reduce((sum, r) => sum + (parseInt(r.derrubados) || 0), 0);
@@ -444,7 +476,6 @@ function showPlayerAnalysis(playerName) {
     <div class="stitle">ANÁLISES TÁTICAS AVANÇADAS</div>
     
     <div class="analysis-cards">
-      <!-- 1. CONVERSÃO EM KILL -->
       <div class="analysis-card">
         <div class="analysis-card-title">📊 % CONVERSÃO EM KILL</div>
         <div class="analysis-value">${conversionRate.toFixed(1)}%</div>
@@ -452,12 +483,9 @@ function showPlayerAnalysis(playerName) {
         <div class="analysis-bar-bg">
           <div class="analysis-bar-fill" style="width: ${Math.min(conversionRate, 100)}%"></div>
         </div>
-        <div class="analysis-text">
-          Mede a efetividade do jogador em converter derrubadas em eliminações. Quanto maior, mais letal nas finalizações.
-        </div>
+        <div class="analysis-text">Mede a efetividade do jogador em converter derrubadas em eliminações.</div>
       </div>
 
-      <!-- 2. PARTICIPAÇÃO EM KILL DA EQUIPE -->
       <div class="analysis-card">
         <div class="analysis-card-title">🎯 % PARTICIPAÇÃO EM KILL</div>
         <div class="analysis-value">${killParticipation.toFixed(1)}%</div>
@@ -465,12 +493,9 @@ function showPlayerAnalysis(playerName) {
         <div class="analysis-bar-bg">
           <div class="analysis-bar-fill" style="width: ${Math.min(killParticipation, 100)}%"></div>
         </div>
-        <div class="analysis-text">
-          Percentual de kills do jogador em relação ao total de kills da equipe. Indica seu peso ofensivo no time.
-        </div>
+        <div class="analysis-text">Percentual de kills do jogador em relação ao total de kills da equipe.</div>
       </div>
 
-      <!-- 3. CONTRIBUIÇÃO PARA KILL -->
       <div class="analysis-card">
         <div class="analysis-card-title">⚡ SCORE CONTRIBUIÇÃO</div>
         <div class="analysis-value">${killContribution.toFixed(1)}</div>
@@ -478,9 +503,7 @@ function showPlayerAnalysis(playerName) {
         <div class="analysis-bar-bg">
           <div class="analysis-bar-fill" style="width: ${Math.min((killContribution / (totalKills * 3 || 1)) * 100, 100)}%"></div>
         </div>
-        <div class="analysis-text">
-          Score holístico que pondera todas as formas de contribuição. Valida tanto eliminações quanto suporte tático.
-        </div>
+        <div class="analysis-text">Score holístico que pondera todas as formas de contribuição.</div>
       </div>
     </div>
 
@@ -536,12 +559,7 @@ function updateStatusBar() {
   document.getElementById('statusInfo').textContent = `${allData.length} registros carregados`;
 }
 
-// ══════════════════════════════════════════════
-// INICIALIZAR
-// ══════════════════════════════════════════════
-
 document.addEventListener('DOMContentLoaded', loadSheetData);
-
 setInterval(updateStatusBar, 5000);
 </script>
 

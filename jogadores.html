@@ -100,13 +100,15 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   min-height:60vh;text-align:center;gap:16px;}
 
 /* PLAYER GALLERY */
-.player-gallery{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;width:100%;max-width:1200px;margin-top:30px;}
-.gallery-item{width:160px;cursor:pointer;transition:all .3s;text-align:center;position:relative;}
+.player-gallery{display:flex;justify-content:center;flex-wrap:wrap;gap:30px;width:100%;max-width:1400px;margin:0 auto;margin-top:30px;}
+.gallery-item{width:160px;cursor:pointer;transition:all .3s;text-align:center;position:relative;animation:slideIn .5s ease-out forwards;}
 .gallery-item:hover{transform:translateY(-10px);}
-.gallery-photo{width:100%;aspect-ratio:3/4;object-fit:cover;border:1px solid var(--brd);box-shadow:0 10px 30px rgba(0,0,0,.5);transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:40px;}
-.gallery-item:hover .gallery-photo{border-color:var(--bl);box-shadow:var(--glow);}
-.gallery-name{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;color:var(--wh);margin-top:8px;letter-spacing:1px;text-transform:uppercase;}
-.gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:2px;}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.gallery-photo{width:100%;height:200px;border:2px solid var(--brd);box-shadow:0 10px 30px rgba(0,0,0,.5);transition:all .3s;display:flex;align-items:center;justify-content:center;font-size:60px;background-size:cover;background-position:center;position:relative;overflow:hidden;}
+.gallery-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(0,0,0,.3));pointer-events:none;}
+.gallery-item:hover .gallery-photo{border-color:var(--bl);box-shadow:0 0 30px var(--bl);}
+.gallery-name{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;color:var(--wh);margin-top:10px;letter-spacing:1px;text-transform:uppercase;}
+.gallery-role{font-size:8px;color:var(--mu);letter-spacing:2px;margin-top:3px;}
 
 /* STITLE */
 .stitle{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:4px;color:var(--bl3);
@@ -165,11 +167,9 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   .hdr-r{width:100%;}
   .search-wrap{width:100%;}
   #app{padding:14px 10px;}
-  .ph-wrap{height:auto;min-height:130px;}
-  .ph-content{padding:12px;gap:12px;align-items:center;}
-  .ph-photo-ph{width:64px;height:86px;font-size:28px;}
-  .ph-name{font-size:16px;line-height:1.1;}
-  .analysis-cards{grid-template-columns:1fr;}
+  .gallery-item{width:140px;}
+  .gallery-photo{height:180px;font-size:50px;}
+  .player-gallery{gap:20px;}
 }
 </style>
 </head>
@@ -234,7 +234,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 const SHEET_ID = '1mF-yzYwbgdfNP3rXmFnZ1ihhfLJFBhQbRsrlsdDg_aw';
 
 let allData = [];
-let charts  = {};
+let playerPhotos = {};
 let currentPlayerName = '';
 
 // ══════════════════════════════════════════════
@@ -274,7 +274,6 @@ function calculateKillContribution(playerName) {
   const totalAssists = playerRecords.reduce((sum, r) => sum + (parseInt(r.assistencia) || 0), 0);
   const totalKnockedDown = playerRecords.reduce((sum, r) => sum + (parseInt(r.derrubados) || 0), 0);
   
-  // Fórmula: Kill + Assistência + (Derrubados/3)
   return totalKills + totalAssists + (totalKnockedDown / 3);
 }
 
@@ -324,6 +323,8 @@ async function loadSheetData() {
     const json = JSON.parse(text.substring(47).slice(0, -2));
     
     allData = [];
+    playerPhotos = {};
+    
     if (json.table && json.table.rows) {
       const cols = json.table.cols;
       json.table.rows.forEach(row => {
@@ -333,10 +334,16 @@ async function loadSheetData() {
           obj[col.label] = value;
         });
         allData.push(obj);
+        
+        // Captura foto se existir coluna 'foto'
+        if (obj.jogador && obj.foto) {
+          playerPhotos[obj.jogador] = obj.foto;
+        }
       });
     }
     
     console.log('Dados carregados:', allData.length, 'registros');
+    console.log('Fotos encontradas:', Object.keys(playerPhotos).length);
     
     document.getElementById('loadingScreen').style.display = 'none';
     document.getElementById('mainWrap').style.display = 'block';
@@ -364,16 +371,26 @@ function renderPlayerGallery() {
     return;
   }
   
-  players.forEach(player => {
-    const card = document.createElement('div');
-    card.className = 'gallery-item';
-    card.onclick = () => showPlayerAnalysis(player);
-    card.innerHTML = `
-      <div class="gallery-photo" style="background:linear-gradient(135deg,#FFD700,#D9B54A);">⚔️</div>
-      <div class="gallery-name">${player}</div>
-      <div class="gallery-role">JOGADOR</div>
-    `;
-    gallery.appendChild(card);
+  players.forEach((player, index) => {
+    setTimeout(() => {
+      const card = document.createElement('div');
+      card.className = 'gallery-item';
+      card.onclick = () => showPlayerAnalysis(player);
+      
+      const photoUrl = playerPhotos[player];
+      const photoStyle = photoUrl 
+        ? `background-image: url('${photoUrl}'); background-size: cover; background-position: center;`
+        : `background:linear-gradient(135deg,#FFD700,#D9B54A);`;
+      
+      const photoContent = photoUrl ? '' : '⚔️';
+      
+      card.innerHTML = `
+        <div class="gallery-photo" style="${photoStyle}">${photoContent}</div>
+        <div class="gallery-name">${player}</div>
+        <div class="gallery-role">JOGADOR</div>
+      `;
+      gallery.appendChild(card);
+    }, index * 50); // Efeito cascata suave
   });
 }
 
@@ -525,7 +542,6 @@ function updateStatusBar() {
 
 document.addEventListener('DOMContentLoaded', loadSheetData);
 
-// Auto-update status a cada 5 segundos
 setInterval(updateStatusBar, 5000);
 </script>
 

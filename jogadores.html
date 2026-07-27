@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>SX GG — MEUS STATS</title>
+<title>PLANO A ESPORTS — MEUS STATS</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bl:#1A6FFF;--bl2:#4D8FFF;--bl3:#7AAFFF;
-  --bglow:rgba(26,111,255,.2);--bdim:rgba(26,111,255,.05);--bline:rgba(26,111,255,.1);
+  --bl:#FF1A2D;--bl2:#FF4D5C;--bl3:#FF7A85;
+  --bglow:rgba(255,26,45,.2);--bdim:rgba(255,26,45,.05);--bline:rgba(255,26,45,.1);
   --wh:#FFFFFF;--owh:#F0F0F0;--mu:#888888;
   --dk:#000000;--dk2:#0A0A0A;--dk3:#141414;
-  --panel:rgba(10,10,10,.94);--brd:rgba(26,111,255,.25);
-  --glow:0 0 24px rgba(26,111,255,.35);
+  --panel:rgba(10,10,10,.94);--brd:rgba(255,26,45,.25);
+  --glow:0 0 24px rgba(255,26,45,.35);
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 body{background:var(--dk);font-family:'Barlow Condensed',sans-serif;color:var(--owh);overflow-x:hidden;min-height:100vh;}
@@ -23,7 +23,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 
 /* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:66px;
-  background:rgba(8,12,20,.97);border-bottom:1px solid var(--brd);
+  background:rgba(20,8,9,.97);border-bottom:1px solid var(--brd);
   backdrop-filter:blur(16px);position:sticky;top:0;z-index:200;flex-wrap:wrap;}
 .hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
   background:linear-gradient(90deg,transparent,var(--bl),var(--bl3),transparent);}
@@ -43,7 +43,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .search-input:focus{border-color:var(--bl);background:rgba(255,255,255,.14);box-shadow:var(--glow);}
 .search-input::placeholder{color:var(--mu);}
 .search-dropdown{position:absolute;top:calc(100% + 4px);left:0;right:0;
-  background:rgba(8,12,20,.98);border:1px solid var(--brd);z-index:300;
+  background:rgba(20,8,9,.98);border:1px solid var(--brd);z-index:300;
   max-height:260px;overflow-y:auto;display:none;min-width:240px;}
 .search-dropdown.open{display:block;}
 .search-opt{padding:10px 16px;cursor:pointer;font-size:13px;border-bottom:1px solid rgba(255,255,255,.08);
@@ -152,7 +152,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* PLAYER HERO */
 .ph-wrap{position:relative;min-height:160px;overflow:hidden;border:1px solid var(--brd);margin-bottom:20px;}
 .ph-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:blur(18px) saturate(.5);transform:scale(1.1);opacity:.35;}
-.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,12,20,.4) 0%,rgba(8,12,20,.95) 100%);}
+.ph-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,8,9,.4) 0%,rgba(20,8,9,.95) 100%);}
 .ph-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:40px 40px;opacity:.6;}
 .ph-content{position:relative;z-index:1;display:flex;align-items:flex-end;gap:24px;height:100%;padding:24px;flex-wrap:wrap;}
 .ph-photo{width:120px;height:160px;object-fit:cover;object-position:top;border:2px solid var(--brd);flex-shrink:0;
@@ -184,7 +184,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* CHARTS */
 .charts-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
 .charts-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px;}
-.cpanel{background:linear-gradient(160deg,rgba(12,18,32,.98),rgba(8,12,20,.99));
+.cpanel{background:linear-gradient(160deg,rgba(32,12,14,.98),rgba(20,8,9,.99));
   border:1px solid rgba(255,255,255,.18);padding:14px;position:relative;overflow:hidden;}
 .chart-box{position:relative;width:100%;height:180px;}
 .chart-box canvas{position:absolute;top:0;left:0;width:100%!important;height:100%!important;}
@@ -219,7 +219,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .badge.excelente{background:rgba(204,102,255,.12);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
 
 /* ── PERIOD FILTER BAR ── */
-.period-bar{display:flex;align-items:center;gap:0;padding:10px 24px;background:rgba(8,12,20,.95);border-bottom:1px solid var(--brd);flex-wrap:wrap;gap:10px;}
+.period-bar{display:flex;align-items:center;gap:0;padding:10px 24px;background:rgba(20,8,9,.95);border-bottom:1px solid var(--brd);flex-wrap:wrap;gap:10px;}
 .period-label{font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:3px;color:var(--mu);font-weight:700;margin-right:4px;}
 .period-btns{display:flex;gap:0;border:1px solid var(--brd);overflow:hidden;}
 .period-btn{padding:7px 18px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:2px;
@@ -240,7 +240,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .cal-range-label{font-size:9px;color:var(--bl3);letter-spacing:1px;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 
 /* ── CALENDAR DROPDOWN ── */
-.cal-dropdown{position:fixed;z-index:600;background:rgba(6,10,18,.98);border:1px solid var(--brd);
+.cal-dropdown{position:fixed;z-index:600;background:rgba(18,6,7,.98);border:1px solid var(--brd);
   backdrop-filter:blur(20px);box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.12);
   display:none;min-width:320px;}
 .cal-dropdown::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;
@@ -295,7 +295,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* ── PDF LOGIN MODAL ── */
 .pdf-modal-backdrop{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;}
 .pdf-modal-backdrop.open{display:flex;}
-.pdf-modal{background:rgba(8,12,20,.99);border:1px solid var(--brd);width:380px;max-width:95vw;position:relative;overflow:hidden;}
+.pdf-modal{background:rgba(20,8,9,.99);border:1px solid var(--brd);width:380px;max-width:95vw;position:relative;overflow:hidden;}
 .pdf-modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bl),var(--bl3),transparent);}
 .pdf-modal-hdr{padding:24px 24px 0;display:flex;align-items:center;gap:14px;}
 .pdf-modal-icon{width:44px;height:44px;background:rgba(255,255,255,.12);border:1px solid var(--brd);display:flex;align-items:center;justify-content:center;font-size:22px;}
@@ -405,7 +405,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .contrib-rank-badge em{color:#ffd700;font-style:normal;font-weight:700;}
 
 /* Highlight banner */
-.focus-banner{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(77,159,255,.08));
+.focus-banner{background:linear-gradient(135deg,rgba(255,255,255,.15),rgba(255,77,92,.08));
   border:1px solid rgba(255,255,255,.35);padding:14px 20px;margin-bottom:20px;
   display:flex;align-items:center;gap:16px;position:relative;overflow:hidden;}
 .focus-banner::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--bl);}
@@ -419,7 +419,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .focus-mini-kpi-l{font-size:7px;letter-spacing:2px;color:var(--mu);}
 
 /* TICKER — faixa de evolução no topo */
-.ticker-wrap{overflow:hidden;height:34px;background:rgba(8,12,20,.92);border-bottom:1px solid var(--brd);position:relative;}
+.ticker-wrap{overflow:hidden;height:34px;background:rgba(20,8,9,.92);border-bottom:1px solid var(--brd);position:relative;}
 .ticker-track{display:flex;align-items:center;height:34px;white-space:nowrap;animation:ticker-scroll 30s linear infinite;}
 .ticker-track:hover{animation-play-state:paused;}
 .ticker-item{display:inline-flex;align-items:center;gap:6px;padding:0 20px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;border-right:1px solid rgba(255,255,255,.06);}
@@ -443,7 +443,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .collapse-body.open{display:block;}
 
 /* PERFORMANCE SUMMARY */
-.perf-summary{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:rgba(8,12,20,.5);border-top:1px solid var(--brd);}
+.perf-summary{display:flex;flex-wrap:wrap;gap:8px;padding:14px 16px;background:rgba(20,8,9,.5);border-top:1px solid var(--brd);}
 .perf-pill{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:1px;border-radius:2px;}
 .perf-pill.excelente{background:rgba(204,102,255,.12);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
 .perf-pill.bom{background:rgba(77,255,136,.1);border:1px solid rgba(77,255,136,.25);color:#4dff88;}
@@ -484,7 +484,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 /* INSIGHT TAG */
 .insight-tag{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;font-size:9px;font-weight:700;letter-spacing:2px;border-radius:1px;margin:2px;}
 .insight-tag.gold{background:rgba(255,215,0,.1);border:1px solid rgba(255,215,0,.3);color:#ffd700;}
-.insight-tag.blue{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#4D9FFF;}
+.insight-tag.blue{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#FF4D5C;}
 .insight-tag.green{background:rgba(77,255,136,.1);border:1px solid rgba(77,255,136,.3);color:#4dff88;}
 .insight-tag.red{background:rgba(255,80,120,.1);border:1px solid rgba(255,80,120,.3);color:#ff5078;}
 .insight-tag.purple{background:rgba(204,102,255,.1);border:1px solid rgba(204,102,255,.3);color:#cc66ff;}
@@ -568,7 +568,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
     scrollbar-width: thin; gap:10px; padding: 10px 5px; border-bottom: 2px solid var(--brd);}
   .tab-bar::-webkit-scrollbar{display:block; height: 3px;}
   .tab-btn{padding:12px 16px; font-size:10px; letter-spacing:1px; white-space:nowrap; min-width: 120px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05);}
-  .tab-btn.active{background: rgba(26, 111, 255, 0.15); border-color: var(--bl);}
+  .tab-btn.active{background: rgba(255,26,45, 0.15); border-color: var(--bl);}
   .tab-btn.cmp-btn{margin-left:0;}
 
   /* STITLE */
@@ -807,7 +807,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 	.combat-v2-title { font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; color: #fff; letter-spacing: 10px; }
 	.combat-v2-subtitle { font-family: 'Orbitron', sans-serif; font-size: 24px; color: #444; letter-spacing: 5px; margin-top: -5px; }
 	.combat-v2-bombas { position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 120px; font-weight: 900; color: rgba(255,255,255,0.03); z-index: 0; pointer-events: none; }
-	.combat-v2-vs-large { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Orbitron', sans-serif; font-size: 100px; font-weight: 900; color: rgba(26, 111, 255, 0.1); z-index: 0; }
+	.combat-v2-vs-large { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Orbitron', sans-serif; font-size: 100px; font-weight: 900; color: rgba(255,26,45, 0.1); z-index: 0; }
 	.combat-v2-main { position: relative; display: flex; justify-content: space-around; align-items: flex-start; gap: 20px; z-index: 1; flex-wrap: wrap; }
 	.combat-v2-player { width: 300px; display: flex; flex-direction: column; align-items: center; }
 	.combat-v2-photo-container { width: 200px; height: 260px; border: 2px solid #333; margin-bottom: 20px; overflow: hidden; background: #111; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
@@ -815,7 +815,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 	.combat-v2-player-info { text-align: center; margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
 	.combat-v2-player-name { font-family: 'Orbitron', sans-serif; font-size: 24px; font-weight: 900; color: #fff; }
 	.combat-v2-stats-list { width: 100%; display: flex; flex-direction: column; gap: 10px; }
-	.combat-v2-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: rgba(255,255,255,0.03); border-left: 3px solid #1A6FFF; }
+	.combat-v2-stat-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 15px; background: rgba(255,255,255,0.03); border-left: 3px solid #FF1A2D; }
 	.combat-v2-stat-label { font-size: 10px; letter-spacing: 1px; }
 	.combat-v2-stat-value { font-size: 18px; }
 	.comp-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 1000; display: none; align-items: center; justify-content: center; }
@@ -835,20 +835,20 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 :root {
   --gold: #FFA500; --gold2: #FFD700;
   --green: #4DFF88; --red: #FF5078; --purple: #CC66FF;
-  --bg2-rc: #0F1018; --bg3-rc: #141520; --bg4-rc: #1A1B28;
+  --bg2-rc: #180F10; --bg3-rc: #201415; --bg4-rc: #281A1B;
   --brd2-rc: rgba(255,255,255,.08);
   --glow-gold: 0 0 24px rgba(255,165,0,.4);
 }
 /* Filter bar recursos */
 .rc-filter-bar { display:flex; align-items:flex-end; gap:10px; margin-bottom:16px; flex-wrap:wrap;
-  background:rgba(10,12,22,.8); border:1px solid var(--brd); padding:14px 16px; }
+  background:rgba(22,10,11,.8); border:1px solid var(--brd); padding:14px 16px; }
 .rc-filter-item { display:flex; flex-direction:column; gap:4px; min-width:130px; }
 .rc-filter-label { font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:2px; color:var(--mu); font-weight:700; }
 .rc-filter-select, .rc-filter-input { background:rgba(255,255,255,.06); border:1px solid var(--brd);
   color:var(--owh); padding:7px 10px; font-family:'Barlow Condensed',sans-serif; font-size:12px;
   letter-spacing:1px; outline:none; cursor:pointer; transition:border-color .2s; }
-.rc-filter-select:focus, .rc-filter-input:focus { border-color:var(--bl); background:rgba(26,111,255,.08); }
-.rc-filter-select option { background:#0a0c16; }
+.rc-filter-select:focus, .rc-filter-input:focus { border-color:var(--bl); background:rgba(255,26,45,.08); }
+.rc-filter-select option { background:#160A0B; }
 .rc-filter-input::-webkit-calendar-picker-indicator { filter:invert(.6) sepia(1) saturate(3) hue-rotate(190deg); cursor:pointer; }
 .rc-filter-clear { background:transparent; border:1px solid rgba(255,80,120,.3); color:#ff5078;
   padding:7px 14px; font-family:'Orbitron',sans-serif; font-size:9px; font-weight:700; letter-spacing:2px;
@@ -862,13 +862,13 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px)); }
 .rc-kpi-chip:hover { border-color:var(--bl); }
 .rc-kpi-chip::after { content:''; position:absolute; top:0; left:0; right:0; height:1px;
-  background:linear-gradient(90deg,transparent,rgba(26,111,255,.5),transparent); }
+  background:linear-gradient(90deg,transparent,rgba(255,26,45,.5),transparent); }
 .rc-kpi-chip-icon { font-size:18px; flex-shrink:0; }
 .rc-kpi-chip-body { display:flex; flex-direction:column; }
 .rc-kpi-chip-val { font-family:'Orbitron',sans-serif; font-size:18px; font-weight:900; line-height:1; }
 .rc-kpi-chip-lbl { font-size:9px; letter-spacing:2px; color:var(--mu); margin-top:2px; }
 /* Sidebar recursos */
-.rc-sidebar { width:200px; flex-shrink:0; background:rgba(6,8,16,.98);
+.rc-sidebar { width:200px; flex-shrink:0; background:rgba(16,6,7,.98);
   border-right:1px solid var(--brd2-rc); padding:16px 0; display:flex; flex-direction:column; gap:2px; }
 .rc-sidebar-label { font-family:'Orbitron',sans-serif; font-size:7px; letter-spacing:4px;
   color:var(--mu); padding:8px 20px 4px; font-weight:700; }
@@ -877,7 +877,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   color:var(--mu); cursor:pointer; background:none; border:none; transition:all .2s;
   position:relative; text-align:left; width:100%; }
 .rc-cat-btn:hover { color:var(--owh); background:rgba(255,255,255,.04); }
-.rc-cat-btn.active { color:var(--wh); background:rgba(26,111,255,.1); }
+.rc-cat-btn.active { color:var(--wh); background:rgba(255,26,45,.1); }
 .rc-cat-btn.active::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--bl); }
 .rc-cat-btn-icon { font-size:14px; flex-shrink:0; }
 .rc-cat-btn-count { margin-left:auto; font-size:9px; color:var(--mu);
@@ -893,27 +893,27 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
 .rc { background:var(--dk3); border:1px solid var(--brd);
   position:relative; overflow:hidden; transition:border-color .3s,box-shadow .3s;
   clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px)); }
-.rc:hover { border-color:rgba(26,111,255,.4); box-shadow:var(--glow); }
+.rc:hover { border-color:rgba(255,26,45,.4); box-shadow:var(--glow); }
 .rc.gold-cat:hover { border-color:rgba(255,165,0,.4); box-shadow:var(--glow-gold); }
 .rc::after { content:''; position:absolute; top:0; left:0; right:0; height:1px;
   background:linear-gradient(90deg,transparent,var(--bl),transparent); opacity:.7; }
 .rc.gold-cat::after { background:linear-gradient(90deg,transparent,var(--gold),transparent); }
 .rc::before { content:''; position:absolute; top:0; right:0;
-  border-top:14px solid rgba(26,111,255,.4); border-left:14px solid transparent; z-index:1; }
+  border-top:14px solid rgba(255,26,45,.4); border-left:14px solid transparent; z-index:1; }
 .rc.gold-cat::before { border-top-color:rgba(255,165,0,.4); }
 .rc-top { display:flex; align-items:stretch; min-height:110px; border-bottom:1px solid var(--brd); position:relative; }
 .rc-img-wrap { width:130px; flex-shrink:0; position:relative; overflow:hidden; background:rgba(0,0,0,.4); }
 .rc-img { width:100%; height:100%; object-fit:cover; object-position:center; display:block; }
 .rc-img-ph { width:100%; height:100%; min-height:110px; display:flex; align-items:center;
   justify-content:center; font-size:40px;
-  background:radial-gradient(circle at 60% 40%,rgba(26,111,255,.12),rgba(0,0,0,.4)); }
+  background:radial-gradient(circle at 60% 40%,rgba(255,26,45,.12),rgba(0,0,0,.4)); }
 .rc-img-wrap::after { content:''; position:absolute; inset:0;
   background:linear-gradient(90deg,transparent 60%,var(--dk3)); pointer-events:none; }
 .rc-info { flex:1; padding:14px 16px 14px 12px; display:flex; flex-direction:column; justify-content:space-between; }
 .rc-name { font-family:'Orbitron',sans-serif; font-size:13px; font-weight:900; color:var(--wh); letter-spacing:1px; line-height:1.1; }
 .rc-cat-row { display:flex; align-items:center; gap:6px; margin-top:5px; }
 .rc-cat-badge { font-size:8px; font-weight:700; letter-spacing:2px; border:1px solid; padding:2px 8px;
-  color:var(--bl3); border-color:var(--brd); background:rgba(26,111,255,.08); }
+  color:var(--bl3); border-color:var(--brd); background:rgba(255,26,45,.08); }
 .rc-uses-badge { font-size:9px; color:var(--mu); letter-spacing:1px; }
 /* Accuracy block */
 .rc-acc-block { padding:10px 16px 8px; border-bottom:1px solid var(--brd); }
@@ -1021,7 +1021,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <header class="hdr">
     <div class="logo">
       <div class="logo-top">SISTEMA DE ANÁLISES · FREE FIRE</div>
-      <div class="logo-main">SX<em> </em>GG</div>
+      <div class="logo-main">PLANO ESPORTS<em> </em>GG</div>
       <div class="logo-bot">ANÁLISES PROFISSIONAIS</div>
     </div>
     <div class="hdr-r">
@@ -1128,7 +1128,7 @@ body::before{content:'';position:fixed;inset:0;z-index:9999;pointer-events:none;
   <div id="app">
     <!-- WELCOME -->
     <div class="welcome" id="welcomeScreen">
-      <div class="team-name" style="margin-top:0; margin-bottom:20px;">SX GG</div>
+      <div class="team-name" style="margin-top:0; margin-bottom:20px;">PLANO A ESPORTS</div>
       
       <div class="home-tabs">
         <button class="home-tab-btn" onclick="goToTab('col')">🏆 Análises Coletivas</button>
@@ -1628,7 +1628,7 @@ function submitPsyReport() {
   }
   
   const phoneNumber = '5575988387775';
-  const message = `*RELATÓRIO PSICOLÓGICO — SX GG*\n\n*ATLETA:* ${name}\n\n${report}`;
+  const message = `*RELATÓRIO PSICOLÓGICO — PLANO A ESPORTS*\n\n*ATLETA:* ${name}\n\n${report}`;
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
   
@@ -1835,7 +1835,7 @@ function filterPsyReports() {
 
 function downloadReport(index) {
   const r = allPsyReports[index];
-  const content = `RELATÓRIO PSICOLÓGICO — SX GG\n\nATLETA: ${r.atleta}\nDATA: ${r.data}\n\n${r.relatorio}`;
+  const content = `RELATÓRIO PSICOLÓGICO — PLANO A ESPORTS\n\nATLETA: ${r.atleta}\nDATA: ${r.data}\n\n${r.relatorio}`;
   const blob = new Blob([content], { type: 'text/plain' });
   const url = window.URL.createObjectURL(blob);
   const a = document.createElement('a');
@@ -2334,7 +2334,7 @@ function renderPlayer(name) {
       <button class="tab-btn active" onclick="switchTab('stats',this)">📊 Meus Stats</button>
       <button class="tab-btn" onclick="switchTab('goals',this)">🎯 Metas de Performance</button>
       <button class="tab-btn cmp-btn" onclick="switchTab('cmp',this)">⚔️ Análises Comparativas</button>
-      <button class="tab-btn cmp-btn" style="background:rgba(26,111,255,.1);border-color:var(--bl);color:var(--bl3);" onclick="openCompModal()">⚔️ Comparativo X1</button>
+      <button class="tab-btn cmp-btn" style="background:rgba(255,26,45,.1);border-color:var(--bl);color:var(--bl3);" onclick="openCompModal()">⚔️ Comparativo X1</button>
       <button class="tab-btn cmp-btn" onclick="switchTab('ind',this)">👤 Análises Individuais</button>
       <button class="tab-btn cmp-btn" onclick="switchTab('recursos',this)">🎯 Recursos de Combate</button>
     </div>
@@ -3348,8 +3348,8 @@ function updateCompAn() {
       labels: pieLabels,
       datasets: [{
         data: pieData,
-        backgroundColor: ['rgba(26,111,255,.7)', 'rgba(204,102,255,.7)'],
-        borderColor: ['#1A6FFF', '#cc66ff'],
+        backgroundColor: ['rgba(255,26,45,.7)', 'rgba(204,102,255,.7)'],
+        borderColor: ['#FF1A2D', '#cc66ff'],
         borderWidth: 2
       }]
     },
@@ -3379,7 +3379,7 @@ function updateCompAn() {
     data: {
       labels: lineLabels,
       datasets: [
-        { label: metALabel, data: lineDataA, borderColor: '#1A6FFF', backgroundColor: 'rgba(26,111,255,.1)', fill: true, tension: 0.4 },
+        { label: metALabel, data: lineDataA, borderColor: '#FF1A2D', backgroundColor: 'rgba(255,26,45,.1)', fill: true, tension: 0.4 },
         { label: metBLabel, data: lineDataB, borderColor: '#cc66ff', backgroundColor: 'rgba(204,102,255,.1)', fill: true, tension: 0.4 }
       ]
     },
@@ -3500,7 +3500,7 @@ function renderComparative(focusName, tipoFilter) {
         <div class="contrib-donut">
           <svg width="90" height="90" viewBox="0 0 90 90">
             <circle cx="45" cy="45" r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="9"/>
-            <circle cx="45" cy="45" r="${r}" fill="none" stroke="${rankPos===1?'#ffd700':'#1A6FFF'}" stroke-width="9"
+            <circle cx="45" cy="45" r="${r}" fill="none" stroke="${rankPos===1?'#ffd700':'#FF1A2D'}" stroke-width="9"
               stroke-dasharray="${dash.toFixed(2)} ${circ.toFixed(2)}" stroke-linecap="round"
               style="filter:drop-shadow(0 0 4px ${rankPos===1?'rgba(255,215,0,.5)':'rgba(255,255,255,.5)'})"/>
           </svg>
@@ -3604,17 +3604,17 @@ function renderComparative(focusName, tipoFilter) {
 
 function buildCmpCharts(pStats, focusName) {
   const ax = {
-    ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},
+    ticks:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"}},
     grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}
   };
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
-    titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
+  const tt = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
+    titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
 
   // Helper: cores dos jogadores (foco = dourado)
   const barColors = (sorted) => sorted.map(p =>
     p.isFocus ? 'rgba(255,215,0,.9)'   : 'rgba(255,255,255,.6)');
   const borderColors = (sorted) => sorted.map(p =>
-    p.isFocus ? '#ffd700' : '#1A6FFF');
+    p.isFocus ? '#ffd700' : '#FF1A2D');
 
   // Cria chart bar horizontal
   function makeBar(id, sorted, getter, labelFmt) {
@@ -3665,7 +3665,7 @@ function buildCmpCharts(pStats, focusName) {
     const maxKd = Math.max(...pStats.map(p=>p.kd))    || 1;
     const maxHS = Math.max(...pStats.map(p=>p.avgHS)) || 1;
 
-    const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+    const palette = ['#FF1A2D','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#FF4D5C','#ff6666'];
     charts.cmp_radar = new Chart(rCtx, {
       type: 'radar',
       data: {
@@ -3686,9 +3686,9 @@ function buildCmpCharts(pStats, focusName) {
       },
       options:{
         responsive:true, maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
+          pointLabels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
           angleLines:{color:'rgba(255,255,255,.07)'}}}
       }
     });
@@ -3697,23 +3697,23 @@ function buildCmpCharts(pStats, focusName) {
 
 function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, totalCura){
   const ax = {
-    ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},
+    ticks:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"}},
     grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}
   };
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
-    titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
+  const tt = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,
+    titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
 
   // Kills line
   const kCtx = document.getElementById('ch_kills')?.getContext('2d');
   if(kCtx){
     const g = kCtx.createLinearGradient(0,0,0,180);
-    g.addColorStop(0,'rgba(77,159,255,.4)');g.addColorStop(1,'rgba(77,159,255,0)');
+    g.addColorStop(0,'rgba(255,77,92,.4)');g.addColorStop(1,'rgba(255,77,92,0)');
     charts.kills = new Chart(kCtx,{type:'line',data:{
       labels:pd.map((_,i)=>`P${i+1}`),
       datasets:[
-        {label:'Kills',data:pd.map(d=>d.kills),fill:true,backgroundColor:g,borderColor:'#4D9FFF',pointBackgroundColor:'#4D9FFF',pointRadius:3,tension:.4,borderWidth:2.5},
+        {label:'Kills',data:pd.map(d=>d.kills),fill:true,backgroundColor:g,borderColor:'#FF4D5C',pointBackgroundColor:'#FF4D5C',pointRadius:3,tension:.4,borderWidth:2.5},
         {label:'Assist',data:pd.map(d=>d.ass),fill:false,borderColor:'rgba(255,255,255,.4)',pointBackgroundColor:'#fff',pointRadius:2,tension:.4,borderWidth:1.5,borderDash:[4,3]}
-      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
+      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
   }
 
   // Dano line
@@ -3725,8 +3725,8 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
       labels:pd.map((_,i)=>`P${i+1}`),
       datasets:[
         {label:'Dano',data:pd.map(d=>d.dano),fill:true,backgroundColor:g2,borderColor:'rgba(255,255,255,.8)',pointBackgroundColor:'#fff',pointRadius:3,tension:.4,borderWidth:2.5},
-        {label:'Cura',data:pd.map(d=>d.cura),fill:false,borderColor:'#1A6FFF',pointBackgroundColor:'#4D9FFF',pointRadius:2,tension:.4,borderWidth:1.8,borderDash:[4,3]}
-      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
+        {label:'Cura',data:pd.map(d=>d.cura),fill:false,borderColor:'#FF1A2D',pointBackgroundColor:'#FF4D5C',pointRadius:2,tension:.4,borderWidth:1.8,borderDash:[4,3]}
+      ]},options:{responsive:true,maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1400}}});
   }
 
   // Radar
@@ -3737,10 +3737,10 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
       datasets:[{label:name,data:[
         Math.min(avgK/3*100,100),Math.min(avgD/2000*100,100),Math.min(avgHS,100),
         Math.min(kd/5*100,100),Math.min(avgA/3*100,100),Math.min(avg(pd.map(d=>d.cura))/2000*100,100)
-      ],fill:true,backgroundColor:'rgba(255,255,255,.1)',borderColor:'#1A6FFF',pointBackgroundColor:'#4D9FFF',borderWidth:2,pointRadius:3}]},
+      ],fill:true,backgroundColor:'rgba(255,255,255,.1)',borderColor:'#FF1A2D',pointBackgroundColor:'#FF4D5C',borderWidth:2,pointRadius:3}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.13)'},
-      pointLabels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'",weight:'700'}},
+      pointLabels:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'",weight:'700'}},
       angleLines:{color:'rgba(255,255,255,.08)'}}}}});
   }
 
@@ -3750,9 +3750,9 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
     charts.mapa = new Chart(mCtx,{type:'bar',data:{
       labels:mapSt.map(m=>m.map),
       datasets:[
-        {label:'Kills',data:mapSt.map(m=>m.kills),backgroundColor:'rgba(255,255,255,.7)',borderColor:'#1A6FFF',borderWidth:1,borderRadius:3},
-        {label:'Dano Méd',data:mapSt.map(m=>m.dano),backgroundColor:'rgba(200,212,232,.25)',borderColor:'#C8D4E8',borderWidth:1,borderRadius:3}
-      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1200}}});
+        {label:'Kills',data:mapSt.map(m=>m.kills),backgroundColor:'rgba(255,255,255,.7)',borderColor:'#FF1A2D',borderWidth:1,borderRadius:3},
+        {label:'Dano Méd',data:mapSt.map(m=>m.dano),backgroundColor:'rgba(232,200,203,.25)',borderColor:'#E8C8CB',borderWidth:1,borderRadius:3}
+      ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:ax},animation:{duration:1200}}});
   }
 
   // Pizza
@@ -3765,10 +3765,10 @@ function buildCharts(pd, mapSt, name, totalK, avgK, avgD, avgHS, kd, avgA, total
     charts.pizza = new Chart(pCtx,{type:'doughnut',data:{
       labels:['Kills','Assistências','Derrubou','Levantou','Ressurgiu'],
       datasets:[{data:[totalK,totalAss,totalDerr,totalLev,totalRes],
-        backgroundColor:['rgba(255,255,255,.88)','rgba(77,159,255,.75)','rgba(200,212,232,.65)','rgba(13,79,204,.8)','rgba(140,190,255,.6)'],
-        borderColor:['#1A6FFF','#4D9FFF','#C8D4E8','#0D4FCC','#8CBEFF'],borderWidth:2}]},
+        backgroundColor:['rgba(255,255,255,.88)','rgba(255,77,92,.75)','rgba(232,200,203,.65)','rgba(204,13,29,.8)','rgba(255,140,150,.6)'],
+        borderColor:['#FF1A2D','#FF4D5C','#E8C8CB','#CC0D1D','#FF8C96'],borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}}},animation:{animateRotate:true,duration:1500}}});
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}}},animation:{animateRotate:true,duration:1500}}});
   }
 }
 
@@ -3887,7 +3887,7 @@ function renderIndividual(focusName) {
   }
 
   // Donut SVG contrib
-  function donutMini(pct, color='#1A6FFF') {
+  function donutMini(pct, color='#FF1A2D') {
     const r=28, c=2*Math.PI*r, d=(pct/100)*c;
     return `<svg width="70" height="70" viewBox="0 0 70 70" style="transform:rotate(-90deg)">
       <circle cx="35" cy="35" r="${r}" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="7"/>
@@ -4038,7 +4038,7 @@ function renderIndividual(focusName) {
             <div class="contrib-rank-badge">Ranking: <em>${rank===1?'🥇 1º':rank===2?'🥈 2º':rank===3?'🥉 3º':rank+'º'}</em> de ${n}</div>
           </div>`;
         };
-        return dc('💀 KILLS', pctK, rankK, '#1A6FFF') + dc('💥 DANO', pctD, rankD, '#cc66ff') + dc('💊 CURA', pctC, rankC, '#4dff88');
+        return dc('💀 KILLS', pctK, rankK, '#FF1A2D') + dc('💥 DANO', pctD, rankD, '#cc66ff') + dc('💊 CURA', pctC, rankC, '#4dff88');
       })()}
     </div>
 
@@ -4139,9 +4139,9 @@ function renderIndividual(focusName) {
 }
 
 function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
-  const ax = {ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
-  const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+  const ax = {ticks:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+  const tt = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
+  const palette = ['#FF1A2D','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#FF4D5C','#ff6666'];
 
   // ── Bullet HS
   const bulletHsEl = document.getElementById('bullet-hs');
@@ -4194,10 +4194,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       return `<div class="bullet-row">
         <div class="bullet-lbl" style="${p.isFocus?'color:#ffd700;':''}">${p.isFocus?'★ ':''}${esc(p.pl)}</div>
         <div class="bullet-track">
-          <div class="bullet-bar" style="width:${pVal}%;background:${p.kd>=teamAvgKd?'rgba(77,159,255,.8)':'rgba(255,80,120,.6)'};"></div>
+          <div class="bullet-bar" style="width:${pVal}%;background:${p.kd>=teamAvgKd?'rgba(255,77,92,.8)':'rgba(255,80,120,.6)'};"></div>
           <div class="bullet-marker" style="left:${pAvg}%"></div>
         </div>
-        <div class="bullet-val" style="color:${p.kd>=teamAvgKd?'#4D9FFF':'#ff5078'}">${p.kd.toFixed(2)}</div>
+        <div class="bullet-val" style="color:${p.kd>=teamAvgKd?'#FF4D5C':'#ff5078'}">${p.kd.toFixed(2)}</div>
       </div>`;
     }).join('');
   }
@@ -4283,7 +4283,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       labels: mapStats.map(m=>m.map),
       datasets:[{label:'Kills', data:mapStats.map(m=>m.kills),
         backgroundColor: mapStats.map(m=>m.map===best?'rgba(255,215,0,.85)':'rgba(255,255,255,.6)'),
-        borderColor: mapStats.map(m=>m.map===best?'#ffd700':'#1A6FFF'),
+        borderColor: mapStats.map(m=>m.map===best?'#ffd700':'#FF1A2D'),
         borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:ax}}});
   }
@@ -4317,9 +4317,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
         borderWidth:1.5, pointRadius:2,
       }))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
+        pointLabels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'",weight:'700'}},
         angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 
@@ -4337,8 +4337,8 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{
         const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalK} kills / ${p?.totalD} dano`;
       }}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#805A5D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#805A5D',font:{size:9}}}}}});
   }
 
   // ── Scatter HS vs Kills (ID-93)
@@ -4346,12 +4346,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
   if (sctHS) {
     new Chart(sctHS, {type:'scatter', data:{datasets:[{
       data: pStats.map(p=>({x:p.avgHSv, y:p.totalK})),
-      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(77,159,255,.7)'),
+      backgroundColor: pStats.map(p=>p.isFocus?'rgba(255,215,0,.9)':'rgba(255,77,92,.7)'),
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.avgHSv.toFixed(1)}% HS / ${p?.totalK} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'HEADSHOT%',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'HEADSHOT%',color:'#805A5D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#805A5D',font:{size:9}}}}}});
   }
 
   // ── Scatter Dano vs Kills (ID-94)
@@ -4363,8 +4363,8 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalD} dano / ${p?.totalK} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO',color:'#805A5D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'KILLS',color:'#805A5D',font:{size:9}}}}}});
   }
 
   // ── Scatter Cura vs Sobrevivência (ID-95)
@@ -4376,8 +4376,8 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       pointRadius: pStats.map(p=>p.isFocus?8:5),
     }]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=pStats[ctx.dataIndex]; return `${p?.pl}: ${p?.totalCura} cura`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'CURA TOTAL',color:'#5A6880',font:{size:9}}},
-               y:{...ax,title:{display:true,text:'SOBREVIVÊNCIA%',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'CURA TOTAL',color:'#805A5D',font:{size:9}}},
+               y:{...ax,title:{display:true,text:'SOBREVIVÊNCIA%',color:'#805A5D',font:{size:9}}}}}});
   }
 
   // ── Tendência HS (ID-74/75)
@@ -4392,10 +4392,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(hsTrendCtx, {type:'line', data:{
       labels: hsd.map(d=>d.x),
       datasets:[
-        {label:'HS%', data:hsd.map(d=>d.y), fill:false, borderColor:'rgba(77,159,255,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
-        {label:'Média Móvel', data:ma.map(d=>d.y), fill:true, backgroundColor:'rgba(255,255,255,.1)', borderColor:'#1A6FFF', pointRadius:0, tension:.4, borderWidth:2},
+        {label:'HS%', data:hsd.map(d=>d.y), fill:false, borderColor:'rgba(255,77,92,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
+        {label:'Média Móvel', data:ma.map(d=>d.y), fill:true, backgroundColor:'rgba(255,255,255,.1)', borderColor:'#FF1A2D', pointRadius:0, tension:.4, borderWidth:2},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ── Evolução kills (ID-90)
@@ -4407,7 +4407,7 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       labels,
       datasets:[{label:'Kills', data:focusRows.map(d=>d.kills),
         backgroundColor: focusRows.map((_,i)=>i<half?'rgba(255,255,255,.5)':'rgba(77,255,136,.6)'),
-        borderColor: focusRows.map((_,i)=>i<half?'#1A6FFF':'#4dff88'),
+        borderColor: focusRows.map((_,i)=>i<half?'#FF1A2D':'#4dff88'),
         borderWidth:1, borderRadius:2}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
@@ -4433,9 +4433,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
           data:[(d.mK/maxK)*100,(d.mD/maxD)*100,(d.mA/maxA)*100,(d.mkd/maxKD)*100,(d.mHS/maxHS)*100],
           fill:true, backgroundColor:palette[i]+'22', borderColor:palette[i], pointBackgroundColor:palette[i], borderWidth:1.8, pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#805A5D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     }
 
     const barTipoCtx = document.getElementById('ind_bar_tipo')?.getContext('2d');
@@ -4448,11 +4448,11 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       new Chart(barTipoCtx, {type:'bar', data:{
         labels: tiposData.map(d=>d.t),
         datasets:[
-          {label:'Kills', data:tiposData.map(d=>d.kills), backgroundColor:'rgba(255,255,255,.7)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3},
+          {label:'Kills', data:tiposData.map(d=>d.kills), backgroundColor:'rgba(255,255,255,.7)', borderColor:'#FF1A2D', borderWidth:1, borderRadius:3},
           {label:'Dano/100', data:tiposData.map(d=>Math.round(d.dano/100)), backgroundColor:'rgba(204,102,255,.5)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
           {label:'K/D×10', data:tiposData.map(d=>parseFloat((d.kd*10).toFixed(1))), backgroundColor:'rgba(255,215,0,.5)', borderColor:'#ffd700', borderWidth:1, borderRadius:3},
         ]
-      }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+      }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
     }
   }
 
@@ -4472,12 +4472,12 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
       labels: bpData.map(d=>d.pl),
       datasets:[
         {label:'Mínimo→Q1', data:bpData.map(d=>d.q1-d.mn), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
-        {label:'Q1→Mediana', data:bpData.map(d=>d.med-d.q1), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.5)':'rgba(255,255,255,.45)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#1A6FFF'), borderWidth:1, stack:'s'},
-        {label:'Mediana→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.3)':'rgba(77,159,255,.35)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#4D9FFF'), borderWidth:1, stack:'s'},
+        {label:'Q1→Mediana', data:bpData.map(d=>d.med-d.q1), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.5)':'rgba(255,255,255,.45)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#FF1A2D'), borderWidth:1, stack:'s'},
+        {label:'Mediana→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:bpData.map(d=>d.isFocus?'rgba(255,215,0,.3)':'rgba(255,77,92,.35)'), borderColor:bpData.map(d=>d.isFocus?'#ffd700':'#FF4D5C'), borderWidth:1, stack:'s'},
         {label:'Q3→Máx', data:bpData.map(d=>d.mx-d.q3), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
       ]
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return `${d?.pl}: Min ${d?.mn} | Q1 ${d?.q1} | Med ${d?.med} | Q3 ${d?.q3} | Max ${d?.mx}`;}}},},
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return `${d?.pl}: Min ${d?.mn} | Q1 ${d?.q1} | Med ${d?.med} | Q3 ${d?.q3} | Max ${d?.mx}`;}}},},
       scales:{x:ax,y:{...ax,beginAtZero:true,stacked:true}}}});
   }
 
@@ -4501,9 +4501,9 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
           data:[(d.mK/maxK)*100,(d.mD/maxD)*100,(d.mA/maxA)*100,(d.mCura/maxC)*100,(d.mkd/maxKD)*100],
           fill:true, backgroundColor:palette[i]+'22', borderColor:palette[i], pointBackgroundColor:palette[i], borderWidth:2, pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#805A5D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     } else {
       if(rfCtx.canvas.parentNode) rfCtx.canvas.parentNode.innerHTML = '<div style="padding:20px;color:var(--mu);font-size:11px;text-align:center">Sem dados de função disponíveis.</div>';
     }
@@ -4524,10 +4524,10 @@ function buildIndCharts(pStats, focusSt, focusRows, mapStats, tipos) {
     new Chart(dsCtx, {type:'bar', data:{
       labels: dias,
       datasets:[
-        {label:'Avg Kills', data:avgK2, backgroundColor:'rgba(255,255,255,.6)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3},
+        {label:'Avg Kills', data:avgK2, backgroundColor:'rgba(255,255,255,.6)', borderColor:'#FF1A2D', borderWidth:1, borderRadius:3},
         {label:'Avg Dano/100', data:avgD2.map(v=>v!==null?Math.round(v/100):null), backgroundColor:'rgba(204,102,255,.45)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 }
 
@@ -4864,9 +4864,9 @@ function renderColetivas() {
 }
 
 function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
-  const ax = {ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-  const tt = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
-  const palette = ['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#4D9FFF','#ff6666'];
+  const ax = {ticks:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+  const tt = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
+  const palette = ['#FF1A2D','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40','#FF4D5C','#ff6666'];
 
   // ID-01: Kills por mapa
   const c1 = document.getElementById('col_kills_mapa')?.getContext('2d');
@@ -4875,7 +4875,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c1, {type:'bar', data:{labels:mapSt.map(m=>m.map),
       datasets:[{label:'Kills', data:mapSt.map(m=>m.kills),
         backgroundColor:mapSt.map(m=>m.map===best?'rgba(255,215,0,.85)':'rgba(255,255,255,.6)'),
-        borderColor:mapSt.map(m=>m.map===best?'#ffd700':'#1A6FFF'), borderWidth:1, borderRadius:3}]
+        borderColor:mapSt.map(m=>m.map===best?'#ffd700':'#FF1A2D'), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -4901,9 +4901,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         fill:true,backgroundColor:palette[i%palette.length]+'18',borderColor:palette[i%palette.length],
         pointBackgroundColor:palette[i%palette.length],borderWidth:1.5,pointRadius:2}))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+        pointLabels:{color:'#805A5D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 
   // ID-08: HS por mapa
@@ -4918,7 +4918,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         {type:'line', label:'Média Geral', data:mapSt.map(()=>avgHSTeam.toFixed(1)),
           borderColor:'rgba(255,215,0,.7)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-05: Heatmap cura
@@ -4960,7 +4960,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         {label:'Levantamentos', data:mapSt.map(m=>m.lev), backgroundColor:'rgba(77,255,136,.6)', borderColor:'#4dff88', borderWidth:1, borderRadius:3},
         {label:'Ressurgimentos', data:mapSt.map(m=>m.res), backgroundColor:'rgba(204,102,255,.5)', borderColor:'#cc66ff', borderWidth:1, borderRadius:3},
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-09: Kills por dia da semana
@@ -4971,7 +4971,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c7, {type:'bar', data:{labels:diaSt.map(d=>d.dia),
       datasets:[{label:'Kills', data:diaSt.map(d=>d.games>0?d.kills:null),
         backgroundColor:diaSt.map(d=>d.dia===pico.dia?'rgba(255,215,0,.85)':'rgba(255,255,255,.55)'),
-        borderColor:diaSt.map(d=>d.dia===pico.dia?'#ffd700':'#1A6FFF'), borderWidth:1, borderRadius:3}]
+        borderColor:diaSt.map(d=>d.dia===pico.dia?'#ffd700':'#FF1A2D'), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -4992,10 +4992,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     const teamAvgD = avg(dateSt.map(d=>d.dano));
     new Chart(c9, {type:'line', data:{labels:dateSt.map(d=>d.data),
       datasets:[
-        {label:'Dano Médio', data:dateSt.map(d=>d.dano), fill:true, backgroundColor:g, borderColor:'#1A6FFF', pointRadius:3, tension:.4, borderWidth:2},
+        {label:'Dano Médio', data:dateSt.map(d=>d.dano), fill:true, backgroundColor:g, borderColor:'#FF1A2D', pointRadius:3, tension:.4, borderWidth:2},
         {label:'Média Geral', data:dateSt.map(()=>Math.round(teamAvgD)), borderColor:'rgba(255,215,0,.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-26: Tendência HS com média móvel
@@ -5007,10 +5007,10 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     });
     new Chart(c10, {type:'line', data:{labels:dateSt.map(d=>d.data),
       datasets:[
-        {label:'HS%', data:dateSt.map(d=>d.hs.toFixed(1)), fill:false, borderColor:'rgba(77,159,255,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
+        {label:'HS%', data:dateSt.map(d=>d.hs.toFixed(1)), fill:false, borderColor:'rgba(255,77,92,.5)', pointRadius:2, tension:.3, borderWidth:1.5, borderDash:[3,3]},
         {label:'Média Móvel', data:ma.map(v=>v.toFixed(1)), fill:true, backgroundColor:'rgba(204,102,255,.1)', borderColor:'#cc66ff', pointRadius:0, tension:.4, borderWidth:2}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
   // IDs 11/12/44/45: Comparativo competições
@@ -5019,14 +5019,14 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     if (c11) new Chart(c11, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
       datasets:[{label:'Kills Totais', data:tipoSt.map(t=>t.kills),
         backgroundColor:tipoSt.map((_,i)=>['rgba(255,255,255,.7)','rgba(255,215,0,.7)','rgba(255,80,120,.6)','rgba(77,255,136,.6)'][i%4]),
-        borderColor:tipoSt.map((_,i)=>['#1A6FFF','#ffd700','#ff5078','#4dff88'][i%4]), borderWidth:1, borderRadius:3}]
+        borderColor:tipoSt.map((_,i)=>['#FF1A2D','#ffd700','#ff5078','#4dff88'][i%4]), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
 
     const c12 = document.getElementById('col_comp_dano')?.getContext('2d');
     if (c12) new Chart(c12, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
       datasets:[{label:'Dano Médio', data:tipoSt.map(t=>t.dano),
-        backgroundColor:tipoSt.map((_,i)=>['rgba(204,102,255,.7)','rgba(77,255,136,.6)','rgba(255,159,64,.6)','rgba(77,159,255,.6)'][i%4]),
-        borderColor:tipoSt.map((_,i)=>['#cc66ff','#4dff88','#ff9f40','#4D9FFF'][i%4]), borderWidth:1, borderRadius:3}]
+        backgroundColor:tipoSt.map((_,i)=>['rgba(204,102,255,.7)','rgba(77,255,136,.6)','rgba(255,159,64,.6)','rgba(255,77,92,.6)'][i%4]),
+        borderColor:tipoSt.map((_,i)=>['#cc66ff','#4dff88','#ff9f40','#FF4D5C'][i%4]), borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
 
     const c44 = document.getElementById('col_comp_res')?.getContext('2d');
@@ -5036,7 +5036,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
 
     const c45 = document.getElementById('col_comp_cura')?.getContext('2d');
     if (c45) new Chart(c45, {type:'bar', data:{labels:tipoSt.map(t=>t.tipo),
-      datasets:[{label:'Cura Total', data:tipoSt.map(t=>t.cura), backgroundColor:'rgba(255,255,255,.6)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:3}]
+      datasets:[{label:'Cura Total', data:tipoSt.map(t=>t.cura), backgroundColor:'rgba(255,255,255,.6)', borderColor:'#FF1A2D', borderWidth:1, borderRadius:3}]
     }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tt},scales:{x:ax,y:{...ax,beginAtZero:true}}}});
   }
 
@@ -5056,7 +5056,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         pointRadius:7}
     ]}, options:{responsive:true,maintainAspectRatio:false,
       plugins:{tooltip:{...tt,callbacks:{label:ctx=>{const p=ps[ctx.dataIndex]; return `${p?.pl}: ${p?.x} dano / ${p?.y} kills`;}}},legend:{display:false}},
-      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#5A6880',font:{size:9}}},y:{...ax,title:{display:true,text:'KILLS',color:'#5A6880',font:{size:9}}}}}});
+      scales:{x:{...ax,title:{display:true,text:'DANO TOTAL',color:'#805A5D',font:{size:9}}},y:{...ax,title:{display:true,text:'KILLS',color:'#805A5D',font:{size:9}}}}}});
   }
 
   const funilKillEl = document.getElementById('col_funil_kills');
@@ -5086,19 +5086,19 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     if (fc1) new Chart(fc1, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.kills), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const fc2 = document.getElementById('col_func_dano')?.getContext('2d');
     if (fc2) new Chart(fc2, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.dano), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const fc3 = document.getElementById('col_func_cura')?.getContext('2d');
     if (fc3) new Chart(fc3, {type:'doughnut', data:{
       labels:funcSt.map(f=>f.func),
       datasets:[{data:funcSt.map(f=>f.cura), backgroundColor:funcSt.map((_,i)=>palette[i%palette.length]+'CC'), borderColor:funcSt.map((_,i)=>palette[i%palette.length]), borderWidth:2}]
-    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
+    }, options:{responsive:true,maintainAspectRatio:false,cutout:'55%', plugins:{legend:{labels:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"},boxWidth:8}},tooltip:tt},animation:{duration:1200}}});
 
     const rfcCtx = document.getElementById('col_radar_func')?.getContext('2d');
     if (rfcCtx) {
@@ -5111,9 +5111,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
           data:[(f.kills/f.games/maxK)*100,(f.dano/f.games/maxD)*100,(f.ass/f.games/maxA)*100,(f.cura/f.games/maxC)*100],
           fill:true,backgroundColor:palette[i]+'22',borderColor:palette[i],pointBackgroundColor:palette[i],borderWidth:2,pointRadius:3}))
       }, options:{responsive:true,maintainAspectRatio:false,
-        plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+        plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
         scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+          pointLabels:{color:'#805A5D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
     }
   }
 
@@ -5129,7 +5129,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         {label:'Mortes', data:mortesArr, fill:false, borderColor:'rgba(255,80,120,.6)', pointBackgroundColor:mortesArr.map(v=>v>avgM*1.5?'#ff5078':'rgba(255,80,120,.5)'), pointRadius:mortesArr.map(v=>v>avgM*1.5?5:2), tension:.3, borderWidth:1.5},
         {label:'Média', data:colData22.map(()=>avgM.toFixed(2)), borderColor:'rgba(255,215,0,.5)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false}
       ]
-    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:tt},scales:{x:{...ax,ticks:{display:false}},y:{...ax,beginAtZero:true}}}});
+    }, options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:tt},scales:{x:{...ax,ticks:{display:false}},y:{...ax,beginAtZero:true}}}});
   }
 
   // ID-35/36: Box plot coletivo
@@ -5146,12 +5146,12 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
     new Chart(c35, {type:'bar', data:{labels:bpData.map(d=>d.pl),
       datasets:[
         {label:'Min→Q1', data:bpData.map(d=>d.q1-d.mn), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
-        {label:'Q1→Med', data:bpData.map(d=>d.med-d.q1), backgroundColor:'rgba(255,255,255,.45)', borderColor:'#1A6FFF', borderWidth:1, stack:'s'},
-        {label:'Med→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:'rgba(77,159,255,.35)', borderColor:'#4D9FFF', borderWidth:1, stack:'s'},
+        {label:'Q1→Med', data:bpData.map(d=>d.med-d.q1), backgroundColor:'rgba(255,255,255,.45)', borderColor:'#FF1A2D', borderWidth:1, stack:'s'},
+        {label:'Med→Q3', data:bpData.map(d=>d.q3-d.med), backgroundColor:'rgba(255,77,92,.35)', borderColor:'#FF4D5C', borderWidth:1, stack:'s'},
         {label:'Q3→Max', data:bpData.map(d=>d.mx-d.q3), backgroundColor:'rgba(0,0,0,0)', borderColor:'rgba(0,0,0,0)', borderWidth:0, stack:'s'},
       ]
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return d?`${d.pl} | Q1:${d.q1} Med:${d.med} Q3:${d.q3} Max:${d.mx}`:'';}}},},
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:9}}},tooltip:{...tt,callbacks:{label:ctx=>{const d=bpData[ctx.dataIndex]; return d?`${d.pl} | Q1:${d.q1} Med:${d.med} Q3:${d.q3} Max:${d.mx}`:'';}}},},
       scales:{x:ax,y:{...ax,beginAtZero:true,stacked:true}}}});
   }
 
@@ -5169,7 +5169,7 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
       <div class="funnel-arrow">▼</div>
       <div class="funnel-stage">
         <div class="funnel-bar-outer" style="width:${tK+tA>0?Math.max((tA/(tK+tA))*100,8).toFixed(0):30}%">
-          <div class="funnel-bar-inner" style="width:100%;background:rgba(77,159,255,.6)">${tA} ASSISTÊNCIAS</div>
+          <div class="funnel-bar-inner" style="width:100%;background:rgba(255,77,92,.6)">${tA} ASSISTÊNCIAS</div>
         </div>
       </div>
       <div class="funnel-arrow">▼</div>
@@ -5201,9 +5201,9 @@ function buildColCharts(mapSt, tipoSt, funcSt, dateSt, diaSt, salaSt) {
         data:[(s.kills/maxK)*100,(s.dano/maxD)*100,(s.ass/maxA)*100],
         fill:true,backgroundColor:palette[i]+'22',borderColor:palette[i],pointBackgroundColor:palette[i],borderWidth:1.8,pointRadius:3}))
     }, options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{labels:{color:'#5A6880',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
+      plugins:{legend:{labels:{color:'#805A5D',font:{size:8,family:"'Barlow Condensed'"},boxWidth:8}}},
       scales:{r:{ticks:{display:false},grid:{color:'rgba(255,255,255,.1)'},
-        pointLabels:{color:'#5A6880',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
+        pointLabels:{color:'#805A5D',font:{size:8}},angleLines:{color:'rgba(255,255,255,.07)'}}}}});
   }
 }
 
@@ -5231,13 +5231,13 @@ function svgPizza(slices, size=120) {
     const x1=cx+r*Math.cos(angle), y1=cy+r*Math.sin(angle);
     const x2=cx+r*Math.cos(angle+a), y2=cy+r*Math.sin(angle+a);
     const lg = a > Math.PI ? 1 : 0;
-    paths += `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${lg},1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${s.c}" opacity=".88" stroke="#080C14" stroke-width="1.5"/>`;
+    paths += `<path d="M${cx},${cy} L${x1.toFixed(1)},${y1.toFixed(1)} A${r},${r} 0 ${lg},1 ${x2.toFixed(1)},${y2.toFixed(1)} Z" fill="${s.c}" opacity=".88" stroke="#140809" stroke-width="1.5"/>`;
     // label no slice
     const midA = angle + a/2;
     const lx = cx + (r*0.65)*Math.cos(midA), ly = cy + (r*0.65)*Math.sin(midA);
     const pct = ((s.v/total)*100).toFixed(0);
     if (parseFloat(pct) >= 8) paths += `<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" text-anchor="middle" dominant-baseline="middle" font-size="9" font-weight="700" fill="#fff">${pct}%</text>`;
-    legends += `<div style="display:flex;align-items:center;gap:5px;font-size:9px;color:#C8D4E8;"><span style="width:8px;height:8px;border-radius:50%;background:${s.c};flex-shrink:0;"></span>${s.l}: <strong style="color:#fff;">${s.v}</strong></div>`;
+    legends += `<div style="display:flex;align-items:center;gap:5px;font-size:9px;color:#E8C8CB;"><span style="width:8px;height:8px;border-radius:50%;background:${s.c};flex-shrink:0;"></span>${s.l}: <strong style="color:#fff;">${s.v}</strong></div>`;
     angle += a;
   });
   return `<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
@@ -5247,13 +5247,13 @@ function svgPizza(slices, size=120) {
 }
 
 // SVG barras horizontais
-function svgBars(items, color='#1A6FFF', maxW=240) {
+function svgBars(items, color='#FF1A2D', maxW=240) {
   const maxV = Math.max(...items.map(i=>i.v),1);
   return items.map(it => {
     const w = Math.max((it.v/maxV)*maxW,2);
     return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-      <div style="width:90px;font-size:10px;color:#C8D4E8;text-align:right;flex-shrink:0;">${it.l}</div>
-      <div style="flex:1;height:18px;background:#0A1018;border-radius:2px;overflow:hidden;position:relative;">
+      <div style="width:90px;font-size:10px;color:#E8C8CB;text-align:right;flex-shrink:0;">${it.l}</div>
+      <div style="flex:1;height:18px;background:#180A0B;border-radius:2px;overflow:hidden;position:relative;">
         <div style="width:${w}px;max-width:100%;height:100%;background:${it.c||color};border-radius:2px;display:flex;align-items:center;padding-left:6px;">
           <span style="font-size:10px;font-weight:700;color:#fff;">${it.v}</span>
         </div>
@@ -5263,7 +5263,7 @@ function svgBars(items, color='#1A6FFF', maxW=240) {
 }
 
 // SVG gauge / sinal (semicircular)
-function svgGauge(val, max, label, color='#1A6FFF', size=100) {
+function svgGauge(val, max, label, color='#FF1A2D', size=100) {
   const pct = Math.min(val/Math.max(max,1),1);
   const angle = pct * Math.PI; // 0 to PI
   const r = size/2 - 10, cx = size/2, cy = size/2 + 10;
@@ -5277,32 +5277,32 @@ function svgGauge(val, max, label, color='#1A6FFF', size=100) {
     : `M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${x2.toFixed(1)},${y2.toFixed(1)}`;
   return `<div style="text-align:center;">
     <svg width="${size}" height="${size/2+18}" viewBox="0 0 ${size} ${size/2+18}">
-      <path d="M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${(cx+r).toFixed(1)},${cy}" fill="none" stroke="#1A2540" stroke-width="8"/>
+      <path d="M${(cx-r).toFixed(1)},${cy} A${r},${r} 0 0,1 ${(cx+r).toFixed(1)},${cy}" fill="none" stroke="#401A1D" stroke-width="8"/>
       <path d="${arcPath}" fill="none" stroke="${color}" stroke-width="8" stroke-linecap="round"/>
       <text x="${cx}" y="${cy+14}" text-anchor="middle" font-size="12" font-weight="900" fill="#fff">${typeof val==='number'?val.toFixed(1):val}</text>
     </svg>
-    <div style="font-size:8px;letter-spacing:2px;color:#5A6880;margin-top:2px;">${label}</div>
+    <div style="font-size:8px;letter-spacing:2px;color:#805A5D;margin-top:2px;">${label}</div>
   </div>`;
 }
 
 // SVG Overall circular (full circle progress)
-function svgOverall(score, label, color='#1A6FFF', size=90) {
+function svgOverall(score, label, color='#FF1A2D', size=90) {
   const pct = Math.min(score/100,1);
   const r=size/2-8, c=2*Math.PI*r, dash=pct*c;
   const col = score>=75?'#00C853':score>=50?'#FFD700':score>=25?'#FF9F40':'#FF5252';
   return `<div style="text-align:center;">
     <div style="position:relative;width:${size}px;height:${size}px;margin:0 auto;">
       <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="transform:rotate(-90deg)">
-        <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#1A2540" stroke-width="7"/>
+        <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="#401A1D" stroke-width="7"/>
         <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col}" stroke-width="7"
           stroke-dasharray="${dash.toFixed(1)} ${c.toFixed(1)}" stroke-linecap="round"/>
       </svg>
       <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
         <div style="font-size:16px;font-weight:900;color:${col};">${Math.round(score)}</div>
-        <div style="font-size:7px;color:#5A6880;letter-spacing:1px;">OVR</div>
+        <div style="font-size:7px;color:#805A5D;letter-spacing:1px;">OVR</div>
       </div>
     </div>
-    <div style="font-size:9px;color:#C8D4E8;margin-top:4px;max-width:${size}px;">${label}</div>
+    <div style="font-size:9px;color:#E8C8CB;margin-top:4px;max-width:${size}px;">${label}</div>
   </div>`;
 }
 
@@ -5310,13 +5310,13 @@ function svgOverall(score, label, color='#1A6FFF', size=90) {
 function svgCone(items) {
   const n = Math.min(items.length, 5);
   const levels = items.slice(0,n);
-  const colors = ['#FFD700','#C0C0C0','#CD7F32','#4D9FFF','#cc66ff'];
+  const colors = ['#FFD700','#C0C0C0','#CD7F32','#FF4D5C','#cc66ff'];
   const maxW = 260;
   return `<div style="display:flex;flex-direction:column;align-items:center;gap:3px;">
     ${levels.map((it,i) => {
       const w = maxW * (0.3 + (0.7 * (i+1)/n));
       return `<div style="width:${w}px;background:${colors[i]};padding:5px 10px;text-align:center;clip-path:polygon(8px 0,calc(100% - 8px) 0,100% 100%,0 100%);">
-        <span style="font-size:10px;font-weight:700;color:#080C14;">${i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':''}${it.l}: <strong>${it.v}</strong></span>
+        <span style="font-size:10px;font-weight:700;color:#140809;">${i===0?'🥇 ':i===1?'🥈 ':i===2?'🥉 ':''}${it.l}: <strong>${it.v}</strong></span>
       </div>`;
     }).join('')}
   </div>`;
@@ -5326,7 +5326,7 @@ function svgCone(items) {
 function svgTreemap(mapSt) {
   if (!mapSt.length) return '';
   const total = mapSt.reduce((a,m)=>a+m.kills,0)||1;
-  const colors=['#1A6FFF','#cc66ff','#4dff88','#ffd700','#ff5078','#ff9f40','#4D9FFF'];
+  const colors=['#FF1A2D','#cc66ff','#4dff88','#ffd700','#ff5078','#ff9f40','#FF4D5C'];
   const items = mapSt.slice(0,7);
   return `<div style="display:flex;flex-wrap:wrap;gap:4px;align-items:flex-end;">
     ${items.map((m,i)=>{
@@ -5470,7 +5470,7 @@ function generateTacticalPDF() {
       const mapaPerigo= [...mapSt].sort((a,b)=>b.mortes-a.mortes)[0];
 
       // Geração do HTML do relatório
-      const green='#00C853', red='#FF1744', blue='#1A6FFF', gold='#FFD700', purple='#CE93D8';
+      const green='#00C853', red='#FF1744', blue='#FF1A2D', gold='#FFD700', purple='#CE93D8';
 
       const playerRows = pStats.map((p,i) => {
         const medals = ['🥇','🥈','🥉'];
@@ -5478,17 +5478,17 @@ function generateTacticalPDF() {
         const rD = rankOf(pStats, p.aD, x=>x.aD);
         const kdbg = p.kd>=1?'#00C85320':'#FF174420';
         const kdc = p.kd>=1?green:red;
-        return `<tr style="background:${i%2===0?'#0C1220':'#0A1018'};border-bottom:1px solid #1A2540;">
+        return `<tr style="background:${i%2===0?'#200C0E':'#180A0B'};border-bottom:1px solid #401A1D;">
           <td style="padding:8px 10px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:900;color:${gold}">${medals[i]||'#'+(i+1)}</td>
           <td style="padding:8px 10px;font-weight:700;color:#fff;font-size:11px;">${p.pl}</td>
-          <td style="padding:8px 10px;color:#C8D4E8;font-size:10px;">${p.funcao}</td>
+          <td style="padding:8px 10px;color:#E8C8CB;font-size:10px;">${p.funcao}</td>
           <td style="padding:8px 10px;text-align:center;font-weight:900;color:${blue};font-size:13px;">${p.tK}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${Math.round(p.aD)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.tA}</td>
+          <td style="padding:8px 10px;text-align:center;color:#E8C8CB;">${Math.round(p.aD)}</td>
+          <td style="padding:8px 10px;text-align:center;color:#E8C8CB;">${p.tA}</td>
           <td style="padding:8px 10px;text-align:center;background:${kdbg};color:${kdc};font-weight:700;">${p.kd.toFixed(2)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.aHS.toFixed(1)}%</td>
+          <td style="padding:8px 10px;text-align:center;color:#E8C8CB;">${p.aHS.toFixed(1)}%</td>
           <td style="padding:8px 10px;text-align:center;color:${p.aM<=1?green:red};">${p.aM.toFixed(1)}</td>
-          <td style="padding:8px 10px;text-align:center;color:#C8D4E8;">${p.tC}</td>
+          <td style="padding:8px 10px;text-align:center;color:#E8C8CB;">${p.tC}</td>
           <td style="padding:8px 10px;text-align:center;color:${green};">${p.killConf}%</td>
           <td style="padding:8px 10px;text-align:center;color:${purple};">${p.supIdx}</td>
         </tr>`;
@@ -5552,21 +5552,21 @@ function generateTacticalPDF() {
         }
         if (p.aM >= 2) negativos.push(`💀 Muitas mortes/jogo (${p.aM.toFixed(1)}) — melhorar posicionamento`);
 
-        const green2='#00C853', red2='#FF5252', blue2='#1A6FFF', gold2='#FFD700';
+        const green2='#00C853', red2='#FF5252', blue2='#FF1A2D', gold2='#FFD700';
         const ovrCol = p.overall>=75?'#00C853':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF5252';
         const ovrLabel = p.overall>=75?'ELITE':p.overall>=50?'BOM':p.overall>=25?'REGULAR':'INICIANTE';
 
         // foto base64
         const fotoB64 = p.foto ? await imgToBase64(p.foto).catch(()=>null) : null;
         const fotoHtml = fotoB64
-          ? `<img src="${fotoB64}" style="width:72px;height:90px;object-fit:cover;object-position:top;border:2px solid #1A3A6B;" onerror="this.style.display='none'">`
-          : `<div style="width:72px;height:90px;background:#0D1E3D;border:2px solid #1A3A6B;display:flex;align-items:center;justify-content:center;font-size:28px;">👤</div>`;
+          ? `<img src="${fotoB64}" style="width:72px;height:90px;object-fit:cover;object-position:top;border:2px solid #6B1A21;" onerror="this.style.display='none'">`
+          : `<div style="width:72px;height:90px;background:#3D0D11;border:2px solid #6B1A21;display:flex;align-items:center;justify-content:center;font-size:28px;">👤</div>`;
 
         // Pizza contribuição
         const teamTK = sum(pStats.map(x=>x.tK))||1;
         const myKpct = Math.round((p.tK/teamTK)*100);
         const othKpct = 100-myKpct;
-        const pizzaKills = svgPizza([{l:p.pl,v:p.tK,c:'#1A6FFF'},{l:'Time',v:sum(pStats.filter(x=>x.pl!==p.pl).map(x=>x.tK)),c:'#1A2540'}],100);
+        const pizzaKills = svgPizza([{l:p.pl,v:p.tK,c:'#FF1A2D'},{l:'Time',v:sum(pStats.filter(x=>x.pl!==p.pl).map(x=>x.tK)),c:'#401A1D'}],100);
 
         // Gauge KD
         const gaugeKD = svgGauge(p.kd, 4, 'K/D RATIO', p.kd>=1?'#00C853':'#FF5252', 100);
@@ -5578,11 +5578,11 @@ function generateTacticalPDF() {
         const playerMapas = [...new Set(data.filter(d=>d.player===p.pl).map(d=>d.mapa).filter(Boolean))];
         const playerMapSt = playerMapas.map(m=>{
           const rows=data.filter(d=>d.player===p.pl&&d.mapa===m);
-          return {l:m, v:sum(rows.map(d=>d.kills)), c:'#1A6FFF'};
+          return {l:m, v:sum(rows.map(d=>d.kills)), c:'#FF1A2D'};
         }).sort((a,b)=>b.v-a.v).slice(0,5);
-        const barsMapas = playerMapSt.length ? svgBars(playerMapSt,'#1A6FFF',180) : '';
+        const barsMapas = playerMapSt.length ? svgBars(playerMapSt,'#FF1A2D',180) : '';
 
-        const roleColor = p.isBomba?'#FF5252':p.isSupport?'#00E676':p.isSniper?'#CE93D8':'#4D9FFF';
+        const roleColor = p.isBomba?'#FF5252':p.isSupport?'#00E676':p.isSniper?'#CE93D8':'#FF4D5C';
         const roleLabel = p.isBomba?'💣 BOMBA':p.isSupport?'🛡️ SUPORTE':p.isSniper?'🎯 SNIPER':'⚔️ FRAGGER';
         const ovrColor  = p.overall>=75?'#00E676':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF1744';
         const ovrBorder = p.overall>=75?'#00C853':p.overall>=50?'#FFD700':p.overall>=25?'#FF9F40':'#FF1744';
@@ -5592,9 +5592,9 @@ function generateTacticalPDF() {
         const maxMapK = Math.max(...playerMapSt.map(m=>m.v),1);
         const mapBarsHtml = playerMapSt.map(m=>`
           <div class="svg-bar-row">
-            <div class="svg-bar-label" style="font-size:9px;color:#8899BB;">${m.l}</div>
+            <div class="svg-bar-label" style="font-size:9px;color:#BB888C;">${m.l}</div>
             <div class="svg-bar-track">
-              <div class="svg-bar-fill" style="width:${(m.v/maxMapK)*100}%;background:#1A6FFF;">
+              <div class="svg-bar-fill" style="width:${(m.v/maxMapK)*100}%;background:#FF1A2D;">
                 <span>${m.v}</span>
               </div>
             </div>
@@ -5623,7 +5623,7 @@ function generateTacticalPDF() {
                   <div class="pkpi-lbl">K/D</div>
                 </div>
                 <div class="pkpi">
-                  <div class="pkpi-val" style="color:#4D9FFF;">${Math.round(p.aD)}</div>
+                  <div class="pkpi-val" style="color:#FF4D5C;">${Math.round(p.aD)}</div>
                   <div class="pkpi-lbl">DANO MÉD</div>
                 </div>
                 <div class="pkpi">
@@ -5631,7 +5631,7 @@ function generateTacticalPDF() {
                   <div class="pkpi-lbl">KDA</div>
                 </div>
                 <div class="pkpi">
-                  <div class="pkpi-val" style="color:#4D9FFF;">${p.tA}</div>
+                  <div class="pkpi-val" style="color:#FF4D5C;">${p.tA}</div>
                   <div class="pkpi-lbl">ASSISTS</div>
                 </div>
               </div>
@@ -5660,12 +5660,12 @@ function generateTacticalPDF() {
                 const r=18,c=Math.PI*r,dash=pct*c;
                 return `<div style="text-align:center;">
                   <svg width="48" height="28" viewBox="0 0 48 28" style="transform:scaleY(-1)">
-                    <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="#1A2540" stroke-width="5" stroke-linecap="round"/>
+                    <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="#401A1D" stroke-width="5" stroke-linecap="round"/>
                     <path d="M4,24 A20,20 0 0,1 44,24" fill="none" stroke="${kdColor}" stroke-width="5"
                       stroke-dasharray="${(pct*62.8).toFixed(1)} 62.8" stroke-linecap="round"/>
                   </svg>
                   <div style="font-size:9px;font-weight:700;color:${kdColor};margin-top:-4px;">${p.kd.toFixed(2)}</div>
-                  <div style="font-size:7px;color:#5A7090;letter-spacing:2px;">K/D</div>
+                  <div style="font-size:7px;color:#905A5E;letter-spacing:2px;">K/D</div>
                 </div>`;
               })()}
             </div>
@@ -5683,12 +5683,12 @@ function generateTacticalPDF() {
                 {l:'DERRUBOU',   v:p.tDr,                 c:'#CE93D8'},
                 {l:'LEVANTOU',   v:p.tLv,                 c:'#00E676'},
                 {l:'CONF.KILL',  v:p.killConf+'%',        c:parseFloat(p.killConf)>=60?'#00E676':'#FF5252'},
-                {l:'DANO/KILL',  v:p.dpk,                 c:'#E8EDF5'},
+                {l:'DANO/KILL',  v:p.dpk,                 c:'#F5E8E9'},
                 {l:'RESSURGIU',  v:p.tRs,                 c:'#CE93D8'},
                 {l:'REC.KILL',   v:p.recordK,             c:'#FFD700'},
                 {l:'REC.DANO',   v:p.recordD,             c:'#FFD700'},
-                {l:'CONSIST.',   v:p.consistency,         c:'#8899BB'},
-                {l:'ASS/KILL',   v:p.assRatio,            c:'#4D9FFF'},
+                {l:'CONSIST.',   v:p.consistency,         c:'#BB888C'},
+                {l:'ASS/KILL',   v:p.assRatio,            c:'#FF4D5C'},
               ].map(s=>`<div class="metric-box">
                 <div class="metric-val" style="color:${s.c};">${s.v}</div>
                 <div class="metric-lbl">${s.l}</div>
@@ -5698,12 +5698,12 @@ function generateTacticalPDF() {
             <!-- Kill bar chart + role insight -->
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
               <div>
-                <div style="font-size:7px;letter-spacing:3px;color:#5A7090;margin-bottom:8px;font-weight:700;">KILLS POR MAPA</div>
-                ${mapBarsHtml || '<div style="font-size:10px;color:#5A7090;">Sem dados de mapa.</div>'}
+                <div style="font-size:7px;letter-spacing:3px;color:#905A5E;margin-bottom:8px;font-weight:700;">KILLS POR MAPA</div>
+                ${mapBarsHtml || '<div style="font-size:10px;color:#905A5E;">Sem dados de mapa.</div>'}
               </div>
               <div class="role-insight">
                 <div style="font-size:7px;letter-spacing:3px;color:${roleColor};font-weight:700;margin-bottom:6px;">${roleLabel} · CRITÉRIOS DE AVALIAÇÃO</div>
-                <div style="font-size:9px;color:#8899BB;line-height:1.6;">
+                <div style="font-size:9px;color:#BB888C;line-height:1.6;">
                   ${p.isBomba
                     ?`Dano: ${Math.round(p.aD)} HP · Derrubadas: ${p.tDr} · Conf. kills: ${p.killConf}% · K/D: ${p.kd.toFixed(2)}. Suporte médico não é critério desta função.`
                     :p.isSupport
@@ -5721,13 +5721,13 @@ function generateTacticalPDF() {
                 <div class="analysis-title" style="color:#00E676;">✅ PONTOS POSITIVOS</div>
                 ${positivos.length
                   ? positivos.map(x=>`<div class="analysis-item">${x}</div>`).join('')
-                  : '<div class="analysis-item" style="color:#5A7090;">Sem destaques neste período.</div>'}
+                  : '<div class="analysis-item" style="color:#905A5E;">Sem destaques neste período.</div>'}
               </div>
               <div class="analysis-box neg">
                 <div class="analysis-title" style="color:#FF5252;">⚠️ PONTOS A MELHORAR</div>
                 ${negativos.length
                   ? negativos.map(x=>`<div class="analysis-item">${x}</div>`).join('')
-                  : '<div class="analysis-item" style="color:#5A7090;">Sem alertas.</div>'}
+                  : '<div class="analysis-item" style="color:#905A5E;">Sem alertas.</div>'}
               </div>
             </div>
           </div>
@@ -5753,27 +5753,27 @@ function generateTacticalPDF() {
       if (avgMg >= 2.5) negColetivo.push(`💀 Alta média de mortes por jogo (${avgMg.toFixed(1)}) — melhorar posicionamento coletivo`);
 
       const mapRows = mapSt.map((m,i)=>`
-        <tr style="background:${i%2===0?'#0C1220':'#0A1018'};border-bottom:1px solid #1A2540;">
-          <td style="padding:7px 10px;font-weight:700;color:${i===0?gold:'#C8D4E8'};">${m.map}</td>
+        <tr style="background:${i%2===0?'#200C0E':'#180A0B'};border-bottom:1px solid #401A1D;">
+          <td style="padding:7px 10px;font-weight:700;color:${i===0?gold:'#E8C8CB'};">${m.map}</td>
           <td style="padding:7px 10px;text-align:center;font-weight:900;color:${blue};">${m.kills}</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.dano}</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.ass}</td>
+          <td style="padding:7px 10px;text-align:center;color:#E8C8CB;">${m.dano}</td>
+          <td style="padding:7px 10px;text-align:center;color:#E8C8CB;">${m.ass}</td>
           <td style="padding:7px 10px;text-align:center;color:#ff5078;">${m.mortes}</td>
           <td style="padding:7px 10px;text-align:center;color:#4dff88;">${m.cura}</td>
           <td style="padding:7px 10px;text-align:center;color:#cc66ff;">${m.hs}%</td>
-          <td style="padding:7px 10px;text-align:center;color:#C8D4E8;">${m.games}</td>
+          <td style="padding:7px 10px;text-align:center;color:#E8C8CB;">${m.games}</td>
         </tr>`).join('');
 
       // Gráficos globais
       const pizzaContrib = svgPizza(
-        pStats.map((p,i)=>({l:p.pl,v:p.tK,c:['#1A6FFF','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40'][i%6]})),120);
+        pStats.map((p,i)=>({l:p.pl,v:p.tK,c:['#FF1A2D','#ffd700','#ff5078','#4dff88','#cc66ff','#ff9f40'][i%6]})),120);
       const coneRankK = svgCone(
         [...pStats].sort((a,b)=>b.tK-a.tK).map(p=>({l:p.pl,v:p.tK})));
       const coneRankD = svgCone(
         [...pStats].sort((a,b)=>b.aD-a.aD).map(p=>({l:p.pl,v:Math.round(p.aD)})));
       const treemapMap = svgTreemap(mapSt);
       const barsAssist = svgBars(
-        [...pStats].sort((a,b)=>b.tA-a.tA).slice(0,6).map(p=>({l:p.pl,v:p.tA,c:'#4D9FFF'})),'#4D9FFF',200);
+        [...pStats].sort((a,b)=>b.tA-a.tA).slice(0,6).map(p=>({l:p.pl,v:p.tA,c:'#FF4D5C'})),'#FF4D5C',200);
       const barsCura = svgBars(
         [...pStats].sort((a,b)=>b.tC-a.tC).slice(0,6).map(p=>({l:p.pl,v:p.tC,c:'#4dff88'})),'#4dff88',200);
 
@@ -5786,17 +5786,17 @@ function generateTacticalPDF() {
         }).filter(x=>x.kills>0||x.dano>0);
         const topK = mapPlayers.sort((a,b)=>b.kills-a.kills)[0];
         return `<div style="margin-bottom:16px;break-inside:avoid;">
-          <div style="background:#0D1E3D;padding:8px 14px;border-left:3px solid #1A6FFF;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+          <div style="background:#3D0D11;padding:8px 14px;border-left:3px solid #FF1A2D;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
             <span style="font-size:11px;font-weight:700;color:#fff;letter-spacing:2px;">🗺️ ${m.map}</span>
-            <span style="font-size:9px;color:#5A6880;">${m.games} jogos · ${m.kills} kills · ${m.mortes} mortes · HS: ${m.hs}%</span>
+            <span style="font-size:9px;color:#805A5D;">${m.games} jogos · ${m.kills} kills · ${m.mortes} mortes · HS: ${m.hs}%</span>
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;padding:0 4px;">
-            ${mapPlayers.map(mp=>`<div style="background:#080C14;border:1px solid #1A2540;padding:6px 10px;min-width:90px;">
-              <div style="font-size:9px;color:#C8D4E8;font-weight:700;">${mp.pl}</div>
+            ${mapPlayers.map(mp=>`<div style="background:#140809;border:1px solid #401A1D;padding:6px 10px;min-width:90px;">
+              <div style="font-size:9px;color:#E8C8CB;font-weight:700;">${mp.pl}</div>
               <div style="display:flex;gap:10px;margin-top:3px;">
-                <span style="font-size:10px;color:#1A6FFF;font-weight:900;">${mp.kills}K</span>
+                <span style="font-size:10px;color:#FF1A2D;font-weight:900;">${mp.kills}K</span>
                 <span style="font-size:10px;color:#cc66ff;">${mp.dano}D</span>
-                <span style="font-size:10px;color:#4D9FFF;">${mp.ass}A</span>
+                <span style="font-size:10px;color:#FF4D5C;">${mp.ass}A</span>
               </div>
             </div>`).join('')}
           </div>
@@ -5818,13 +5818,13 @@ function generateTacticalPDF() {
     .no-break{page-break-inside:avoid;}
   }
   :root{
-    --bg:#05080F;--bg2:#0A0F1C;--bg3:#0F1628;
-    --blue:#1A6FFF;--blue2:#4D9FFF;--blue3:#0D4FCC;
+    --bg:#0F0506;--bg2:#1C0A0B;--bg3:#280F11;
+    --blue:#FF1A2D;--blue2:#FF4D5C;--blue3:#CC0D1D;
     --gold:#FFD700;--gold2:#FFA500;
     --green:#00E676;--green2:#00C853;
     --red:#FF1744;--red2:#FF5252;
     --purple:#AA00FF;--purple2:#CE93D8;
-    --text:#E8EDF5;--muted:#5A7090;--dim:#8899BB;
+    --text:#F5E8E9;--muted:#905A5E;--dim:#BB888C;
   }
   body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-size:11px;line-height:1.5;}
   .orb{font-family:'Orbitron',sans-serif;}
@@ -5833,7 +5833,7 @@ function generateTacticalPDF() {
   /* ── COVER PAGE ── */
   .cover{
     width:100%;min-height:100vh;
-    background:linear-gradient(160deg,#020510 0%,#050D1E 40%,#0A1530 70%,#051020 100%);
+    background:linear-gradient(160deg,#100203 0%,#1E0507 40%,#300A0D 70%,#200507 100%);
     display:flex;flex-direction:column;justify-content:space-between;
     position:relative;overflow:hidden;padding:0;
   }
@@ -6116,7 +6116,7 @@ function generateTacticalPDF() {
 .comp-an-chart-title { font-family: 'Orbitron', sans-serif; font-size: 10px; color: var(--bl3); letter-spacing: 3px; margin-bottom: 15px; text-align: center; border-bottom: 1px solid var(--bline); padding-bottom: 10px; }
 
 /* 1V1 COMBAT STYLES */
-.combat-wrap { display: flex; flex-direction: column; gap: 20px; background: linear-gradient(180deg, rgba(26,111,255,0.05) 0%, rgba(0,0,0,0) 100%); padding: 20px; border: 1px solid var(--brd); margin-top: 20px; }
+.combat-wrap { display: flex; flex-direction: column; gap: 20px; background: linear-gradient(180deg, rgba(255,26,45,0.05) 0%, rgba(0,0,0,0) 100%); padding: 20px; border: 1px solid var(--brd); margin-top: 20px; }
 .combat-header { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 30px; position: relative; }
 .combat-vs { font-family: 'Orbitron', sans-serif; font-size: 48px; font-weight: 900; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.5); font-style: italic; z-index: 2; }
 .combat-player { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 250px; }
@@ -6128,7 +6128,7 @@ function generateTacticalPDF() {
 .combat-row { background: rgba(255,255,255,0.03); transition: 0.2s; }
 .combat-row:hover { background: rgba(255,255,255,0.07); }
 .combat-cell { padding: 12px; text-align: center; font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
-.combat-label { background: rgba(26,111,255,0.1); color: var(--bl3); font-size: 10px; letter-spacing: 2px; width: 180px; border: 1px solid var(--brd); }
+.combat-label { background: rgba(255,26,45,0.1); color: var(--bl3); font-size: 10px; letter-spacing: 2px; width: 180px; border: 1px solid var(--brd); }
 .combat-val { width: 120px; color: #fff; }
 .combat-val.better { color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
 .combat-val.worse { color: #ff5078; opacity: 0.7; }
@@ -6207,9 +6207,9 @@ function generateTacticalPDF() {
 
   <div class="kpi-grid">
     ${[
-      {i:'💀',v:totalK,      l:'Total de Kills',    c:'blue',  vc:'#4D9FFF'},
+      {i:'💀',v:totalK,      l:'Total de Kills',    c:'blue',  vc:'#FF4D5C'},
       {i:'💥',v:Math.round(avgDg),l:'Dano Médio/Jogo',c:'purple',vc:'#CE93D8'},
-      {i:'🤝',v:totalA,      l:'Assistências',      c:'blue',  vc:'#4D9FFF'},
+      {i:'🤝',v:totalA,      l:'Assistências',      c:'blue',  vc:'#FF4D5C'},
       {i:'💊',v:totalC,      l:'Cura Total (HP)',    c:'green', vc:'#00E676'},
       {i:'👊',v:totalDr,     l:'Derrubadas',        c:'gold',  vc:'#FFD700'},
       {i:'🏥',v:totalLv,     l:'Levantamentos',     c:'green', vc:'#00E676'},
@@ -6358,7 +6358,7 @@ function generateTacticalPDF() {
     <div class="sec-title-sub">RECOMENDAÇÃO PARA QUARTETO COMPETITIVO</div>
   </div>
 
-  <div style="background:rgba(26, 111, 255, 0.05); border:1px solid rgba(26, 111, 255, 0.2); padding:20px; margin-bottom:30px;">
+  <div style="background:rgba(255,26,45, 0.05); border:1px solid rgba(255,26,45, 0.2); padding:20px; margin-bottom:30px;">
     <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
       <ul style="list-style:none; padding:0;">
         <li style="margin-bottom:12px; display:flex; align-items:center; gap:10px;">
@@ -6501,7 +6501,7 @@ function generateTacticalPDF() {
       const maxK = Math.max(...mapSt.map(m=>m.kills),1);
       return mapSt.map((m,i)=>{
         const pct = (m.kills/maxK)*100;
-        const colors=['#1A6FFF','#AA00FF','#00E676','#FFD700','#FF5252','#FF9F40','#4D9FFF'];
+        const colors=['#FF1A2D','#AA00FF','#00E676','#FFD700','#FF5252','#FF9F40','#FF4D5C'];
         return `<div class="svg-bar-row">
           <div class="svg-bar-label">${m.map}</div>
           <div class="svg-bar-track">
@@ -6628,11 +6628,11 @@ loadSheetData();
   <!-- iframe Google Drive -->
   <iframe id="introIframe" style="display:none;width:100%;height:100%;border:none;position:absolute;inset:0;" allowfullscreen allow="autoplay"></iframe>
   <!-- Gradient bottom -->
-  <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,12,20,.95) 0%,transparent 35%,transparent 65%,rgba(8,12,20,.6) 100%);pointer-events:none;z-index:3;"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,8,9,.95) 0%,transparent 35%,transparent 65%,rgba(20,8,9,.6) 100%);pointer-events:none;z-index:3;"></div>
   <!-- Player info -->
   <div style="position:absolute;bottom:10%;left:0;right:0;text-align:center;z-index:6;">
     <div id="introName" style="font-family:'Orbitron',sans-serif;font-size:32px;font-weight:900;color:#fff;text-shadow:0 0 40px rgba(255,255,255,.9);letter-spacing:3px;animation:fen .8s both;"></div>
-    <div id="introRole" style="font-size:11px;letter-spacing:6px;color:#4D9FFF;margin-top:8px;font-weight:700;animation:fen .6s .4s both;"></div>
+    <div id="introRole" style="font-size:11px;letter-spacing:6px;color:#FF4D5C;margin-top:8px;font-weight:700;animation:fen .6s .4s both;"></div>
   </div>
   <!-- Skip button -->
   <button onclick="closeIntro()" style="position:absolute;top:20px;right:20px;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.25);color:rgba(255,255,255,.7);padding:8px 20px;font-family:'Orbitron',sans-serif;font-size:9px;letter-spacing:2px;cursor:pointer;z-index:10;transition:.2s;" onmouseover="this.style.background='rgba(255,255,255,.3)';this.style.color='#fff'" onmouseout="this.style.background='rgba(0,0,0,.5)';this.style.color='rgba(255,255,255,.7)'">[ PULAR ]</button>
@@ -6717,7 +6717,7 @@ loadSheetData();
 .comp-an-chart-title { font-family: 'Orbitron', sans-serif; font-size: 10px; color: var(--bl3); letter-spacing: 3px; margin-bottom: 15px; text-align: center; border-bottom: 1px solid var(--bline); padding-bottom: 10px; }
 
 /* 1V1 COMBAT STYLES */
-.combat-wrap { display: flex; flex-direction: column; gap: 20px; background: linear-gradient(180deg, rgba(26,111,255,0.05) 0%, rgba(0,0,0,0) 100%); padding: 20px; border: 1px solid var(--brd); margin-top: 20px; }
+.combat-wrap { display: flex; flex-direction: column; gap: 20px; background: linear-gradient(180deg, rgba(255,26,45,0.05) 0%, rgba(0,0,0,0) 100%); padding: 20px; border: 1px solid var(--brd); margin-top: 20px; }
 .combat-header { display: flex; justify-content: center; align-items: center; gap: 40px; margin-bottom: 30px; position: relative; }
 .combat-vs { font-family: 'Orbitron', sans-serif; font-size: 48px; font-weight: 900; color: #ffd700; text-shadow: 0 0 30px rgba(255,215,0,0.5); font-style: italic; z-index: 2; }
 .combat-player { display: flex; flex-direction: column; align-items: center; gap: 15px; width: 250px; }
@@ -6729,7 +6729,7 @@ loadSheetData();
 .combat-row { background: rgba(255,255,255,0.03); transition: 0.2s; }
 .combat-row:hover { background: rgba(255,255,255,0.07); }
 .combat-cell { padding: 12px; text-align: center; font-family: 'Orbitron', sans-serif; font-size: 14px; font-weight: 700; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
-.combat-label { background: rgba(26,111,255,0.1); color: var(--bl3); font-size: 10px; letter-spacing: 2px; width: 180px; border: 1px solid var(--brd); }
+.combat-label { background: rgba(255,26,45,0.1); color: var(--bl3); font-size: 10px; letter-spacing: 2px; width: 180px; border: 1px solid var(--brd); }
 .combat-val { width: 120px; color: #fff; }
 .combat-val.better { color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
 .combat-val.worse { color: #ff5078; opacity: 0.7; }
@@ -7783,8 +7783,8 @@ function renderQuebraCall(playerName) {
     `;
 
     // Build charts
-    const ax  = {ticks:{color:'#5A6880',font:{size:9}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-    const tt  = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
+    const ax  = {ticks:{color:'#805A5D',font:{size:9}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+    const tt  = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
 
     // Chart 1: histórico acumulado
     const c1 = document.getElementById('qc_hist_chart')?.getContext('2d');
@@ -7797,7 +7797,7 @@ function renderQuebraCall(playerName) {
         ]
       }, options:{ responsive:true, maintainAspectRatio:false,
         plugins:{ legend:{ labels:{ color:'#fff', font:{size:9} } }, tooltip:tt },
-        scales:{ x:{ ...ax, ticks:{ display: histLabels.length <= 20, color:'#5A6880', font:{size:8} } }, y:{ ...ax, beginAtZero:true } }
+        scales:{ x:{ ...ax, ticks:{ display: histLabels.length <= 20, color:'#805A5D', font:{size:8} } }, y:{ ...ax, beginAtZero:true } }
       }});
     }
 
@@ -7856,8 +7856,8 @@ function renderQuebraCall(playerName) {
     const sortD  = [...x1Stats].sort((a,b)=>b.avgD  - a.avgD);
     const sortDr = [...x1Stats].sort((a,b)=>b.avgDr - a.avgDr);
 
-    buildCompChart('qc_x1_kills', sortK,  p=>p.avgK,  'Kills Méd',      '#ffd700', '#4D9FFF', '');
-    buildCompChart('qc_x1_dano',  sortD,  p=>p.avgD,  'Dano Méd',       '#cc66ff', '#7A9FFF', '');
+    buildCompChart('qc_x1_kills', sortK,  p=>p.avgK,  'Kills Méd',      '#ffd700', '#FF4D5C', '');
+    buildCompChart('qc_x1_dano',  sortD,  p=>p.avgD,  'Dano Méd',       '#cc66ff', '#FF7A85', '');
     buildCompChart('qc_x1_derru', sortDr, p=>p.avgDr, 'Derrubados Méd', '#4dff88', '#ffc44d', '');
   };
 
@@ -8052,7 +8052,7 @@ function renderAnaliseMapas(playerName, containerId) {
             ${[...mapaSt].sort((a,b)=>b.totalKills-a.totalKills).map((m,i)=>{
               const maxK = Math.max(...mapaSt.map(x=>x.totalKills),1);
               const w = Math.max((m.totalKills/maxK*100),3).toFixed(0);
-              const colors = ['#4dff88','#1A6FFF','#ffd700','#cc66ff','#ff9f40','#ff5078','#4D9FFF'];
+              const colors = ['#4dff88','#FF1A2D','#ffd700','#cc66ff','#ff9f40','#ff5078','#FF4D5C'];
               return `<div class="am-pos-bar-wrap">
                 <div class="am-pos-label">${esc(m.mapa)}</div>
                 <div style="flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:2px;position:relative;">
@@ -8083,7 +8083,7 @@ function renderAnaliseMapas(playerName, containerId) {
             ${mapaSt.map((m,i)=>{
               const maxP = mapaSt[0].mediaPontos||1;
               const w = Math.max((m.mediaPontos/maxP*100),3).toFixed(0);
-              const colors = ['#4dff88','#1A6FFF','#ffd700','#cc66ff','#ff9f40','#ff5078'];
+              const colors = ['#4dff88','#FF1A2D','#ffd700','#cc66ff','#ff9f40','#ff5078'];
               return `<div class="am-pos-bar-wrap">
                 <div class="am-pos-label">${esc(m.mapa)}</div>
                 <div style="flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:2px;">
@@ -8108,7 +8108,7 @@ function renderAnaliseMapas(playerName, containerId) {
             ${[...mapaSt].sort((a,b)=>b.totalPontos-a.totalPontos).map((m,i)=>{
               const maxP = Math.max(...mapaSt.map(x=>x.totalPontos),1);
               const w = Math.max((m.totalPontos/maxP*100),3).toFixed(0);
-              const colors = ['#4dff88','#1A6FFF','#ffd700','#cc66ff','#ff9f40','#ff5078'];
+              const colors = ['#4dff88','#FF1A2D','#ffd700','#cc66ff','#ff9f40','#ff5078'];
               return `<div class="am-pos-bar-wrap">
                 <div class="am-pos-label">${esc(m.mapa)}</div>
                 <div style="flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:2px;">
@@ -8139,7 +8139,7 @@ function renderAnaliseMapas(playerName, containerId) {
             ${mapRKB.map((m,i)=>{
               const maxP = mapRKB[0].mediaRKB||1;
               const w = Math.max((m.mediaRKB/maxP*100),3).toFixed(0);
-              const colors = ['#ffd700','#4dff88','#1A6FFF','#cc66ff','#ff9f40','#ff5078'];
+              const colors = ['#ffd700','#4dff88','#FF1A2D','#cc66ff','#ff9f40','#ff5078'];
               return `<div class="am-pos-bar-wrap">
                 <div class="am-pos-label">${esc(m.mapa)}</div>
                 <div style="flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:2px;">
@@ -8166,7 +8166,7 @@ function renderAnaliseMapas(playerName, containerId) {
               const allRKB = mapaSt.map(x=>Math.round(x.mediaRKB*x.top5));
               const maxR = Math.max(...allRKB,1);
               const w = Math.max((totalRKB/maxR*100),3).toFixed(0);
-              const colors = ['#ffd700','#4dff88','#1A6FFF','#cc66ff','#ff9f40','#ff5078'];
+              const colors = ['#ffd700','#4dff88','#FF1A2D','#cc66ff','#ff9f40','#ff5078'];
               return `<div class="am-pos-bar-wrap">
                 <div class="am-pos-label">${esc(m.mapa)}</div>
                 <div style="flex:1;height:22px;background:rgba(255,255,255,.04);border-radius:2px;">
@@ -8236,7 +8236,7 @@ function renderAnaliseMapas(playerName, containerId) {
         ${mapaSt.map((m,i)=>{
           const maxP = mapaSt[0].mediaPontos||1;
           const barW = Math.max((m.mediaPontos/maxP*100),3).toFixed(0);
-          const colors = ['#4dff88','#1A6FFF','#ffd700','#cc66ff','#ff9f40','#ff5078','#4D9FFF'];
+          const colors = ['#4dff88','#FF1A2D','#ffd700','#cc66ff','#ff9f40','#ff5078','#FF4D5C'];
           const medals = ['🥇','🥈','🥉'];
           return `<div class="am-map-card ${i===0?'best':''}">
             <div class="am-map-name">${medals[i]||''} ${esc(m.mapa)}</div>
@@ -8415,9 +8415,9 @@ function renderAnaliseMapas(playerName, containerId) {
     `;
 
     // ── BUILD ALL CHARTS ──
-    const ax  = {ticks:{color:'#5A6880',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
-    const tt  = {backgroundColor:'rgba(8,12,20,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#4D9FFF',bodyColor:'#C8D4E8',padding:10};
-    const pal = ['#4dff88','#1A6FFF','#ffd700','#cc66ff','#ff9f40','#ff5078','#4D9FFF','#00ffcc'];
+    const ax  = {ticks:{color:'#805A5D',font:{size:9,family:"'Barlow Condensed'"}},grid:{color:'rgba(255,255,255,.07)'},border:{color:'transparent'}};
+    const tt  = {backgroundColor:'rgba(20,8,9,.97)',borderColor:'rgba(255,255,255,.3)',borderWidth:1,titleColor:'#FF4D5C',bodyColor:'#E8C8CB',padding:10};
+    const pal = ['#4dff88','#FF1A2D','#ffd700','#cc66ff','#ff9f40','#ff5078','#FF4D5C','#00ffcc'];
 
     // Pizza Booyah
     const cpb = document.getElementById('am_pizza_booyah')?.getContext('2d');
@@ -8447,8 +8447,8 @@ function renderAnaliseMapas(playerName, containerId) {
       new Chart(ctp, { type:'bar', data:{
         labels: posLabels,
         datasets:[{ label:'Partidas', data:posCount,
-          backgroundColor: posCount.map((_,i)=>i===0?'rgba(255,215,0,.8)':i<5?'rgba(77,255,136,.6)':'rgba(77,159,255,.5)'),
-          borderColor: posCount.map((_,i)=>i===0?'#ffd700':i<5?'#4dff88':'#1A6FFF'),
+          backgroundColor: posCount.map((_,i)=>i===0?'rgba(255,215,0,.8)':i<5?'rgba(77,255,136,.6)':'rgba(255,77,92,.5)'),
+          borderColor: posCount.map((_,i)=>i===0?'#ffd700':i<5?'#4dff88':'#FF1A2D'),
           borderWidth:1, borderRadius:3 }]
       }, options:{ responsive:true, maintainAspectRatio:false,
         plugins:{ legend:{display:false}, tooltip:{...tt, callbacks:{ label: ctx=>`${ctx.raw} partidas nesta posição` }} },
@@ -8485,8 +8485,8 @@ function renderAnaliseMapas(playerName, containerId) {
           { type:'line', label:'Média', data:avgLine, borderColor:'rgba(255,215,0,.7)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false }
         ]
       }, options:{ responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{ labels:{ color:'#5A6880', font:{size:9} } }, tooltip:tt },
-        scales:{ x:{...ax, ticks:{display:histLabels.length<=20, color:'#5A6880', font:{size:8}}}, y:{...ax, beginAtZero:true} }
+        plugins:{ legend:{ labels:{ color:'#805A5D', font:{size:9} } }, tooltip:tt },
+        scales:{ x:{...ax, ticks:{display:histLabels.length<=20, color:'#805A5D', font:{size:8}}}, y:{...ax, beginAtZero:true} }
       }});
     }
 
@@ -8497,12 +8497,12 @@ function renderAnaliseMapas(playerName, containerId) {
       new Chart(ch2, { type:'bar', data:{
         labels: histLabels,
         datasets:[
-          { label:'Kills', data:histKills, backgroundColor:'rgba(26,111,255,.6)', borderColor:'#1A6FFF', borderWidth:1, borderRadius:2 },
+          { label:'Kills', data:histKills, backgroundColor:'rgba(255,26,45,.6)', borderColor:'#FF1A2D', borderWidth:1, borderRadius:2 },
           { type:'line', label:'Média', data:avgLineK, borderColor:'rgba(255,215,0,.7)', borderWidth:1.5, borderDash:[4,3], pointRadius:0, fill:false }
         ]
       }, options:{ responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{ labels:{ color:'#5A6880', font:{size:9} } }, tooltip:tt },
-        scales:{ x:{...ax, ticks:{display:histLabels.length<=20, color:'#5A6880', font:{size:8}}}, y:{...ax, beginAtZero:true} }
+        plugins:{ legend:{ labels:{ color:'#805A5D', font:{size:9} } }, tooltip:tt },
+        scales:{ x:{...ax, ticks:{display:histLabels.length<=20, color:'#805A5D', font:{size:8}}}, y:{...ax, beginAtZero:true} }
       }});
     }
 
@@ -8512,8 +8512,8 @@ function renderAnaliseMapas(playerName, containerId) {
       new Chart(ch5, { type:'bar', data:{
         labels: posLabels,
         datasets:[{ label:'Média Pontos', data:posMediaP,
-          backgroundColor:posMediaP.map(v=>v>=300?'rgba(255,215,0,.75)':v>=100?'rgba(77,255,136,.65)':'rgba(77,159,255,.55)'),
-          borderColor:posMediaP.map(v=>v>=300?'#ffd700':v>=100?'#4dff88':'#1A6FFF'),
+          backgroundColor:posMediaP.map(v=>v>=300?'rgba(255,215,0,.75)':v>=100?'rgba(77,255,136,.65)':'rgba(255,77,92,.55)'),
+          borderColor:posMediaP.map(v=>v>=300?'#ffd700':v>=100?'#4dff88':'#FF1A2D'),
           borderWidth:1, borderRadius:3 }]
       }, options:{ responsive:true, maintainAspectRatio:false,
         plugins:{ legend:{display:false}, tooltip:{...tt, callbacks:{ label: ctx=>`Média: ${ctx.raw} pts · ${posCount[ctx.dataIndex]} partidas` }} },
@@ -8567,9 +8567,9 @@ function renderAnaliseMapas(playerName, containerId) {
           borderWidth:1.5, pointRadius:3
         }))
       }, options:{ responsive:true, maintainAspectRatio:false,
-        plugins:{ legend:{ labels:{ color:'#5A6880', font:{size:8,family:"'Barlow Condensed'"}, boxWidth:8 } } },
+        plugins:{ legend:{ labels:{ color:'#805A5D', font:{size:8,family:"'Barlow Condensed'"}, boxWidth:8 } } },
         scales:{ r:{ ticks:{display:false}, grid:{color:'rgba(255,255,255,.1)'},
-          pointLabels:{ color:'#5A6880', font:{size:8} }, angleLines:{color:'rgba(255,255,255,.07)'} } }
+          pointLabels:{ color:'#805A5D', font:{size:8} }, angleLines:{color:'rgba(255,255,255,.07)'} } }
       }});
     }
   };
@@ -8872,8 +8872,8 @@ function rcDrawMiniChart(canvasId, rows) {
   const pts = rows.slice(-10).map(r=>r.dano);
   if (!pts.length) return;
   const isBlue = rows[0] && rcGetCategoria(rows[0].recurso)==='PISTOLAS';
-  const lineColor = isBlue?'rgba(122,175,255,.9)':'rgba(255,165,0,.9)';
-  const fillColor = isBlue?'rgba(26,111,255,.12)':'rgba(255,165,0,.08)';
+  const lineColor = isBlue?'rgba(255,122,133,.9)':'rgba(255,165,0,.9)';
+  const fillColor = isBlue?'rgba(255,26,45,.12)':'rgba(255,165,0,.08)';
   const grad = ctx.createLinearGradient(0,0,0,44);
   grad.addColorStop(0,fillColor); grad.addColorStop(1,'transparent');
   rcChartInstances[canvasId] = new Chart(ctx, {
